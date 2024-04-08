@@ -13,4 +13,5 @@ export class categoriasEntity
 
     @OneToMany(()=>subcategoriasEntity,(subcat)=>subcat.categoria,{nullable:true})
     subcategorias:subcategoriasEntity[]
+    
 }
