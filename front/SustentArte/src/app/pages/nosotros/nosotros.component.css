@@ -1,0 +1,25 @@
+
+.textContainer{
+  margin: 50vw;
+}
+.imagen{
+  width: 100vw;
+  height: 40% !important;
+}
+
+.textContainer {
+  margin-top: 5vw; /* Ajusta el margen superior según sea necesario */
+  margin-bottom: 5vw; /* Ajusta el margen inferior según sea necesario */
+}
+
+.contenedor {
+  margin-bottom: 5vw; /* Ajusta el margen inferior según sea necesario */
+}
+
+.texto{
+  font-size: 1.5svw;
+}
+
+.frase{
+  font-size: ;
+}
