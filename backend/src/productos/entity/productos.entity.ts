@@ -1,8 +1,9 @@
 import { IsEmail, IsNumber, IsString } from 'class-validator';
 import { categoriasEntity } from 'src/categorias/entity/categorias.entity';
-import { ManyToMany, ManyToOne, OneToOne } from 'typeorm';
+import { pedidosEntity } from 'src/pedidos/entity/pedidos.entity';
+import { ManyToMany, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
-export class productosDto{
+export class productosEntity{
     @IsNumber()
     id_Producto:number;
 
@@ -23,4 +24,7 @@ export class productosDto{
 
     @ManyToOne(()=>artesanosEntity,(artesanos)=>artesanos.artesanos, {nullable: true})
     artesanos:artesanosEntity
+
+    @OneToMany(()=>pedidosEntity,(pedidos)=>pedidos.productos,{nullable:true})
+    pedidos:pedidosEntity
 }

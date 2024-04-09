@@ -1,3 +1,4 @@
+import { productosEntity } from "src/productos/entity/productos.entity";
 import { seguimientosEntity } from "src/seguimientos/entity/seguimientos.entity";
 import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
