@@ -27,5 +27,5 @@ export class pedidosEntity
     productos:productosEntity[]
 
     @OneToOne(()=> seguimientosEntity,(seg)=>seg.pedidos,{nullable:true})
-    seguimientos:seguimientosEntity
+    seguimientos:seguimientosEntity[]
 }
