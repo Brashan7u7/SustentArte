@@ -1,4 +1,3 @@
-import { subcategoriasEntity } from "src/subcategorias/entity/subcategorias.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('categorias')
@@ -10,8 +9,5 @@ export class categoriasEntity
 
     @Column()
     nombreCat:string
-
-    @OneToMany(()=>subcategoriasEntity,(subcat)=>subcat.categoria,{nullable:true})
-    subcategorias:subcategoriasEntity[]
     
 }
