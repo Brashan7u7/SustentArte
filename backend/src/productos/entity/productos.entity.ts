@@ -1,5 +1,5 @@
-import { subcategoriasEntity as categoriasEntity } from './../../subcategorias/entity/subcategorias.entity';
 import { IsEmail, IsNumber, IsString } from 'class-validator';
+import { categoriasEntity } from 'src/categorias/entity/categorias.entity';
 import { ManyToMany, ManyToOne, OneToOne } from 'typeorm';
 
 export class productosDto{
@@ -12,7 +12,7 @@ export class productosDto{
     @IsString()
     descripcion:string;
     
-    @OneToOne(()=>categoriasEntity,(categorias)=> categorias.categoria, {nullable: true})
+    @OneToOne(()=>categoriasEntity,(categorias)=> categorias.productos, {nullable: true})
     categorias:categoriasEntity
     
     @IsNumber()
