@@ -23,3 +23,20 @@
 .frase{
   font-size: ;
 }
+/* Media queries */
+@media (max-width: 1500px) {
+  .texto{
+    font-size: 2.5svw;
+  }
+}
+@media (max-width: 900px) {
+  .texto{
+    font-size: 3svw;
+  }
+}
+
+@media (max-width: 500px) {
+  .texto{
+    font-size: 4svw;
+  }
+}

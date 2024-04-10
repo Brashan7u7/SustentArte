@@ -1,0 +1,107 @@
+.imagen {
+  width: 100%;
+  max-width: 300px;
+  margin-top: 0;
+}
+
+.imagen2 {
+  display: none;
+}
+
+.fondo {
+  background-color: #F8CB97;
+  height: 100vh !important; /* Ajusta la altura del fondo para ocupar toda la pantalla */
+}
+
+.formulario {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  height: 100%; /* Ajusta la altura del formulario para ocupar toda la altura del contenedor */
+}
+
+.form {
+  width: 100%;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input {
+  border-radius: 5px;
+}
+
+.icon {
+  margin-left: 0;
+}
+
+.imagenCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagenCol img {
+  width: 100%; /* Hace que la imagen ocupe todo el ancho de la columna */
+  max-width: 80%; /* Ajusta el ancho máximo de la imagen */
+  height: auto; /* Permite que la altura de la imagen se ajuste automáticamente */
+}
+
+.btn-custom {
+  background-color: white;
+  color: #DF7A25;
+  border-color: #DF7A25;
+  width: 100%; /* Modificado */
+  margin: 0; /* Añadido para eliminar cualquier margen */
+  margin-bottom: 10px; /* Añadido margen inferior */
+}
+
+.btn-custom2 {
+  background-color: #DF7A25; /* Fondo blanco */
+  color: #ffffff; /* Texto naranja */
+  border-color: #ffffff;
+  width: 100%; /* Modificado */
+  margin: 0; /* Añadido para eliminar cualquier margen */
+  margin-bottom: 10px; /* Añadido margen inferior */
+}
+
+.btn-custom2:hover {
+  color: #DF7A25; /* Texto blanco al pasar el mouse */
+  background-color: #fff; /* Fondo naranja al pasar el mouse */
+  border-color: #DF7A25; /* Borde naranja */
+}
+
+.btn-custom:hover {
+  color: #fff; /* Texto blanco al pasar el mouse */
+  background-color: #df9d66; /* Fondo naranja al pasar el mouse */
+}
+
+
+/* Media queries */
+@media (max-width: 992px) {
+
+
+  .imagen{
+    display: none;
+  }
+  .imagenCol {
+    display: none; /* Oculta la columna con la imagen en dispositivos más pequeños */
+  }
+  .col-lg-5 {
+    width: 100%; /* Ajusta el ancho de la columna del formulario en dispositivos más pequeños */
+  }
+  .imagen2 {
+    display: inline;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 0;
+  }
+}

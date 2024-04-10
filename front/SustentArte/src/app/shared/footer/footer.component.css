@@ -2,37 +2,48 @@
   background-color: #DF7A25;
   padding: 2rem 0; /* Agrega un espacio interno superior e inferior */
   color: #fff; /* Color del texto */
+  position:  static; /* Fija la posición */
+  width: 100%; /* Ocupa todo el ancho */
+  bottom: 0; /* Se queda en la parte inferior */
 }
 
+/* Resto de tus estilos CSS aquí */
+
+
 .contenedor h5 {
-  color: #000000; /* Color del texto */
-  margin-bottom: 1rem; /* Espacio inferior entre títulos y otros elementos */
+    color: #000000; /* Color del texto */
+    margin-bottom: 1rem; /* Espacio inferior entre títulos y otros elementos */
 }
 .contenedor h4{
-  margin-bottom: 1rem; /* Espacio inferior entre títulos y otros elementos */
-  color: white;
-  font-weight: bolder;
+    margin-bottom: 1rem; /* Espacio inferior entre títulos y otros elementos */
+    color: white;
+    font-weight: bolder;
 }
 
 .contenedor a {
-  color: #fff; /* Color del texto del enlace */
+    color: #fff; /* Color del texto del enlace */
 }
 
 .contenedor a:hover {
-  text-decoration: none; /* Elimina el subrayado en el hover */
+    text-decoration: none; /* Elimina el subrayado en el hover */
 }
 
 /* Estilos para las columnas que contienen los íconos de redes sociales */
 .contenedor .col-3 {
-  display: flex;
-  justify-content: center; /* Centra los íconos horizontalmente */
-  align-items: center; /* Centra los íconos verticalmente */
+    display: flex;
+    justify-content: center; /* Centra los íconos horizontalmente */
+    align-items: center; /* Centra los íconos verticalmente */
 }
 
 /* Estilos para los íconos de redes sociales */
 .contenedor .col-3 h2 {
-  font-size: 2rem; /* Tamaño del ícono */
-  margin: 0; /* Elimina el margen interior del título */
+    font-size: 2rem; /* Tamaño del ícono */
+    margin: 0; /* Elimina el margen interior del título */
 }
 
-/* Estilos adicionales según sea necesario */
+@media  (max-width:700px) {
+  .textoContact{
+    display: none;
+  }
+
+}
