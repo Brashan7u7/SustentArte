@@ -1,0 +1,34 @@
+import { compradoresEntity } from 'src/compradores/entity/compradores.entity';
+import {
+  Column,
+  Double,
+  Entity,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+
+@Entity('pagos')
+export class pagosEntity {
+  @PrimaryGeneratedColumn()
+  id_Pago: number;
+
+  @ManyToMany(() => compradoresEntity, (compradores) => compradores.pagos, {
+    nullable: true,
+  })
+  compradores: compradoresEntity;
+
+  @Column({ type: 'date', nullable: true })
+  fecha_Pago: Date;
+
+  @Column({ type: 'double', nullable: true })
+  monto_Pago: Double;
+
+  @Column({ type: 'number', nullable: true })
+  metodo_Pago: number;
+
+  @Column({ type: 'varchar', length: 30, nullable: true })
+  num_Transac: string;
+
+  @Column({ type: 'number', nullable: true })
+  edo_Pago: number;
+}

@@ -1,3 +1,4 @@
+import { pagosEntity } from 'src/pagos/entity/pagos.entity';
 import { pedidosEntity } from 'src/pedidos/entity/pedidos.entity';
 import { productosEntity } from 'src/productos/entity/productos.entity';
 import { usuariosEntity } from 'src/usuarios/entity/usuarios.entity';
@@ -29,6 +30,4 @@ export class compradoresEntity {
     nullable: true,
   })
   pagos: pagosEntity;
-
-  
 }
