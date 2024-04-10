@@ -1,5 +1,5 @@
-import { subcategoriasEntity } from "src/subcategorias/entity/subcategorias.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { productosEntity } from "src/productos/entity/productos.entity";
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('categorias')
 export class categoriasEntity
@@ -11,7 +11,7 @@ export class categoriasEntity
     @Column()
     nombreCat:string
 
-    @OneToMany(()=>subcategoriasEntity,(subcat)=>subcat.categoria,{nullable:true})
-    subcategorias:subcategoriasEntity[]
+    @OneToOne(()=>productosEntity,(prod)=>prod.categorias,{nullable:true})
+    productos:productosEntity
     
 }

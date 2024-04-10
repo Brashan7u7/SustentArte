@@ -11,6 +11,6 @@ export class seguimientosDto
     @IsNumber()
     edo_Envio:number
 
-    @IsNumber()
+    @IsNumber() 
     id_pedidos:number
 }

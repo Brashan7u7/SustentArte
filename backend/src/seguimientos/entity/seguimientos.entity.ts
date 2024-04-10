@@ -7,7 +7,7 @@ export class seguimientosEntity
     @PrimaryGeneratedColumn()
     id_seguimientos:number
 
-    @OneToOne(()=>pedidosEntity,(pedidos)=>pedidos.seguimientos)
+    @OneToOne(()=>pedidosEntity,(pedidos)=>pedidos.seguimientos, {nullable: true})
     pedidos:pedidosEntity
 
     @Column({type:'varchar',length:30})
