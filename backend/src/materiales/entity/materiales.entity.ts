@@ -15,5 +15,5 @@ export class materialesEntity {
   @ManyToMany(() => productosEntity, (prodcutos) => prodcutos.materiales, {
     nullable: true,
   })
-  productos: productosEntity;
+  productos: productosEntity[];
 }

@@ -4,6 +4,7 @@ import {
   Double,
   Entity,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -12,7 +13,7 @@ export class pagosEntity {
   @PrimaryGeneratedColumn()
   id_Pago: number;
 
-  @ManyToMany(() => compradoresEntity, (compradores) => compradores.pagos, {
+  @ManyToOne(() => compradoresEntity, (compradores) => compradores.pagos, {
     nullable: true,
   })
   compradores: compradoresEntity;
