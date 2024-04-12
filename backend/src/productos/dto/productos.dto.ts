@@ -19,4 +19,10 @@ export class productosDto
 
     @IsNumber()
     id_Artesano:number
+
+    @IsNumber()
+    id_pedido:number
+
+    @IsNumber()
+    id_materiales:number
 }
