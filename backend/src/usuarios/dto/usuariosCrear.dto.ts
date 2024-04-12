@@ -1,6 +1,6 @@
 import { IsEmail, IsNumber, IsString } from 'class-validator';
 
-export class crearUsuarios {
+export class usuariosDto {
 
     @IsString()
     nombre: string;
@@ -32,4 +32,10 @@ export class crearUsuarios {
 
     @IsString()
     numCasa: string;
+
+    @IsNumber()
+    idCompradores:number
+
+    @IsNumber()
+    idArtesanos:number
 }
