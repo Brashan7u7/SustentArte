@@ -1,3 +1,5 @@
+
+
 .imagen {
   width: 100%;
   max-width: 300px;
@@ -19,8 +21,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10%;
-  height: 100%; /* Ajusta la altura del formulario para ocupar toda la altura del contenedor */
+  padding: 15%;
+  min-height: 100%; /* Cambiado de height a min-height */
 }
 
 .form {
@@ -86,7 +88,7 @@
 
 
 /* Media queries */
-@media (max-width: 992px) {
+@media (max-width: 1110px) {
 
 
   .imagen{
