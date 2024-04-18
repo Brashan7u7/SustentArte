@@ -1,6 +1,6 @@
 import { artesanosEntity } from "src/artesanos/entity/artesanos.entity";
 import { compradoresEntity } from "src/compradores/entity/compradores.entity";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('usuarios')
 export class usuariosEntity
@@ -40,9 +40,11 @@ export class usuariosEntity
     numCasa:string
 
     @OneToOne(()=>compradoresEntity,(comp)=>comp.usuarios,{nullable:true})
+    @JoinColumn()
     compradores:compradoresEntity
 
     @OneToOne(()=>artesanosEntity,(art)=>art.usuarios,{nullable:true})
+    @JoinColumn()
     artesanos:artesanosEntity
 
 }
