@@ -48,8 +48,8 @@ import { artesanosEntity } from './artesanos/entity/artesanos.entity';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'h4chizo',
-      database: 'cine',
+      password: 'qwe',
+      database: 'sustentarte',
       entities: [productosEntity,usuariosEntity,seguimientosEntity,productosEntity,pedidosEntity,pagosEntity,materialesEntity,
         compradoresEntity,categoriasEntity,artesanosEntity
       ],
