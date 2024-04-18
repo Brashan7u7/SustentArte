@@ -4,6 +4,7 @@ import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PanelAdministradorComponent } from './pages/Administrador/panel-administrador/panel-administrador.component';
+import { PanelVendedorComponent } from './pages/Vendedor/panel-vendedor/panel-vendedor.component';
 
 
 
@@ -15,6 +16,10 @@ export const routes: Routes = [
   {
     path: 'panelAdmin',
     component: PanelAdministradorComponent
+  },
+  {
+    path: 'panelVendedor',
+    component: PanelVendedorComponent
   },
   {
     path :'home',
