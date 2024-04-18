@@ -6,6 +6,7 @@ import { pedidosEntity } from 'src/pedidos/entity/pedidos.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -32,6 +33,7 @@ export class productosEntity {
   @OneToOne(() => categoriasEntity, (categorias) => categorias.productos, {
     nullable: true,
   })
+  @JoinColumn()
   categorias: categoriasEntity;
 
   @Column({ type: 'real', nullable: true })
