@@ -107,6 +107,7 @@
     margin-top: 0;
   }
 }
+
 @media (max-width: 445px) {
   .item{
     display: none;
