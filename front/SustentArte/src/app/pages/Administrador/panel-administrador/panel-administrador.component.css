@@ -1,0 +1,27 @@
+.card {
+  width: 18vw; /* Ancho deseado de las tarjetas */
+  margin: 20px auto; /* Margen para centrar las tarjetas horizontalmente */
+  text-align: center; /* Alineación del contenido al centro */
+  transition: box-shadow 0.3s; /* Transición suave para la sombra */
+}
+
+.card img {
+  max-width: 100%; /* Para asegurar que la imagen no se desborde */
+  height: auto; /* Altura automática para mantener la proporción */
+}
+
+.card-title {
+  margin-top: 10px; /* Espacio superior para el título */
+}
+
+.row {
+  display: flex; /* Utilizar flexbox para alinear las tarjetas horizontalmente */
+  justify-content: center; /* Alinear las tarjetas horizontalmente al centro */
+}
+
+.card:hover {
+  box-shadow: 0 0 10vw rgba(0, 0, 0, 0.3); /* Sombras en la tarjeta al pasar el ratón */
+}
+.screen{
+  height: 42.65vw;
+}
