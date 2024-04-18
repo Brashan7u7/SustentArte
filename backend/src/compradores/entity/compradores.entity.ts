@@ -19,15 +19,15 @@ export class compradoresEntity {
   @OneToMany(() => pedidosEntity, (pedidos) => pedidos.compradores, {
     nullable: true,
   })
-  pedidos: pedidosEntity;
+  pedidos: pedidosEntity[];
 
   @OneToOne(() => usuariosEntity, (usuarios) => usuarios.compradores, {
     nullable: true,
   })
   usuarios: usuariosEntity;
 
-  @ManyToMany(() => pagosEntity, (pagos) => pagos.compradores, {
+  @OneToMany(() => pagosEntity, (pagos) => pagos.compradores, {
     nullable: true,
   })
-  pagos: pagosEntity;
+  pagos: pagosEntity[];
 }
