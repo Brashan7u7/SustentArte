@@ -29,13 +29,33 @@ import { MaterialesModule } from './materiales/materiales.module';
 import { CompradoresModule } from './compradores/compradores.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { ArtesanosModule } from './artesanos/artesanos.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductosService } from './productos/productos.service';
+import { productosEntity } from './productos/entity/productos.entity';
+import { usuariosEntity } from './usuarios/entity/usuarios.entity';
+import { seguimientosEntity } from './seguimientos/entity/seguimientos.entity';
+import { pedidosEntity } from './pedidos/entity/pedidos.entity';
+import { pagosEntity } from './pagos/entity/pagos.entity';
+import { materialesEntity } from './materiales/entity/materiales.entity';
+import { compradoresEntity } from './compradores/entity/compradores.entity';
+import { categoriasEntity } from './categorias/entity/categorias.entity';
+import { artesanosEntity } from './artesanos/entity/artesanos.entity';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://admin:admin1234@cluster0.1l0vbnb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-    ),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'h4chizo',
+      database: 'cine',
+      entities: [productosEntity,usuariosEntity,seguimientosEntity,productosEntity,pedidosEntity,pagosEntity,materialesEntity,
+        compradoresEntity,categoriasEntity,artesanosEntity
+      ],
+      synchronize: true,
+    }),
+    ProductosModule,
     UsuariosModule,
     SeguimientosModule,
     ProductosModule,
@@ -46,9 +66,9 @@ import { ProductosService } from './productos/productos.service';
     CategoriasModule,
     ArtesanosModule,
   ],
-  controllers: [AppController, UsuariosController, SeguimientosController, ProductosController, PedidosController, PagosController, MaterialesController, CompradoresController, CategoriasController, ArtesanosController],
-  providers: [AppService, ProductosService, UsuariosService, SeguimientosService, PedidosService, PagosService, MaterialesService, CompradoresService, CategoriasService, ArtesanosService],
+  controllers: [AppController, UsuariosController, SeguimientosController, ProductosController, PedidosController, PagosController, MaterialesController, CompradoresController, CategoriasController, ArtesanosController, ProductosController],
+  providers: [AppService, ProductosService, UsuariosService, SeguimientosService, PedidosService, PagosService, MaterialesService, CompradoresService, CategoriasService, ArtesanosService, ProductosService],
 
-  
+
 })
-export class AppModule {}
+export class AppModule { }
