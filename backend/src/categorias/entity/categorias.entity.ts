@@ -1,5 +1,5 @@
 import { productosEntity } from "src/productos/entity/productos.entity";
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('categorias')
 export class categoriasEntity
@@ -12,6 +12,7 @@ export class categoriasEntity
     nombreCat:string
 
     @OneToOne(()=>productosEntity,(prod)=>prod.categorias,{nullable:true})
+    @JoinColumn()
     productos:productosEntity
     
 }

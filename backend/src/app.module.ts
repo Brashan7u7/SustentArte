@@ -2,7 +2,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
 import { UsuariosController } from './usuarios/usuarios.controller';
 import { SeguimientosController } from './seguimientos/seguimientos.controller';
 import { ProductosController } from './productos/productos.controller';
