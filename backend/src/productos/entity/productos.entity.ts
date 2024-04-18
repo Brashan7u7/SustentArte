@@ -34,10 +34,10 @@ export class productosEntity {
   })
   categorias: categoriasEntity;
 
-  @Column({ type: 'number', nullable: true })
+  @Column({ type: 'real', nullable: true })
   precio_Venta: number;
 
-  @Column({ type: 'number', nullable: true })
+  @Column({ type: 'real', nullable: true })
   stock: number;
 
   @ManyToOne(() => artesanosEntity, (artesanos) => artesanos.productos, {

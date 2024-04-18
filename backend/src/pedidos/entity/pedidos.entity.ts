@@ -9,16 +9,16 @@ export class pedidosEntity
     @PrimaryGeneratedColumn()
     id_pedidos:number
 
-    @Column()
+    @Column({type:'date'})
     fecha_pedido:Date
 
-    @Column()
+    @Column({type:'varchar'})
     numero_pedido:string
 
-    @Column()
+    @Column({type:'varchar'})
     lista_prod:string
 
-    @Column()
+    @Column({type:'real'})
     precio_total_ped:number
     
     @ManyToOne(()=> compradoresEntity,(compra)=>compra.pedidos,{nullable:true})

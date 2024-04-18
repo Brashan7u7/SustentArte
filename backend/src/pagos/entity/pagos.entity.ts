@@ -21,15 +21,15 @@ export class pagosEntity {
   @Column({ type: 'date', nullable: true })
   fecha_Pago: Date;
 
-  @Column({ type: 'double', nullable: true })
+  @Column({ type: 'real', nullable: true })
   monto_Pago: Double;
 
-  @Column({ type: 'number', nullable: true })
+  @Column({ type: 'real', nullable: true })
   metodo_Pago: number;
 
   @Column({ type: 'varchar', length: 30, nullable: true })
   num_Transac: string;
 
-  @Column({ type: 'number', nullable: true })
+  @Column({ type: 'real', nullable: true })
   edo_Pago: number;
 }

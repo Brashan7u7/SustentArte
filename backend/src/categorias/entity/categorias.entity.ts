@@ -8,7 +8,7 @@ export class categoriasEntity
     @PrimaryGeneratedColumn()
     id_categoria:number
 
-    @Column()
+    @Column({type:'varchar'})
     nombreCat:string
 
     @OneToOne(()=>productosEntity,(prod)=>prod.categorias,{nullable:true})
