@@ -6,11 +6,11 @@ import { pedidosEntity } from 'src/pedidos/entity/pedidos.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToMany,
   OneToOne,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -33,12 +33,13 @@ export class productosEntity {
   @OneToOne(() => categoriasEntity, (categorias) => categorias.productos, {
     nullable: true,
   })
+  @JoinColumn()
   categorias: categoriasEntity;
 
-  @Column({ type: 'number', nullable: true })
+  @Column({ type: 'real', nullable: true })
   precio_Venta: number;
 
-  @Column({ type: 'number', nullable: true })
+  @Column({ type: 'real', nullable: true })
   stock: number;
 
   @ManyToOne(() => artesanosEntity, (artesanos) => artesanos.productos, {

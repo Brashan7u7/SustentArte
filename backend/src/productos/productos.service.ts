@@ -9,7 +9,7 @@ import { DataSource } from 'typeorm';
 @Injectable()
 export class ProductosService {
 
-    constructor(private dataSource: DataSource) { }
+    constructor(private dataSource:DataSource) { }
 
     async allProductos() {
         try {

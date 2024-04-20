@@ -3,6 +3,7 @@ import { usuariosEntity } from 'src/usuarios/entity/usuarios.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -16,6 +17,7 @@ export class artesanosEntity {
   @OneToOne(() => usuariosEntity, (usuarios) => usuarios.artesanos, {
     nullable: true,
   })
+  @JoinColumn()
   usuarios: usuariosEntity;
 
   @Column({ type: 'varchar', length: 50, nullable: true })

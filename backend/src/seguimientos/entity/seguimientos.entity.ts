@@ -1,5 +1,5 @@
 import { pedidosEntity } from "src/pedidos/entity/pedidos.entity";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('seguimientos')
 export class seguimientosEntity
@@ -8,6 +8,7 @@ export class seguimientosEntity
     id_seguimientos:number
 
     @OneToOne(()=>pedidosEntity,(pedidos)=>pedidos.seguimientos, {nullable: true})
+    @JoinColumn()
     pedidos:pedidosEntity
 
     @Column({type:'varchar',length:30})

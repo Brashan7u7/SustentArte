@@ -5,6 +5,7 @@ import { usuariosEntity } from 'src/usuarios/entity/usuarios.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   OneToMany,
   OneToOne,
@@ -24,6 +25,7 @@ export class compradoresEntity {
   @OneToOne(() => usuariosEntity, (usuarios) => usuarios.compradores, {
     nullable: true,
   })
+  @JoinColumn()
   usuarios: usuariosEntity;
 
   @OneToMany(() => pagosEntity, (pagos) => pagos.compradores, {
