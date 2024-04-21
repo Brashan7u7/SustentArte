@@ -1,12 +1,9 @@
 .bgColor{
   background-color: #E58A56 ;
   color: white;
-  height: 4vh;
+  height: max-content;
 }
 
-.navbar{
-  height: 8vh;
-}
 
 .logo{
   width: 100px;
@@ -31,12 +28,9 @@
 }
 
 @media (max-height: 900px) {
-  .navbar{
-    height: 80px;
-  }
+
   .elementos{
     margin-top: 11px;
   }
 
 }
-

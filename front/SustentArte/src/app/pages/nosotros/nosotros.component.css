@@ -19,6 +19,11 @@
 .texto{
   font-size: 1.5svw;
 }
+.fraseContainer{
+  align-items: center;
+  text-align: center;
+  margin: 8vw;
+}
 
 /* Media queries */
 @media (max-width: 1500px) {
