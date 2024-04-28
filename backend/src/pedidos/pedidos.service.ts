@@ -49,4 +49,25 @@ export class PedidosService {
             
         }
     }
+
+    async actualizarPedido(id:number,pedidosDto:pedidosDto)
+    {
+        try {
+            const pedidoActualiado = await this.datasource.getRepository(pedidosEntity).findOne({where:{id_pedidos:id},relations:['compradores','productos','seguimientos']})
+            
+            return await this.datasource.getRepository(pedidosEntity).update(pedidoActualiado,pedidosDto)
+        } catch (error) {
+            throw new HttpException("No se pudo actualizar el pedido", HttpStatus.CONFLICT);
+        }
+    }
+
+    async eliminarPedido(id:number)
+    {
+        try {
+            const eliminarActualiado = await this.datasource.getRepository(pedidosEntity).findOne({where:{id_pedidos:id},relations:['compradores','productos','seguimientos']})
+            return await this.datasource.getRepository(pedidosEntity).delete(eliminarActualiado)
+        } catch (error) {
+            throw new HttpException("No se pudo eliminar el pedido", HttpStatus.CONFLICT);
+        }
+    }
 }
