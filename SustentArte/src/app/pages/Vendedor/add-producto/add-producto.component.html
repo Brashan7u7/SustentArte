@@ -44,8 +44,23 @@
       </div>
 
       <div class="col-6">
-        <input type="file" class="archivos"style="width: 20vh;">
+        <div class="image-upload-container">
+          <div class="mb-3" *ngFor="let i of images; index as idx">
+            <label for="imageInput{{idx}}" class="form-label">Imagen {{idx + 1}}:</label>
+            <div class="custom-file-input">
+              <input type="file" (change)="onFileSelected($event, idx)" class="form-control" id="imageInput{{idx}}" name="image{{idx}}" />
+              <label class="custom-file-label" for="imageInput{{idx}}">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+              </label>
+            </div>
+            <div class="image-preview" *ngIf="imagePreviews[idx]">
+              <img [src]="imagePreviews[idx]" alt="Selected Image Preview {{idx + 1}}">
+            </div>
+          </div>
+        </div>
+
       </div>
+
 
     </div>
   </div>

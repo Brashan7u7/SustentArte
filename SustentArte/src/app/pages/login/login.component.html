@@ -8,14 +8,14 @@
           <h4>Iniciar Sesión</h4>
         </div>
         <div class="container">
-          <form>
+          <form action="#">
             <div class="row">
               <label for="inputName" class="col-sm-4 col-form-label">Correo</label>
               <div class="col-12">
                 <div class="container">
                   <div class="row">
                     <div class="col-11">
-                      <input type="text" class="form-control input" name="inputName" id="inputName"
+                      <input [(ngModel)]="loginObj.EmailId" type="text" class="form-control input" name="Email" id="inputName"
                         placeholder="Ingresa tu correo" />
                     </div>
                     <div class="col-1 mt-2">
@@ -35,8 +35,7 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-11">
-                      <input type="text" class="form-control input" name="inputName" id="inputName"
-                        placeholder="Ingresa tu contraseña" />
+                      <input [(ngModel)]="loginObj.Password" type="password" class="form-control input" name="Password" id="inputName" placeholder="Ingresa tu contraseña" />
                     </div>
                     <div class="col-1 mt-2">
                       <i class="fa fa-key item" aria-hidden="true"></i>
@@ -48,7 +47,7 @@
             </div>
             <div class="mb-3 row">
               <div class="">
-                <button onclick="" class="btn btn-primary btn-custom2">Iniciar Sesión</button>
+                <button (click)="onlogin()" class="btn btn-primary btn-custom2">Iniciar Sesión</button>
               </div>
             </div>
             <div
