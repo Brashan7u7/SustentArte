@@ -8,16 +8,16 @@ h1 {
   margin-bottom: 6vw;
 }
 
-.card {
-  flex: 1 0 auto;
-  max-width: 300px;
-  margin-bottom: 6vw;
-  margin-left: 2vw;
-  margin-right: 2vw;
+.card{
+  margin: 2vh;
+  min-width: max-content;
+  border-color: rgb(205, 204, 204);
+  padding: 1vh;
 }
 
-.card img {
-  width: 100%;
-  height: auto;
+.card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
