@@ -39,8 +39,8 @@ export class PedidosService {
             const findSeguimiento = await this.datasource.getRepository(seguimientosEntity).findOne({where:{id_seguimientos:createpedido.seguimientosId}})
 
             newPedido.compradores = findComprador
-            newPedido.productos.push(findProduct)
-            newPedido.seguimientos.push(findSeguimiento)
+            newPedido.productos =findProduct
+            newPedido.seguimientos =findSeguimiento
 
             const createPedido = await this.datasource.getRepository(pedidosEntity).save(newPedido)
 

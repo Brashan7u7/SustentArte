@@ -4,7 +4,6 @@ import { PagosDto } from './dto/pagos.dto';
 
 @Controller('pagos')
 export class PagosController {
-
     constructor(private service:PagosService)
     {}
 

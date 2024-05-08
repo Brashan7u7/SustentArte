@@ -22,12 +22,14 @@ export class pedidosEntity
     precio_total_ped:number
     
     @ManyToOne(()=> compradoresEntity,(compra)=>compra.pedidos,{nullable:true})
+    @JoinColumn()
     compradores:compradoresEntity
 
     @OneToMany(()=> productosEntity,(prod)=>prod.pedidos,{nullable:true})
-    productos:productosEntity[]
+    @JoinColumn()
+    productos:productosEntity
 
     @OneToOne(()=> seguimientosEntity,(seg)=>seg.pedidos,{nullable:true})
     @JoinColumn()
-    seguimientos:seguimientosEntity[]
+    seguimientos:seguimientosEntity
 }

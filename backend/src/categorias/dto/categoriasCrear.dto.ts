@@ -7,5 +7,6 @@ export class categoriasDto
 
     @IsNumber()
     id_subcategoria:number
-
+    @IsNumber()
+    idCategoria:number
 }

@@ -20,7 +20,8 @@ export class compradoresEntity {
   @OneToMany(() => pedidosEntity, (pedidos) => pedidos.compradores, {
     nullable: true,
   })
-  pedidos: pedidosEntity[];
+  @JoinColumn()
+  pedidos: pedidosEntity;
 
   @OneToOne(() => usuariosEntity, (usuarios) => usuarios.compradores, {
     nullable: true,
@@ -31,5 +32,7 @@ export class compradoresEntity {
   @OneToMany(() => pagosEntity, (pagos) => pagos.compradores, {
     nullable: true,
   })
-  pagos: pagosEntity[];
+  pagos: pagosEntity;
+  
+  
 }

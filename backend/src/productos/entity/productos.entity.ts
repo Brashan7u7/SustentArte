@@ -1,10 +1,12 @@
+import { pedidosEntity } from './../../pedidos/entity/pedidos.entity';
 import { IsEmail, IsNumber, IsString } from 'class-validator';
 import { artesanosEntity } from 'src/artesanos/entity/artesanos.entity';
 import { categoriasEntity } from 'src/categorias/entity/categorias.entity';
 import { materialesEntity } from 'src/materiales/entity/materiales.entity';
-import { pedidosEntity } from 'src/pedidos/entity/pedidos.entity';
+
 import {
   Column,
+  Double,
   Entity,
   JoinColumn,
   ManyToMany,
@@ -16,39 +18,39 @@ import {
 
 @Entity('productos')
 export class productosEntity {
+
+
   @PrimaryGeneratedColumn()
   id_Producto: number;
 
-  @ManyToMany(() => materialesEntity, (materiales) => materiales.productos, {
-    nullable: true,
-  })
-  materiales: materialesEntity;
+  @Column({type:'varchar',length:30, nullable:true})
+  nombreP:string;
 
-  @Column({ type: 'varchar', length: 30, nullable: true })
-  nompreP: string;
+  @Column({type:'varchar',length:60, nullable:true})
+  descripcion :string;
 
-  @Column({ type: 'varchar', length: 60, nullable: true })
-  descripcion: string;
+  @Column({type:'real',nullable:true})
+  precio_Venta:Double;
 
-  @OneToOne(() => categoriasEntity, (categorias) => categorias.productos, {
-    nullable: true,
-  })
+  @Column({type:'real',nullable:true})
+  stock:number;
+
+  @Column({type:'varchar',length:200, nullable:true})
+  historia:string;
+
+  @ManyToMany(()=>materialesEntity,(mat) => mat.productos,{nullable:true})
   @JoinColumn()
-  categorias: categoriasEntity;
+  materiales:materialesEntity;
 
-  @Column({ type: 'real', nullable: true })
-  precio_Venta: number;
+  @ManyToMany(()=> artesanosEntity, (art) => art.productos,{nullable:true})
+  @JoinColumn()
+  artesanos:artesanosEntity;
 
-  @Column({ type: 'real', nullable: true })
-  stock: number;
+  @ManyToOne(()=> pedidosEntity, (ped) => ped.productos,{nullable:true})
+  @JoinColumn()
+  pedidos:pedidosEntity;
 
-  @ManyToOne(() => artesanosEntity, (artesanos) => artesanos.productos, {
-    nullable: true,
-  })
-  artesanos: artesanosEntity;
-
-  @OneToMany(() => pedidosEntity, (pedidos) => pedidos.productos, {
-    nullable: true,
-  })
-  pedidos: pedidosEntity;
+  @OneToOne(()=>categoriasEntity, (cat)=> cat.productos,{nullable:true})
+  @JoinColumn()
+  categorias:categoriasEntity;
 }

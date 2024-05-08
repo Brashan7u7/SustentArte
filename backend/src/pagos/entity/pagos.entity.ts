@@ -3,6 +3,7 @@ import {
   Column,
   Double,
   Entity,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -16,6 +17,7 @@ export class pagosEntity {
   @ManyToOne(() => compradoresEntity, (compradores) => compradores.pagos, {
     nullable: true,
   })
+  @JoinColumn()
   compradores: compradoresEntity;
 
   @Column({ type: 'date', nullable: true })
