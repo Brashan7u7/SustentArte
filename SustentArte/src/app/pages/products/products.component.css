@@ -1,0 +1,30 @@
+.navBarProd{
+    background-color: #F1D8B3;
+}
+.text{
+    margin-top: 1.3vw;
+    font-size: 3vh;
+    margin-right: 3vh;
+}
+
+.titulo{
+    color: #F38E17;
+    font-size: 3vw;
+}
+.elementos{
+    margin: 2vh;
+}
+.combo{
+    font-size: 3vw !important;
+    margin-right: 1vh !important;
+}
+@media (max-width: 785px) {
+    .text{
+      display: none;
+    }
+}
+@media (max-width: 500px) {
+    .titulo{
+      font-size: 4vw;
+    }
+}
