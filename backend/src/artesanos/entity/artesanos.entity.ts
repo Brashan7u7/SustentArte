@@ -19,24 +19,23 @@ export class artesanosEntity {
   })
   usuarios: usuariosEntity;
 
-  @Column({ type: 'varchar', length: 50, nullable: true })
+  @Column({ type: 'varchar', length: 50})
   descripcion_Trabajo: string;
 
-  @Column({ type: 'varchar', length: 50, nullable: true })
+  @Column({ type: 'varchar', length: 50})
   xp_Textil: string;
 
-  @Column({ type: 'varchar', length: 50, nullable: true })
+  @Column({ type: 'varchar', length: 50})
   tec_Artesanales: string;
 
-  @Column({ type: 'varchar', length: 40, nullable: true })
+  @Column({ type: 'varchar', length: 40})
   reconocimientos: string;
 
-  @Column({ type: 'varchar', length: 40, nullable: true })
+  @Column({ type: 'varchar', length: 40})
   foto: string;
 
   @ManyToMany(() => productosEntity, (productos) => productos.artesanos, {
     nullable: true,
   })
-  @JoinColumn()
-  productos: productosEntity;
+  productos: productosEntity[];
 }

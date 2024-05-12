@@ -11,7 +11,7 @@ export class MaterialesService {
 
   allMateriales(){
     try{
-      return this.dataSource.getRepository(materialesEntity).find({relations:['productos']})
+      return this.dataSource.getRepository(materialesEntity).find()
 
     }catch(error){
       throw new HttpException("No se pudo conectar", HttpStatus.CONFLICT);

@@ -43,8 +43,7 @@ export class productosEntity {
   materiales:materialesEntity;
 
   @ManyToMany(()=> artesanosEntity, (art) => art.productos,{nullable:true})
-  @JoinColumn()
-  artesanos:artesanosEntity;
+  artesanos:artesanosEntity[];
 
   @ManyToOne(()=> pedidosEntity, (ped) => ped.productos,{nullable:true})
   @JoinColumn()

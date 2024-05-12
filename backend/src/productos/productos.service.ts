@@ -15,7 +15,7 @@ export class ProductosService {
 
     allproductos(){
         try{
-            return this.dataSource.getRepository(productosEntity).find({relations:['materiales', 'artesanos', 'pedidos', 'categorias']})
+            return this.dataSource.getRepository(productosEntity).find()
         }catch(error){
             throw new HttpException("No se pudo conectar",HttpStatus.CONFLICT)
         }
@@ -39,7 +39,7 @@ export class ProductosService {
             
 
             baseProductos.materiales = materialesProductos
-            baseProductos.artesanos = artesanoProductos
+            baseProductos.artesanos.push(artesanoProductos)
             baseProductos.pedidos = pedidosProductos
             baseProductos.categorias = categoriasProductos
 

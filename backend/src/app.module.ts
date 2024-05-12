@@ -46,9 +46,9 @@ import { artesanosEntity } from './artesanos/entity/artesanos.entity';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'administrador',
-      password: 'administrador',
-      database: 'SustentArte',
+      username: 'postgres',
+      password: 'qwe',
+      database: 'sustent',
       entities: [
         productosEntity,
         usuariosEntity,

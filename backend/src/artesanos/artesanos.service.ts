@@ -47,7 +47,7 @@ export class ArtesanosService {
         .getRepository(usuariosEntity)
         .findOne({ where: { id_usuario: createartesano.usuariosId } });
 
-      newArtesano.productos =findProductos;
+      newArtesano.productos.push(findProductos);
       newArtesano.usuarios = findUsuarios;
 
       const createArtesano = await this.datasource
