@@ -75,8 +75,6 @@ export class PagosService {
             
             bodyPago.detalle = findDetalle;
 
-            bodyPago.comprador = compradorFind;
-
             const savePago = await this.dataSources.getRepository(PagosEntity).save(bodyPago);
 
             findDetalle.pagoId = savePago.id_pago;            
@@ -86,8 +84,6 @@ export class PagosService {
             compradorFind.pagos.push(savePago);
 
             await this.dataSources.getRepository(compradorEntity).save(compradorFind);
-
-            console.log(savePago);
             
             return savePago
         } catch (error) {
