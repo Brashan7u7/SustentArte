@@ -18,7 +18,14 @@
     font-size: 3vw !important;
     margin-right: 1vh !important;
 }
-@media (max-width: 785px) {
+.card{
+    margin-top: 2vh;
+}
+.imagen{
+    max-width: auto !important;
+    max-height: auto !important;
+}
+@media (max-width: 1020px) {
     .text{
       display: none;
     }
