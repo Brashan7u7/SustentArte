@@ -15,9 +15,6 @@ export class usuarioEntity
     @Column({type:'varchar',length:100})
     apellidoMaterno:string;
 
-    @Column({type:'varchar',length:100})
-    correo:string;
-
     @Column({type:'varchar',length:20})
     telefono:string;
 

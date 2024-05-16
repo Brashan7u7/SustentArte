@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CompradoresService } from './compradores.service';
 import { CompradorDto } from './dto/comprador.dto';
+import { CompradorLoginDto } from './dto/compradorLogin.dto';
 
 @Controller('compradores')
 export class CompradoresController {
@@ -30,5 +31,11 @@ export class CompradoresController {
     deleteComprador(@Param('id') id:number)
     {
         return this.servicioCompradores.deleteComprador(id);
+    }
+
+    @Post('/login')
+    loginComprador(@Body() comprador:CompradorLoginDto)
+    {
+        return this.servicioCompradores.loginComprador(comprador.correo,comprador.password);
     }
 }

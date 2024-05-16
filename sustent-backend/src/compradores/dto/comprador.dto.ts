@@ -5,5 +5,8 @@ export class CompradorDto {
     usuarioId: number;
 
     @IsString()
-    apodo: string;
+    correo:string;
+
+    @IsString()
+    password:string;
 }

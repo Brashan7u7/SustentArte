@@ -12,9 +12,6 @@ export class usuarioDto
     apellidoMaterno:string;
 
     @IsString()
-    correo:string;
-
-    @IsString()
     telefono:string;
 
     @IsString()
