@@ -27,6 +27,10 @@ import { UsuarioService } from './usuario/usuario.service';
 import { CompradoresService } from './compradores/compradores.service';
 import { CompradoresController } from './compradores/compradores.controller';
 import { UsuarioController } from './usuario/usuario.controller';
+import { artesanosEntity } from './artesanos/entity/artesanos.entity';
+import { ArtesanosController } from './artesanos/artesanos.controller';
+import { ArtesanosService } from './artesanos/artesanos.service';
+
 
 @Module({
   imports: [
@@ -38,12 +42,12 @@ import { UsuarioController } from './usuario/usuario.controller';
       password: 'qwe',
       database: 'sustent',
       entities: [
-        MaterialesEntity, CategoriasEntity, PagosEntity, DetallePagoEntity,usuarioEntity,compradorEntity
+        MaterialesEntity, CategoriasEntity, PagosEntity, DetallePagoEntity,usuarioEntity,compradorEntity,artesanosEntity
       ],
       synchronize: true,
     }),
-    MaterialesModule, CategoriasModule, PagosModule, DetallePagoModule, CompradoresModule, UsuarioModule, ArtesanosModule,UsuarioModule,CompradoresModule],
-  controllers: [AppController, MaterialesController, CategoriasController, PagosController, DetallePagoController,CompradoresController,UsuarioController],
-  providers: [AppService, MaterialesService, CategoriasService, PagosService, DetallePagoService,UsuarioService,CompradoresService],
+    MaterialesModule, CategoriasModule, PagosModule, DetallePagoModule, CompradoresModule, UsuarioModule, ArtesanosModule,UsuarioModule,CompradoresModule,ArtesanosModule],
+  controllers: [AppController, MaterialesController, CategoriasController, PagosController, DetallePagoController,CompradoresController,UsuarioController,ArtesanosController],
+  providers: [AppService, MaterialesService, CategoriasService, PagosService, DetallePagoService,UsuarioService,CompradoresService,ArtesanosService],
 })
 export class AppModule {}

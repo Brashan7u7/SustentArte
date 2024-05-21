@@ -38,4 +38,7 @@ export class usuarioEntity
 
     @Column({type:'integer',nullable:true})
     compradorId: number;
+
+    @Column({type:'integer',nullable:true})
+    artesanoId: number;
 }
