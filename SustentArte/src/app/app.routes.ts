@@ -7,6 +7,7 @@ import { PanelAdministradorComponent } from './pages/Administrador/panel-adminis
 import { PanelVendedorComponent } from './pages/Vendedor/panel-vendedor/panel-vendedor.component';
 import { AddProductoComponent } from './pages/Vendedor/add-producto/add-producto.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { VendedoresComponent } from './pages/vendedores/vendedores.component';
 
 
 
@@ -15,6 +16,10 @@ export const routes: Routes = [
     path :'productos',
     component : ProductsComponent,
     
+  },
+  {
+    path :'vendedores',
+    component : VendedoresComponent
   },
   {
     path :'register',
