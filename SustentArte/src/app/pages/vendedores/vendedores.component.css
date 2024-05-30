@@ -1,4 +1,6 @@
 .imagen{
     max-width: max-content !important;
     max-height: 25vh !important;
+    min-width: 100% !important;
+    min-height: 25vh !important;
 }
