@@ -25,6 +25,14 @@
     max-width: auto !important;
     max-height: auto !important;
 }
+.boton{
+    background-color: #F38E17;
+    border-color: #F38E17;
+}
+.btn{
+    background-color: #F38E17;
+}
+
 @media (max-width: 1020px) {
     .text{
       display: none;

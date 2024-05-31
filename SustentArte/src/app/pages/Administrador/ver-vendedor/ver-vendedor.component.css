@@ -1,0 +1,21 @@
+.imagen{
+    max-width: max-content !important;
+    max-height: 50vh !important;
+    min-width: 100% !important;
+    min-height: 25vh !important;
+}
+.boton{
+    margin-left: 8vw;
+}
+.btn{
+    background-color: #DF7A25;
+}
+.carta{
+    margin-top: 5vh;
+}
+.titulo {
+    align-items: center;
+    text-align: center;
+    margin: auto+5vh;
+    font-size: 4vh;
+}

@@ -4,3 +4,7 @@
     min-width: 100% !important;
     min-height: 25vh !important;
 }
+.btn{
+    background-color: #DF7A25;
+    border-color: #DF7A25;
+}

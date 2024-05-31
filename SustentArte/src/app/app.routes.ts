@@ -11,10 +11,28 @@ import { VendedoresComponent } from './pages/vendedores/vendedores.component';
 import { VerVendedoresComponent } from './pages/Administrador/ver-vendedores/ver-vendedores.component';
 import { VerProductosComponent } from './pages/Vendedor/ver-productos/ver-productos.component';
 import { VerVentasComponent } from './pages/Vendedor/ver-ventas/ver-ventas.component';
+import { VerVendedorComponent } from './pages/Administrador/ver-vendedor/ver-vendedor.component';
+import { VerVendedorPublicoComponent } from './pages/ver-vendedor-publico/ver-vendedor-publico.component';
+import { VerProductoPublicoComponent } from './pages/ver-producto-publico/ver-producto-publico.component';
 
 
 
 export const routes: Routes = [
+  {
+    path :'productoPublic/:id',
+    component : VerProductoPublicoComponent,
+    
+  },
+  {
+    path :'vendedorPublic/:id',
+    component : VerVendedorPublicoComponent,
+    
+  },
+  {
+    path :'vendedorAdmin/:id',
+    component : VerVendedorComponent,
+    
+  },
   {
     path :'misProductosVendedor',
     component : VerProductosComponent,
