@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-add-producto',
   standalone: true,
-  imports: [CommonModule], // Only CommonModule is needed
+  imports: [CommonModule, RouterModule], // Only CommonModule is needed
   templateUrl: './add-producto.component.html',
   styleUrls: ['./add-producto.component.css']
 })

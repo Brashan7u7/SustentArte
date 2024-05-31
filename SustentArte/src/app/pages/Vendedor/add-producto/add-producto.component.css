@@ -13,6 +13,12 @@
   margin-bottom: 10px;
   margin-top: 4vh;
 }
+.btn-custom{
+  background-color: #DF7A25;
+  color: #ffffff;
+  border-color: #DF7A25;
+
+}
 
 .btn-custom2:hover {
   color: #DF7A25;

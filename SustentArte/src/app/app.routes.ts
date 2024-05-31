@@ -9,10 +9,17 @@ import { AddProductoComponent } from './pages/Vendedor/add-producto/add-producto
 import { ProductsComponent } from './pages/products/products.component';
 import { VendedoresComponent } from './pages/vendedores/vendedores.component';
 import { VerVendedoresComponent } from './pages/Administrador/ver-vendedores/ver-vendedores.component';
+import { VerProductosComponent } from './pages/Vendedor/ver-productos/ver-productos.component';
+import { VerVentasComponent } from './pages/Vendedor/ver-ventas/ver-ventas.component';
 
 
 
 export const routes: Routes = [
+  {
+    path :'misProductosVendedor',
+    component : VerProductosComponent,
+    
+  },
   {
     path :'productos',
     component : ProductsComponent,
@@ -53,6 +60,10 @@ export const routes: Routes = [
   {
     path:'vendedoresAdmin',
     component: VerVendedoresComponent
+  },
+  {
+    path:'ventasVendedor', 
+    component:VerVentasComponent
   },
   {
     path : '**',

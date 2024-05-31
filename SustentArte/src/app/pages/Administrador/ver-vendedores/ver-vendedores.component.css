@@ -1,30 +1,46 @@
-/* styles.css */
+.tabla {
+  margin: 0vh 15vw 0vh 15vw;
+  font-size: 2vw;
+}
+
 .img-adjust {
-    width: 20vw;  /* Ajusta el tamaño según tus necesidades */
-    height: auto;  /* Mantiene la proporción de la imagen */
-    object-fit: cover;  /* Ajusta la imagen para cubrir el área del contenedor */
+  width: 15vw;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.table .btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+}
+
+.table .fa {
+  font-size: 16px;
+}
+
+.encabezado {
+  text-align: center;
+  
+}
+
+.textoTabla {
+  text-align: center;
+  background-color: aquamarine;
+}
+
+.boton{
+  margin-left: 8vw;
+}
+
+@media (max-width: 700px) {
+  .tabla {
+    margin: 0vh;
+    font-size: 3vw;
   }
-  
-  .table .btn {
-    width: 40px;  /* Tamaño de los botones */
-    height: 40px;  /* Tamaño de los botones */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  } 
-  
-  .table .fa {
-    font-size: 16px;  /* Tamaño del icono */
-  }
-  
-  .table .btn-row {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;  /* Espacio entre botones */
-  }
-  
-  .table .btn-row .btn-col {
-    display: flex;
-    justify-content: center;
-  }
-  
+}
+
