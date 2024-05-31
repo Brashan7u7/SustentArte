@@ -1,0 +1,30 @@
+/* styles.css */
+.img-adjust {
+    width: 20vw;  /* Ajusta el tamaño según tus necesidades */
+    height: auto;  /* Mantiene la proporción de la imagen */
+    object-fit: cover;  /* Ajusta la imagen para cubrir el área del contenedor */
+  }
+  
+  .table .btn {
+    width: 40px;  /* Tamaño de los botones */
+    height: 40px;  /* Tamaño de los botones */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } 
+  
+  .table .fa {
+    font-size: 16px;  /* Tamaño del icono */
+  }
+  
+  .table .btn-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;  /* Espacio entre botones */
+  }
+  
+  .table .btn-row .btn-col {
+    display: flex;
+    justify-content: center;
+  }
+  

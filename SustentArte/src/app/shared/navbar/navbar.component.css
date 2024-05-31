@@ -1,36 +1,40 @@
-.bgColor{
-  background-color: #E58A56 ;
-  color: white;
-  height: max-content;
+/* styles.css */
+.img-adjust {
+  width: 20vw;  /* Ajusta el tamaño según tus necesidades */
+  height: auto;  /* Mantiene la proporción de la imagen */
+  object-fit: cover;  /* Ajusta la imagen para cubrir el área del contenedor */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.table .btn {
+  width: 40px;  /* Tamaño de los botones */
+  height: 40px;  /* Tamaño de los botones */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
 
-.logo{
-  width: 100px;
-  height: 70px;
+.table .fa {
+  font-size: 16px;  /* Tamaño del icono */
 }
 
-.elementos{
-  margin-top: 1vh;
+.table .btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;  /* Espacio entre botones */
 }
 
-
-@media (max-width: 580px) {
-  .logo{
-    width: 100px;
-    height: 65px;
-  }
-}
-@media (max-height: 1770px) {
-  .bgColor{
-    height: 40px !important;
-  }
+.table .btn-row .btn-col {
+  display: flex;
+  justify-content: center;
 }
 
-@media (max-height: 900px) {
-
-  .elementos{
-    margin-top: 11px;
-  }
-
+.navbar .logo {
+  max-width: 100px;  /* Ajusta el tamaño máximo del logo */
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

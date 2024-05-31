@@ -8,6 +8,7 @@ import { PanelVendedorComponent } from './pages/Vendedor/panel-vendedor/panel-ve
 import { AddProductoComponent } from './pages/Vendedor/add-producto/add-producto.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { VendedoresComponent } from './pages/vendedores/vendedores.component';
+import { VerVendedoresComponent } from './pages/Administrador/ver-vendedores/ver-vendedores.component';
 
 
 
@@ -48,6 +49,10 @@ export const routes: Routes = [
   {
     path :'login',
     component : LoginComponent
+  },
+  {
+    path:'vendedoresAdmin',
+    component: VerVendedoresComponent
   },
   {
     path : '**',
