@@ -1,8 +1,8 @@
 import { IsString } from "class-validator";
 
-export class CategoriasDto {
+export class artesanosLoginDto {
     @IsString()
-    user: string;
+    correo: string;
 
     @IsString()
     password: string;

@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ArtesanosService } from './artesanos.service';
 import { artesanosDto } from './dto/artesanosLogin.dto';
+import { artesanosLoginDto } from './dto/artesanos.dto';
 
 @Controller('artesanos')
 export class ArtesanosController {
@@ -33,8 +34,8 @@ export class ArtesanosController {
     }
 
     @Post('login')
-    async loginArtesano(@Body() artesano:artesanosDto) {
-        return this.artesanosService.loginArtesano(artesano.user,artesano.password);
+    async loginArtesano(@Body() artesano:artesanosLoginDto) {
+        return this.artesanosService.loginArtesano(artesano.correo,artesano.password);
     }
 
 }

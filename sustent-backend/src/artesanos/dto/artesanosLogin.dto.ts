@@ -2,28 +2,34 @@ import { IsNumber, IsString } from "class-validator";
 
 export class artesanosDto
 {
-
     @IsString()
     descripcionTrabajo: string;
 
     @IsString()
-    user: string;
+    correo: string;
 
     @IsString()
     password: string;
 
     @IsString()
-    xp_textil:string;
+    xp_textil: string;
 
     @IsString()
-    tec_artesanales:string
+    tec_artesanales: string;
 
     @IsString()
-    reconocimientos:string;
+    reconocimientos: string;
 
     @IsString()
-    foto:string;
+    foto: string;
 
-    @IsNumber()
-    usuarioId:number;
+    @IsString()
+    nombre: string;
+
+    @IsString()
+    apellidoPaterno: string;
+
+    @IsString()
+    apellidoMaterno: string;
+
 }

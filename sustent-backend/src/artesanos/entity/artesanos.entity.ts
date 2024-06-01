@@ -1,5 +1,5 @@
-import { usuarioEntity } from "src/usuario/entity/usuario.entity";
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ProductoEntity } from "src/productos/entity/productos.entity";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('artesanos')
 export class artesanosEntity
@@ -11,7 +11,7 @@ export class artesanosEntity
     descripcionTrabajo: string;
 
     @Column({type:'varchar'})
-    user: string;
+    correo: string;
 
     @Column({type:'varchar'})
     password: string;
@@ -28,7 +28,15 @@ export class artesanosEntity
     @Column({type:'varchar',nullable:true})
     foto:string;
 
-    @OneToOne(()=>usuarioEntity,(usu)=>usu.artesanoId,{nullable:true})
-    @JoinColumn({name:'usuarioId'})
-    usuario:usuarioEntity;
+    @Column({type:'varchar',length:100})
+    nombre:string;
+
+    @Column({type:'varchar',length:100})
+    apellidoPaterno:string;
+
+    @Column({type:'varchar',length:100})
+    apellidoMaterno:string;
+
+    @OneToMany(()=>ProductoEntity,(prod)=>prod.artesano,{nullable:true})
+    productos: ProductoEntity[];
 }

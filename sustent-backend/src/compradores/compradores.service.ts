@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { compradorEntity } from './entity/comprador.entity';
 import { CompradorDto } from './dto/comprador.dto';
-import { usuarioEntity } from 'src/usuario/entity/usuario.entity';
 
 @Injectable()
 export class CompradoresService {
@@ -49,26 +48,16 @@ export class CompradoresService {
 
             const compradorBody = await this.dataSorce.getRepository(compradorEntity).create(compradorb);
 
-            const usuarioFind = await this.dataSorce.getRepository(usuarioEntity).findOne({where:{id_usuario:compradorb.usuarioId}})
-
-            if(!usuarioFind)
-                {
-                    return new HttpException("No se encontro el usuario",HttpStatus.NOT_FOUND)
-                }
 
             const passwordEncrypted = await this.encryptPassword(compradorb.password);
 
             compradorBody.password = passwordEncrypted;
 
-            compradorBody.usuario = usuarioFind;
 
-            const saveusuario = await this.dataSorce.getRepository(compradorEntity).save(compradorBody);
+            const savecomprador= await this.dataSorce.getRepository(compradorEntity).save(compradorBody);
 
-            usuarioFind.compradorId = saveusuario.id_comprador
 
-            await this.dataSorce.getRepository(usuarioEntity).save(usuarioFind);
-
-            return saveusuario
+            return savecomprador
 
         } catch (error) {
             console.log(error);

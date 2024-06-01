@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ProductoEntity } from "src/productos/entity/productos.entity";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('categorias')
 export class CategoriasEntity {
@@ -11,5 +12,8 @@ export class CategoriasEntity {
 
     @Column({type:'boolean'})
     matCategoria: boolean;
+
+    @OneToMany(()=>ProductoEntity,(prod)=>prod.categoria)
+    productos: ProductoEntity[];
     
 }

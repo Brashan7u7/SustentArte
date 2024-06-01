@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { artesanosDto } from './dto/artesanosLogin.dto';
-import { usuarioEntity } from 'src/usuario/entity/usuario.entity';
 import { artesanosEntity } from './entity/artesanos.entity';
 
 @Injectable()
@@ -45,21 +44,9 @@ export class ArtesanosService {
         try {
             const artesanoBody = await this.dataSouce.getRepository(artesanosEntity).create(artesano);
 
-            const findUsuario = await this.dataSouce.getRepository(usuarioEntity).findOne({where:{id_usuario:artesano.usuarioId}});
-
-            if (!findUsuario) {
-                return new HttpException('No se encontro el usuario',HttpStatus.NOT_FOUND);
-            }
-
-            artesanoBody.usuario = findUsuario;
-
             artesanoBody.password = await this.encryptPassword(artesano.password);
 
             const saveArtesano = await this.dataSouce.getRepository(artesanosEntity).save(artesanoBody);
-
-            findUsuario.artesanoId = saveArtesano.id_artesano;
-
-            await this.dataSouce.getRepository(usuarioEntity).save(findUsuario);
 
             return saveArtesano;
         } catch (error) {
@@ -104,9 +91,9 @@ export class ArtesanosService {
         return hashedPassword;
     }
 
-    async loginArtesano(user: string, password: string) {
+    async loginArtesano(correo: string, password: string) {
         try {
-            const artesanoFind = await this.dataSouce.getRepository(artesanosEntity).findOne({where:{user:user}});
+            const artesanoFind = await this.dataSouce.getRepository(artesanosEntity).findOne({where:{correo:correo}});
             if (!artesanoFind) {
                 return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
             }
