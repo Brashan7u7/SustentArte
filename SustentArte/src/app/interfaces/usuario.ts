@@ -11,6 +11,6 @@ export interface Usuario {
     calle: string;
     clonia: string;
     numCasa: string;
-    email:
+    email: string;
     password: string;
 }
