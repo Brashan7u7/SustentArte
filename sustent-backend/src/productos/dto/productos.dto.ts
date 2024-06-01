@@ -17,8 +17,6 @@ export class ProductosDto{
     historia:string;
 
     @IsNumber()
-    materialId:number;
-    @IsNumber()
     artesanoId:number;
     @IsNumber()
     pedidoId:number;

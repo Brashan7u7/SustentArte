@@ -2,7 +2,7 @@ import { artesanosEntity } from "src/artesanos/entity/artesanos.entity";
 import { CategoriasEntity } from "src/categorias/entity/categorias.entity";
 import { MaterialesEntity } from "src/materiales/entity/materiales.entity";
 import { PedidosEntity } from "src/pedidos/entity/pedidos.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('productos')
 export class ProductoEntity {
@@ -24,15 +24,15 @@ export class ProductoEntity {
     @Column({type:'varchar'})
     historia: string;
 
-    @OneToMany(()=>MaterialesEntity,(mat)=>mat.producto)
+    @OneToMany(()=>MaterialesEntity,(mat)=>mat.producto,{nullable:true})
     materiales: MaterialesEntity[];
 
-    @ManyToOne(()=>CategoriasEntity,(cat)=>cat.productos)
+    @ManyToOne(()=>CategoriasEntity,(cat)=>cat.productos,{nullable:true})
     categoria: CategoriasEntity;
 
-    @ManyToOne(()=>PedidosEntity,(ped)=>ped.productos)
-    pedido: PedidosEntity;
+    @ManyToMany(()=>PedidosEntity,(ped)=>ped.productos,{nullable:true})
+    pedido: PedidosEntity[];
 
-    @ManyToOne(()=>artesanosEntity,(artesano)=>artesano.productos)
+    @ManyToOne(()=>artesanosEntity,(artesano)=>artesano.productos,{nullable:true})
     artesano: artesanosEntity;
 }

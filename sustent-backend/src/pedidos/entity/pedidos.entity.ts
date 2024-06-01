@@ -1,6 +1,6 @@
 import { compradorEntity } from "src/compradores/entity/comprador.entity";
 import { ProductoEntity } from "src/productos/entity/productos.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('pedidos')
 export class PedidosEntity {
@@ -20,7 +20,7 @@ export class PedidosEntity {
     @Column({type:'integer'})
     edo_Pedido: number;
 
-    @OneToMany(()=>ProductoEntity,(prod)=>prod.pedido)
+    @ManyToMany(()=>ProductoEntity,(prod)=>prod.pedido)
     productos: ProductoEntity[];
 
     @ManyToOne(()=>compradorEntity,(comprador)=>comprador.pedidos)
