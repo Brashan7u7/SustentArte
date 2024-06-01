@@ -1,11 +1,10 @@
-<div class="container-fluid">
+<div class="container-fluid mt-5">
   <div class="row">
     <div class="col-lg-7 col-md-6 d-flex imagenCol" style="background-color: #F8CB97;">
       <img src="assets/img/SustentArte_Logo.png" alt="SustentArte Logo" class="imagen" />
     </div>
-    <div class="col-lg-5 col-md-6" style="height: 100%;">
+    <div class="col-lg-5 col-md-6">
       <div class="formulario">
-
         <div class="titulo">
           <img src="assets/img/SustentArte_Logo.png" alt="SustentArte Logo" class="imagen2" />
           <h4>Registrarse</h4>
@@ -13,84 +12,146 @@
         <div class="container">
           <form>
             <div class="row">
-              <label for="inputName" class="col-sm-4 col-form-label">Nombre</label>
+              <label for="inputNombre" class="col-sm-4 col-form-label">Nombre</label>
               <div class="col-12">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-11">
-                      <input type="text" required="true" class="form-control input" name="inputName" id="inputName"
-                        placeholder="Ingresa tu nombre" />
-                    </div>
-                    <div class="col-1 mt-2">
-                      <i class="fa fa-user" aria-hidden="true"></i>
-                    </div>
-
-                  </div>
+                <div class="input-group">
+                  <input type="text" formControlName="nombre" required="true" class="form-control input" name="inputNombre" id="inputNombre"
+                    placeholder="Ingresa tu nombre" />
+                  <span class="input-group-text"><i class="fa fa-user icono"></i></span>
                 </div>
-
               </div>
             </div>
             <div class="row">
-              <label for="inputName" class="col-sm-4 col-form-label">Correo</label>
+              <label for="inputApellidoPaterno" class="col-sm-4 col-form-label">Apellido Paterno</label>
               <div class="col-12">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-11">
-                      <input type="email" required="true" class="form-control input" name="inputName" id="inputName"
-                        placeholder="Ingresa tu correo" />
-                    </div>
-                    <div class="col-1 mt-2">
-                      <i class="fas fa-mail-bulk item"></i>
-                    </div>
-
-                  </div>
+                <div class="input-group">
+                  <input type="text" formControlName="apellidoPaterno" required="true" class="form-control input" name="inputApellidoPaterno" id="inputApellidoPaterno"
+                    placeholder="Ingresa tu apellido paterno" />
+                  <span class="input-group-text icono"><i class="fa fa-user icono"></i></span>
                 </div>
-
+              </div>
+            </div>
+            <div class="row">
+              <label for="inputApellidoMaterno" class="col-sm-4 col-form-label">Apellido Materno</label>
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="text" formControlName="apellidoMaterno" required="true" class="form-control input" name="inputApellidoMaterno" id="inputApellidoMaterno"
+                    placeholder="Ingresa tu apellido materno" />
+                  <span class="input-group-text icono"><i class="fa fa-user icono"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label for="inputTelefono" class="col-sm-4 col-form-label">Teléfono</label>
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="tel" formControlName="telefono" required="true" class="form-control input" name="inputTelefono" id="inputTelefono"
+                    placeholder="Ingresa tu teléfono" />
+                  <span class="input-group-text icono"><i class="fa fa-phone icono"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label for="inputCiudad" class="col-sm-4 col-form-label">Ciudad</label>
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="text" formControlName="ciudad" required="true" class="form-control input" name="inputCiudad" id="inputCiudad"
+                    placeholder="Ingresa tu ciudad" />
+                  <span class="input-group-text icono"><i class="fa fa-city icono"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label for="inputEstado" class="col-sm-4 col-form-label">Estado</label>
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="text" formControlName="estado" required="true" class="form-control input" name="inputEstado" id="inputEstado"
+                    placeholder="Ingresa tu estado" />
+                  <span class="input-group-text icono"><i class="fa fa-map-marker-alt icono"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label for="inputCP" class="col-sm-4 col-form-label">Código Postal</label>
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="text" formControlName="cp" required="true" class="form-control input" name="inputCP" id="inputCP"
+                    placeholder="Ingresa tu código postal" />
+                  <span class="input-group-text icono"><i class="fa fa-envelope icono"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label for="inputCalle" class="col-sm-4 col-form-label">Calle</label>
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="text" formControlName="calle" required="true" class="form-control input" name="inputCalle" id="inputCalle"
+                    placeholder="Ingresa tu calle" />
+                  <span class="input-group-text icono"><i class="fa fa-road icono"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label for="inputColonia" class="col-sm-4 col-form-label">Colonia</label>
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="text" formControlName="colonia" required="true" class="form-control input" name="inputColonia" id="inputColonia"
+                    placeholder="Ingresa tu colonia" />
+                  <span class="input-group-text"><i class="fa fa-building icono"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label for="inputNumCasa" class="col-sm-4 col-form-label">Número de Casa</label>
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="text" formControlName="numCasa" required="true" class="form-control input" name="inputNumCasa" id="inputNumCasa"
+                    placeholder="Ingresa tu número de casa" />
+                  <span class="input-group-text"><i class="fa fa-home icono"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label for="inputEmail" class="col-sm-4 col-form-label">Correo</label>
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="email" required="true" class="form-control input" name="inputEmail" id="inputEmail"
+                    placeholder="Ingresa tu correo" />
+                  <span class="input-group-text"><i class="fas fa-mail-bulk item icono"></i></span>
+                </div>
               </div>
             </div>
             <div class="mb-3 row">
               <div>
-                <label for="inputName" class="col-sm-4 col-form-label">Contraseña</label>
+                <label for="inputPassword" class="col-sm-4 col-form-label">Contraseña</label>
               </div>
               <div class="col-sm-12">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-11">
-                      <input type="password" required="true" class="form-control input" name="inputName" id="inputName"
-                        placeholder="Ingresa tu contraseña" />
-                    </div>
-                    <div class="col-1 mt-2">
-                      <i class="fa fa-key item" aria-hidden="true"></i>
-                    </div>
-
-                  </div>
+                <div class="input-group">
+                  <input type="password" required="true" class="form-control input" name="inputPassword" id="inputPassword"
+                    placeholder="Ingresa tu contraseña" />
+                  <span class="input-group-text"><i class="fa fa-key item icono"></i></span>
                 </div>
               </div>
             </div>
             <div class="mb-3 row">
               <div class="">
-                <button onclick="" class="btn btn-primary btn-custom2">Registrarse</button>
+                <button type="submit" class="btn btn-primary btn-custom2">Registrarse</button>
               </div>
             </div>
-            <div
-              class="row justify-content-center align-items-center g-2"
-            >
+            <div class="row justify-content-center align-items-center g-2">
               <div class="col-xxl-3 col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-2 extra2"><hr></div>
               <div class="col-xxl-6 col-xl-8 col-lg-6 col-md-6 col-sm-6 col-xs-8 extra">¿Aun no tienes una cuenta?</div>
               <div class="col-xxl-3 col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-2 extra2"><hr></div>
             </div>
-
             <div class="mb-3 row">
               <div class="">
                 <a class="nav-link active" routerLinkActive="active" [routerLink]="['/login']" aria-current="page">
-                  <button onclick="" class="btn btn-primary btn-custom">Inicar sesion</button>
+                  <button type="button" class="btn btn-primary btn-custom">Iniciar sesión</button>
                   <span class="visually-hidden">(current)</span></a>
-
               </div>
             </div>
           </form>
         </div>
-
       </div>
     </div>
   </div>
