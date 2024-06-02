@@ -1,154 +1,83 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { PagosEntity } from './entity/pagos.entity';
+import { pagosEntity } from './entity/pagos.entity';
 import { PagosDto } from './dto/pagos.dto';
-import { DetallePagoEntity } from 'src/detalle-pago/entity/detallePago.entity';
-import { find } from 'rxjs';
-import { DetallePagoService } from 'src/detalle-pago/detalle-pago.service';
-import { compradorEntity } from 'src/compradores/entity/comprador.entity';
-import { log } from 'console';
+import { compradoresEntity } from 'src/compradores/entity/compradores.entity';
 
 @Injectable()
 export class PagosService {
-    constructor(private dataSources: DataSource) { }
+  constructor(private dataSource: DataSource) {}
 
-    async getPagos() {
-        try {
-            const pagos = await this.dataSources
-                .getRepository(PagosEntity)
-                .find({ relations: ['detalle','comprador'] });
-            if (!pagos) {
-                return new HttpException('No seencontraron pagos', HttpStatus.NOT_FOUND);
-            }
-            return pagos;
-        } catch (error) {
-            throw new HttpException(
-                'Error al obtener los pagos',
-                HttpStatus.INTERNAL_SERVER_ERROR,
-            );
-        }
+  async obtenerPagos() {
+    try {
+      return await this.dataSource
+        .getRepository(pagosEntity)
+        .find({ relations: ['compradores'] });
+    } catch (error) {
+      throw new HttpException('No se pudo obtener los pagos', HttpStatus.FOUND);
     }
+  }
 
-    async getPago(id: number) {
-        try {
-            const findPago = await this.dataSources
-                .getRepository(PagosEntity)
-                .findOne({ where: { id_pago: id }, relations: ['detalle','comprador'] });
-            if (!findPago) {
-                return new HttpException('No se encontro el pago', HttpStatus.NOT_FOUND);
-            }
-            return findPago;
-        } catch (error) {
-            throw new HttpException(
-                'Error al obtener el pagos',
-                HttpStatus.INTERNAL_SERVER_ERROR,
-            );
-        }
+  async onePago(id: number) {
+    try {
+      return await this.dataSource
+        .getRepository(pagosEntity)
+        .findOne({ where: { id_Pago: id }, relations: ['compradores'] });
+    } catch (error) {
+      throw new HttpException('No se pudo obtener el pago', HttpStatus.FOUND);
     }
+  }
 
-    async createPago(pago: PagosDto) {
-        try {
-            const bodyPago = this.dataSources.getRepository(PagosEntity).create(pago);
+  async crearPago(newpago: PagosDto) {
+    try {
+      const newPag = await this.dataSource
+        .getRepository(pagosEntity)
+        .create(newpago);
+      const compradorFind = await this.dataSource
+        .getRepository(compradoresEntity)
+        .findOne({ where: { id_Compradores: newpago.id_Compradores } });
+      newPag.compradores = compradorFind;
+      const createPago = await this.dataSource
+        .getRepository(pagosEntity)
+        .save(newPag);
+      compradorFind.pagos=newPag;
 
-            const findDetalle = await this.dataSources
-                .getRepository(DetallePagoEntity)
-                .findOne({
-                    where: { id_detalle: pago.detalleId }
-                });
+      await this.dataSource
+        .getRepository(compradoresEntity)
+        .save(compradorFind);
 
-            if (!findDetalle) {
-                return new HttpException(
-                    'No se encontro el detalle',
-                    HttpStatus.NOT_FOUND,
-                );
-            }
-
-            const compradorFind = await this.dataSources.getRepository(compradorEntity).findOne({ where: { id_comprador: pago.compradorId }, relations: ['pagos']});
-
-            if (!compradorFind) {
-                return new HttpException(
-                    'No se encontro el comprador',
-                    HttpStatus.NOT_FOUND,
-                );
-            }
-
-            
-            bodyPago.detalle = findDetalle;
-
-            const savePago = await this.dataSources.getRepository(PagosEntity).save(bodyPago);
-
-            findDetalle.pagoId = savePago.id_pago;            
-
-            await this.dataSources.getRepository(DetallePagoEntity).save(findDetalle);
-
-            compradorFind.pagos.push(savePago);
-
-            await this.dataSources.getRepository(compradorEntity).save(compradorFind);
-            
-            return savePago
-        } catch (error) {
-            console.log(error);
-            
-            throw new HttpException(
-                'Error al crear el pago',
-                HttpStatus.INTERNAL_SERVER_ERROR,
-            );
-        }
+      return createPago;
+    } catch (error) {
+      throw new HttpException('No se pudo crear el pago', HttpStatus.CREATED);
     }
+  }
 
-    async updatePago(id: number, pago: PagosDto) {
-        try {
-            const findPago = await this.dataSources
-                .getRepository(PagosEntity)
-                .findOne({ where: { id_pago: id } });
+  async updatePago(id: number, updatePago: PagosDto) {
+    try {
+      const pagofind = await this.dataSource
+        .getRepository(pagosEntity)
+        .findOne({ where: { id_Pago: id } });
 
-            if (!findPago) {
-                return new HttpException('No se encontro el pago', HttpStatus.NOT_FOUND);
-            }
-
-            const findDetalle = await this.dataSources
-                .getRepository(DetallePagoEntity)
-                .findOne({ where: { id_detalle: pago.detalleId } });
-
-            if (!findDetalle) {
-                return new HttpException(
-                    'No se encontro el detalle',
-                    HttpStatus.NOT_FOUND,
-                );
-            }
-
-            findPago.detalle = findDetalle;            
-
-            const upPago = await this.dataSources.getRepository(PagosEntity).save(findPago);
-
-            return await this.dataSources
-                .getRepository(PagosEntity)
-                .update({id_pago:upPago.id_pago},pago);
-        } catch (error) {
-            throw new HttpException(
-                'Error al actualizar el pago',
-                HttpStatus.INTERNAL_SERVER_ERROR,
-            );
-        }
+      return await this.dataSource
+        .getRepository(pagosEntity)
+        .update(pagofind, updatePago);
+    } catch (error) {
+      throw new HttpException(
+        'No se pudo actualizar el pago',
+        HttpStatus.FOUND,
+      );
     }
+  }
 
-    async deletePago(id: number) {
-        try {
-            const findPago = await this.dataSources
-                .getRepository(PagosEntity)
-                .findOne({ where: { id_pago: id } });
+  async eliminarPago(id: number) {
+    try {
+      const pagofind = await this.dataSource
+        .getRepository(pagosEntity)
+        .findOne({ where: { id_Pago: id } });
 
-            if (!findPago) {
-                return new HttpException('No se encontro el pago', HttpStatus.NOT_FOUND);
-            }
-
-
-            return await this.dataSources.getRepository(PagosEntity).delete(findPago);
-        } catch (error) {
-            throw new HttpException(
-                'Error al eliminar el pago',
-                HttpStatus.INTERNAL_SERVER_ERROR,
-            );
-        }
+      return this.dataSource.getRepository(pagosEntity).delete(pagofind);
+    } catch (error) {
+      throw new HttpException('No se pudo elimar el pago', HttpStatus.FOUND);
     }
+  }
 }

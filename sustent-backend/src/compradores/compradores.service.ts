@@ -1,118 +1,101 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { compradorEntity } from './entity/comprador.entity';
-import { CompradorDto } from './dto/comprador.dto';
+import { compradoresEntity } from './entity/compradores.entity';
+import { compradoresDto } from './dto/compradores.dto';
+import { pagosEntity } from 'src/pagos/entity/pagos.entity';
+import { pedidosEntity } from 'src/pedidos/entity/pedidos.entity';
+import { usuariosEntity } from 'src/usuarios/entity/usuarios.entity';
 
 @Injectable()
 export class CompradoresService {
+  constructor(private dataSource: DataSource) {}
 
-    constructor(private dataSorce:DataSource) {
+  allCompradores() {
+    try {
+      return this.dataSource
+        .getRepository(compradoresEntity)
+        .find({ relations: ['pagos', 'pedidos', 'usuarios'] });
+    } catch (error) {
+      throw new HttpException(
+        'No se pudo obtener los compradores',
+        HttpStatus.CONFLICT,
+      );
     }
-
-    async getCompradores()
-    {
-        try {
-
-            const compradores = await this.dataSorce.getRepository(compradorEntity).find({relations:['usuario','pagos']});
-            if(!compradores)
-                {
-                    return new HttpException("No se encontraron compradores",HttpStatus.NOT_FOUND)
-                }
-            return compradores;
-        } catch (error) {
-            throw new HttpException("Error al obtener los compradores",HttpStatus.INTERNAL_SERVER_ERROR)
-        }
+  }
+  async oneComprador(id: number) {
+    try {
+      return await this.dataSource
+        .getRepository(compradoresEntity)
+        .findOne({
+          where: { id_Compradores: id },
+          relations: ['pagos', 'pedidos', 'usuarios'],
+        });
+    } catch (error) {
+      throw new HttpException(
+        'No se pudo obtener el comprador',
+        HttpStatus.CONFLICT,
+      );
     }
+  }
+  async agregarComprador(newComprador: compradoresDto) {
+    try {
+      const baseComprador = await this.dataSource
+        .getRepository(compradoresEntity)
+        .create(newComprador);
+      const pagosComprador = await this.dataSource
+        .getRepository(pagosEntity)
+        .findOne({ where: { id_Pago: newComprador.idPagos } });
+      const pedidosComprador = await this.dataSource
+        .getRepository(pedidosEntity)
+        .findOne({ where: { id_pedidos: newComprador.idPedidos } });
+      const usuariosComprador = await this.dataSource
+        .getRepository(usuariosEntity)
+        .findOne({ where: { id_usuario: newComprador.idUsuario } });
 
-    async getComprador(id:number)
-    {
-        try {
+      baseComprador.pagos = pagosComprador;
+      baseComprador.pedidos = pedidosComprador;
+      baseComprador.usuarios = usuariosComprador;
 
-            const compradorFind = await this.dataSorce.getRepository(compradorEntity).findOne({where:{id_comprador:id},relations:['usuario']});
 
-            if(!compradorFind)
-                {
-                    return new HttpException("No se encontro el comprador",HttpStatus.NOT_FOUND)
-                }
-
-            return compradorFind;
-            
-        } catch (error) {
-            throw new HttpException("Error al obtener el comprador",HttpStatus.INTERNAL_SERVER_ERROR)
-        }
+      return await this.dataSource
+        .getRepository(compradoresEntity)
+        .save(baseComprador);
+    } catch (error) {
+      throw new HttpException(
+        'No se pudo agregar el comprador',
+        HttpStatus.CONFLICT,
+      );
     }
+  }
 
-    async createComprador(compradorb:CompradorDto)
-    {
-        try {
-
-            const compradorBody = await this.dataSorce.getRepository(compradorEntity).create(compradorb);
-
-
-            const passwordEncrypted = await this.encryptPassword(compradorb.password);
-
-            compradorBody.password = passwordEncrypted;
-
-
-            const savecomprador= await this.dataSorce.getRepository(compradorEntity).save(compradorBody);
-
-
-            return savecomprador
-
-        } catch (error) {
-            console.log(error);
-            
-            throw new HttpException("Error al crear el comprador",HttpStatus.INTERNAL_SERVER_ERROR)
-
-        }
+  async eliminarComprador(id: number) {
+    try {
+      const deleteComprador = await this.dataSource
+        .getRepository(compradoresEntity)
+        .findOne({ where: { id_Compradores: id } });
+      return await this.dataSource
+        .getRepository(compradoresEntity)
+        .delete(deleteComprador);
+    } catch (error) {
+      throw new HttpException(
+        'No se pudo eliminar el comprador',
+        HttpStatus.CONFLICT,
+      );
     }
-
-    async deleteComprador(id:number)
-    {
-        try {
-            const compradorFind = await this.dataSorce.getRepository(compradorEntity).findOne({where:{id_comprador:id}});
-
-            if(!compradorFind)
-                {
-                    return new HttpException("No se encontro el comprador",HttpStatus.NOT_FOUND)
-                }
-
-            return await this.dataSorce.getRepository(compradorEntity).remove(compradorFind);
-        } catch (error) {
-            throw new HttpException("Error al eliminar el comprador",HttpStatus.INTERNAL_SERVER_ERROR)
-        }
+  }
+  async actualizarComprador(id: number, updateComprador: compradoresDto) {
+    try {
+      const updateCompradorObj = await this.dataSource
+        .getRepository(compradoresEntity)
+        .findOne({ where: { id_Compradores: id } });
+      return await this.dataSource
+        .getRepository(compradoresEntity)
+        .update(updateCompradorObj, updateComprador);
+    } catch (error) {
+      throw new HttpException(
+        'No se pudo actualizar el comprador',
+        HttpStatus.CONFLICT,
+      );
     }
-
-    async encryptPassword(password: string): Promise<string> {
-        const bcrypt = require('bcrypt');
-        const hashedPassword = await bcrypt.hash(password, 10);
-        return hashedPassword;
-    }
-
-    async loginComprador(correo: string, password: string) {
-
-        try {
-
-            const compradorFind = await this.dataSorce.getRepository(compradorEntity).findOne({where:{correo:correo}});
-
-            if(!compradorFind)
-                {
-                    return new HttpException("No se encontro el comprador",HttpStatus.NOT_FOUND)
-                }
-
-            const bcrypt = require('bcrypt');
-
-            const validPassword = await bcrypt.compare(password, compradorFind.password);
-
-            if(!validPassword)
-                {
-                    return false
-                }
-
-            return true;
-            
-        } catch (error) {
-            throw new HttpException("Error al iniciar sesion",HttpStatus.INTERNAL_SERVER_ERROR)
-        }
-    }
+  }
 }

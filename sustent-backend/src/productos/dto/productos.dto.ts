@@ -1,25 +1,30 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsNumber, IsString } from 'class-validator';
 
-export class ProductosDto{
-    @IsString()
-    nombreP:string;
+export class productosDto {
+  @IsString()
+  nombreP: string;
 
-    @IsString()
-    descripcion:string;
+  @IsString()
+  descripcion: string;
 
-    @IsNumber()
-    precio_Venta:number;
+  @IsNumber()
+  id_Categoria: number;
 
-    @IsNumber()
-    stock:number;
+  @IsNumber()
+  precio_Venta: number;
 
-    @IsString()
-    historia:string;
+  @IsNumber()
+  stock: number;
 
-    @IsNumber()
-    artesanoId:number;
-    @IsNumber()
-    pedidoId:number;
-    @IsNumber()
-    categoriaId:number;
+  @IsNumber()
+  idArtesanos: number;
+
+  @IsString()
+  historial: string;
+
+  @IsNumber()
+  idPedidos:number;
+
+  @IsNumber()
+  idMateriales:number;
 }

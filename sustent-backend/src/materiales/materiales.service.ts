@@ -1,78 +1,60 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable, HttpException } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { MaterialesEntity } from './entity/materiales.entity';
+import { materialesEntity } from './entity/materiales.entity';
 import { MaterialesDto } from './dto/materiales.dto';
+import { productosEntity } from 'src/productos/entity/productos.entity';
 
 @Injectable()
 export class MaterialesService {
 
-    constructor(private dataSource:DataSource) { }
+  constructor(private dataSource:DataSource){}
 
-    async getMateriales() {
-        try {
-            const materiales = await this.dataSource.getRepository(MaterialesEntity).find();
-            if (!materiales) {
-                return new HttpException('No se encontraron materiales', HttpStatus.NOT_FOUND);
-            }
-            return materiales;
-        } catch (error) {
-            throw new HttpException(
-                'Error al obtener los materiales',
-                HttpStatus.INTERNAL_SERVER_ERROR,
-            );
-        }
+  allMateriales(){
+    try{
+      return this.dataSource.getRepository(materialesEntity).find()
+
+    }catch(error){
+      throw new HttpException("No se pudo conectar", HttpStatus.CONFLICT);
     }
+  }
 
-    async getMaterial(id: number) {
-        try {
-            const findMaterial = await this.dataSource.getRepository(MaterialesEntity).findOne({ where: { id_material: id } });
-            if (!findMaterial) {
-                return new HttpException('No se encontro el material', HttpStatus.NOT_FOUND);
-            }
-            return findMaterial;
-        } catch (error) {
-            throw new HttpException(
-                'Error al obtener el material',
-                HttpStatus.INTERNAL_SERVER_ERROR,
-            );
-        }
+  async oneMaterial(id:number){
+    try {
+      return await this.dataSource.getRepository(materialesEntity).findOne({where:{id_Material:id},relations:['productos']})
+    } catch (error) {
+      throw new HttpException("No se pudo encontrar el usuario",HttpStatus.CONFLICT)
     }
+  }
 
-    async createMaterial(material: MaterialesDto) {
-        try {
-            const bodyMaterial = this.dataSource.getRepository(MaterialesEntity).create(material);
+  async agregarMaterial(newMaterial: MaterialesDto){
+    try{
 
-            return await this.dataSource.getRepository(MaterialesEntity).save(bodyMaterial);
+      const baseMaterial = await this.dataSource.getRepository(materialesEntity).create(newMaterial);
+      const productoMaterial = await this.dataSource.getRepository(productosEntity).findOne({ where: { id_Producto: newMaterial.id_Producto } });
 
-        } catch (error) {
-            throw new HttpException('Error al crear el material', HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+      baseMaterial.productos = productoMaterial;
+
+      return await this.dataSource.getRepository(materialesEntity).save(baseMaterial);
+    }catch(error){
+      throw new HttpException("No se pudo agregar el material", HttpStatus.CREATED);
     }
+  }
 
-    async updateMaterial(id: number, material: MaterialesDto) {
-        try {
-            const findMaterial = await this.dataSource.getRepository(MaterialesEntity).findOne({ where: { id_material: id } });
-            if (!findMaterial) {
-                return new HttpException('No se encontro el material', HttpStatus.NOT_FOUND);
-            }
-            const updateMaterial = await this.dataSource.getRepository(MaterialesEntity).save(findMaterial);
-            return await this.dataSource.getRepository(MaterialesEntity).update(updateMaterial,material);
-
-        } catch (error) {
-            throw new HttpException('Error al actualizar el material', HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+  async eliminarMaterial(id:number){
+    try {
+      const deleteMaterial= await this.dataSource.getRepository(materialesEntity).findOne({where:{id_Material:id}})
+      return await this.dataSource.getRepository(materialesEntity).delete(deleteMaterial)
+    } catch (error) {
+      throw new HttpException("No se pudo eliminar el material",HttpStatus.CONFLICT)
     }
+  }
 
-    async deleteMaterial(id: number) {
-        try {
-            const findMaterial = await this.dataSource.getRepository(MaterialesEntity).findOne({ where: { id_material: id } });
-            if (!findMaterial) {
-                return new HttpException('No se encontro el material', HttpStatus.NOT_FOUND);
-            }
-            return await this.dataSource.getRepository(MaterialesEntity).delete(findMaterial);
-
-        } catch (error) {
-            throw new HttpException('Error al eliminar el material', HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+  async actualizarMaterial(id:number,updatMaterial:MaterialesDto){
+    try{
+      const updateMaterial = await this.dataSource.getRepository(materialesEntity).findOne({where:{id_Material:id}})
+      return await this.dataSource.getRepository(materialesEntity).update(updateMaterial,updatMaterial)
+    }catch (error){
+      throw new HttpException("No se pudo actualizar el material",HttpStatus.CONFLICT)
     }
+  }
 }

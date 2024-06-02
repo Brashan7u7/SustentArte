@@ -1,34 +1,28 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CategoriasService } from './categorias.service';
-import { CategoriasDto } from './dto/categorias.dto';
+import { categoriasDto } from './dto/categoriasCrear.dto';
 
 @Controller('categorias')
 export class CategoriasController {
+  constructor(private service: CategoriasService) {}
 
-    constructor(private serviceCategorias:CategoriasService) { }
+  @Get()
+  allCategorias() {
+    return this.service.allCategorias();
+  }
 
-    @Get()
-    getCategorias() {
-        return this.serviceCategorias.getCategorias();
-    }
+  @Get(':id')
+  oneCategoria(id: number) {
+    return this.service.oneCategoria(id);
+  }
 
-    @Get(':id')
-    getCategoria(@Param('id') id:number) {
-        return this.serviceCategorias.getCategoria(id);
-    }
+  @Post()
+  agregarCategoria(newCategoria: categoriasDto) {
+    return this.service.agregarCategoria(newCategoria);
+  }
 
-    @Post()
-    createCategoria(@Body() categoria:CategoriasDto){
-        return this.serviceCategorias.createCategoria(categoria);
-    }
-
-    @Put(':id')
-    updateCategoria(@Param('id') id:number,@Body() categoria:CategoriasDto){
-        return this.serviceCategorias.updateCategoria(id,categoria);
-    }
-
-    @Delete(':id')
-    deleteCategoria(@Param('id') id:number){
-        return this.serviceCategorias.deleteCategoria(id);
-    }
+  @Put(':id')
+  eliminarCategoria(@Param('id') id: number) {
+    return this.service.eliminarCategoria(id);
+  }
 }
