@@ -14,6 +14,7 @@ import { VerVentasComponent } from './pages/Vendedor/ver-ventas/ver-ventas.compo
 import { VerVendedorComponent } from './pages/Administrador/ver-vendedor/ver-vendedor.component';
 import { VerVendedorPublicoComponent } from './pages/ver-vendedor-publico/ver-vendedor-publico.component';
 import { VerProductoPublicoComponent } from './pages/ver-producto-publico/ver-producto-publico.component';
+import { CrearArtesanoComponent } from './pages/Administrador/crear-artesano/crear-artesano.component';
 
 
 
@@ -26,6 +27,11 @@ export const routes: Routes = [
   {
     path :'vendedorPublic/:id',
     component : VerVendedorPublicoComponent,
+    
+  },
+  {
+    path :'crearArtesano',
+    component : CrearArtesanoComponent,
     
   },
   {
