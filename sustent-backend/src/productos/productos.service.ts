@@ -1,11 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { productosDto } from './dto/productos.dto';
-import { productosEntity } from './entity/productos.entity';
-import { materialesEntity } from 'src/materiales/entity/materiales.entity';
-import { categoriasEntity } from 'src/categorias/entity/categorias.entity';
-import { artesanosEntity } from 'src/artesanos/entity/artesanos.entity';
 import { DataSource } from 'typeorm';
-import { pedidosEntity } from 'src/pedidos/entity/pedidos.entity';
+import { ProductoEntity } from './entity/productos.entity';
+import { artesanosEntity } from 'src/artesanos/entity/artesanos.entity';
+import { ProductosDto } from './dto/productos.dto';
+import { CategoriasEntity } from 'src/categorias/entity/categorias.entity';
 
 @Injectable()
 export class ProductosService {
@@ -13,58 +11,95 @@ export class ProductosService {
     constructor(private dataSource:DataSource) { }
 
 
-    allproductos(){
-        try{
-            return this.dataSource.getRepository(productosEntity).find()
-        }catch(error){
-            throw new HttpException("No se pudo conectar",HttpStatus.CONFLICT)
-        }
-    }
-
-    async oneProducto(id:number){
+    async getProductos()
+    {
         try {
-            return await this.dataSource.getRepository(productosEntity).findOne({where:{id_Producto:id},relations:['materiales', 'artesanos', 'pedidos', 'categorias']})
+            const productos = await this.dataSource.getRepository(ProductoEntity).find({relations:['materiales,artesano,categoria,pedido']});
+            if (!productos) {
+                return new HttpException('No se encontraron productos',HttpStatus.NOT_FOUND);
+            }
+
+            return productos;
         } catch (error) {
-            throw new HttpException("No se pudo encontrar el usuario",HttpStatus.CONFLICT)
-        }
-    }
-
-    async agregarProducto(newProducto: productosDto){
-        try {
-            const baseProductos = await this.dataSource.getRepository(productosEntity).create(newProducto)
-            const materialesProductos = await this.dataSource.getRepository(materialesEntity).findOne({where:{id_Material: newProducto.idMateriales}})
-            const artesanoProductos = await this.dataSource.getRepository(artesanosEntity).findOne({where:{id_Artesano:newProducto.idArtesanos}})
-            const pedidosProductos = await this.dataSource.getRepository(pedidosEntity).findOne({where:{id_pedidos:newProducto.idPedidos}})
-            const categoriasProductos = await this.dataSource.getRepository(categoriasEntity).findOne({where:{id_categoria:newProducto.id_Categoria}})
+            console.log(error);
             
-
-            baseProductos.materiales = materialesProductos
-            baseProductos.artesanos.push(artesanoProductos)
-            baseProductos.pedidos = pedidosProductos
-            baseProductos.categorias = categoriasProductos
-
-            return await this.dataSource.getRepository(productosEntity).save(baseProductos)
-        } catch (error) {
-            throw new HttpException("No se pudo agregar el usuario",HttpStatus.CREATED)
+            throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    async eliminarProducto(id:number){
+    async getProducto(id:number)
+    {
         try {
-            const deleteProducto= await this.dataSource.getRepository(productosEntity).findOne({where:{id_Producto:id}})
-            return await this.dataSource.getRepository(productosEntity).delete(deleteProducto)
+            const productoFind = await this.dataSource.getRepository(ProductoEntity).findOne({where:{id_producto:id},relations:['materiales,artesano,categoria,pedido']});
+            if (!productoFind) {
+                return new HttpException('No se encontro el producto',HttpStatus.NOT_FOUND);
+            }
+
+            return productoFind;
         } catch (error) {
-            throw new HttpException("No se pudo eliminar el producto",HttpStatus.CONFLICT)
+            throw new HttpException('Error al obtener el producto',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    async actualizarProducto(id:number,updatProducto:productosDto){
-        try{
-            const updateProducto = await this.dataSource.getRepository(productosEntity).findOne({where:{id_Producto:id}})
-            return await this.dataSource.getRepository(productosEntity).update(updateProducto,updatProducto)
-        }catch(error){
-            throw new HttpException("No se pudo actualizar el producto",HttpStatus.CONFLICT)
+    async createProducto(producto:ProductosDto)
+    {
+        try {
+            const productoBody = await this.dataSource.getRepository(ProductoEntity).create(producto);
+
+            const findArtesano = await this.dataSource.getRepository(artesanosEntity).findOne({where:{id_artesano:producto.artesanoId},relations:['productos']});
+            if (!findArtesano) {
+                return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
+            }
+
+            const findccategoria = await this.dataSource.getRepository(CategoriasEntity).findOne({where:{id_categoria:producto.categoriaId},relations:['productos']});
+
+            if (!findccategoria) {
+                return new HttpException('No se encontro la categoria',HttpStatus.NOT_FOUND);
+            }
+
+            const saveProducto = await this.dataSource.getRepository(ProductoEntity).save(productoBody);
+
+            findArtesano.productos.push(saveProducto);
+
+            findccategoria.productos.push(saveProducto);
+
+            await this.dataSource.getRepository(artesanosEntity).save(findArtesano);
+            await this.dataSource.getRepository(CategoriasEntity).save(findccategoria);
+
+            return saveProducto;
+        } catch (error) {
+            throw new HttpException('Error al crear el producto',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    async updateProducto(id:number,producto:ProductosDto)
+    {
+        try {
+            
+            const productoFind = await this.dataSource.getRepository(ProductoEntity).findOne({where:{id_producto:id}});
+
+            if (!productoFind) {
+                return new HttpException('No se encontro el producto',HttpStatus.NOT_FOUND);
+            }
+
+            return await this.dataSource.getRepository(ProductoEntity).update({id_producto:productoFind.id_producto},producto);
+        } catch (error) {
+            throw new HttpException('Error al actualizar el producto',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async deleteProducto(id:number)
+    {
+        try {
+            const productoFind = await this.dataSource.getRepository(ProductoEntity).findOne({where:{id_producto:id}});
+
+            if (!productoFind) {
+                return new HttpException('No se encontro el producto',HttpStatus.NOT_FOUND);
+            }
+
+            return await this.dataSource.getRepository(ProductoEntity).remove(productoFind)
+        } catch (error) {
+            throw new HttpException('Error al eliminar el producto',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

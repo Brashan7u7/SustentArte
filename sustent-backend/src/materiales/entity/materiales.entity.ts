@@ -1,26 +1,19 @@
-import { productosEntity } from 'src/productos/entity/productos.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { ProductoEntity } from "src/productos/entity/productos.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('materiales')
-export class materialesEntity {
-  @PrimaryGeneratedColumn()
-  id_Material: number;
+export class MaterialesEntity {
 
-  @Column({ type: 'varchar', length: 30 })
-  nombre_Mat: string;
+    @PrimaryGeneratedColumn()
+    id_material: number;
 
-  @Column({ type: 'varchar', length: 60 })
-  desc_Mat: string;
+    @Column({type:'varchar',length:100})
+    nombre_material: string;
 
-  @ManyToMany(() => productosEntity, (prod) => prod.materiales, {
-    nullable: true,
-  })
-  @JoinColumn()
-  productos: productosEntity;
+    @Column({type:'varchar',length:100})
+    descripcion_material: string;
+    
+    @ManyToOne(()=>ProductoEntity,(prod)=>prod.materiales)
+    producto: ProductoEntity;
+    
 }

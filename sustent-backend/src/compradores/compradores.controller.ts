@@ -1,32 +1,41 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CompradoresService } from './compradores.service';
-import { compradoresDto } from './dto/compradores.dto';
+import { CompradorDto } from './dto/comprador.dto';
+import { CompradorLoginDto } from './dto/compradorLogin.dto';
 
 @Controller('compradores')
 export class CompradoresController {
-    constructor(private service:CompradoresService) { }
+
+    constructor(private servicioCompradores: CompradoresService) {
+    }
 
     @Get()
-    allCompradores() {
-        return this.service.allCompradores();
+    getCompradores()
+    {
+        return this.servicioCompradores.getCompradores();
     }
 
     @Get(':id')
-    oneComprador(@Param('id') id: number) {
-        return this.service.oneComprador(id);
+    getComprador(@Param('id') id:number)
+    {
+        return this.servicioCompradores.getComprador(id);
     }
 
     @Post()
-    agregarComprador(@Body() newComprador: compradoresDto) {
-        return this.service.agregarComprador(newComprador);
+    createComprador(@Body() comprador:CompradorDto)
+    {
+        return this.servicioCompradores.createComprador(comprador);
     }
 
-    @Put(':id')
-    eliminarComprador(@Param('id') id: number) {
-        return this.service.eliminarComprador(id);
+    @Delete(':id')
+    deleteComprador(@Param('id') id:number)
+    {
+        return this.servicioCompradores.deleteComprador(id);
     }
 
-  
-
-   
+    @Post('/login')
+    loginComprador(@Body() comprador:CompradorLoginDto)
+    {
+        return this.servicioCompradores.loginComprador(comprador.correo,comprador.password);
+    }
 }

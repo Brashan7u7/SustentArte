@@ -1,21 +1,25 @@
-import { IsDate, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNumber, IsString } from "class-validator";
 
 export class PagosDto {
-  @IsNumber()
-  id_Compradores: number;
 
-  @IsDate()
-  fecha_Pago: Date;
+    @IsDate()
+    fecha_pago: Date;
 
-  @IsNumber()
-  monto_Pago: number;
+    @IsNumber()
+    monto_pago: number;
 
-  @IsNumber()
-  metodo_Pago: number;
+    @IsString()
+    metodo_pago: string;
 
-  @IsString()
-  num_Transac: string;
+    @IsString()
+    num_transaccion: string;
 
-  @IsNumber()
-  edo_Pago: number;
+    @IsString()
+    edo_pago: string;
+
+    @IsNumber()
+    detalleId: number;
+
+    @IsNumber()
+    compradorId: number;
 }

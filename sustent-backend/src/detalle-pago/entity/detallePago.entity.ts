@@ -1,4 +1,4 @@
-
+import { PagosEntity } from "src/pagos/entity/pagos.entity";
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('detalle_pago')

@@ -1,12 +1,10 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString } from "class-validator";
 
 export class MaterialesDto {
-  @IsString()
-  nombre_Mat: string;
-
-  @IsString()
-  desc_Mat: string;
-
-  @IsNumber()
-  id_Producto: number;
+    @IsNumber()
+    id_material: number;
+    @IsString()
+    nombre_material: string;
+    @IsString()
+    descripcion_material: string;
 }

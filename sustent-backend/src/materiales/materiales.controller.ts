@@ -1,28 +1,34 @@
-import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { MaterialesService } from './materiales.service';
 import { MaterialesDto } from './dto/materiales.dto';
 
 @Controller('materiales')
 export class MaterialesController {
-  constructor(private service: MaterialesService) {}
 
-  @Get()
-  allMateriales() {
-    return this.service.allMateriales();
-  }
+    constructor(private serviceMteriales:MaterialesService) { }
 
-  @Get(':id')
-  oneMaterial(@Param('id') id: number) {
-    return this.service.oneMaterial(id);
-  }
+    @Get()
+    getMateriales() {
+        return this.serviceMteriales.getMateriales();
+    }
 
-  @Post()
-  agregarMaterial(@Body() newMaterial: MaterialesDto) {
-    return this.service.agregarMaterial(newMaterial);
-  }
+    @Get(':id')
+    getMaterial(@Param('id') id:number) {
+        return this.serviceMteriales.getMaterial(id);
+    }
 
-  @Put(':id')
-  updateMaterial(@Param('id') id: number, @Body() newMaterial: MaterialesDto) {
-    return this.service.actualizarMaterial(id, newMaterial);
-  }
+    @Post()
+    createMaterial(@Body() material:MaterialesDto){
+        return this.serviceMteriales.createMaterial(material);
+    }
+
+    @Put(':id')
+    updateMaterial(@Param('id') id:number,@Body() material:MaterialesDto){
+        return this.serviceMteriales.updateMaterial(id,material);
+    }
+
+    @Delete(':id')
+    deleteMaterial(@Param('id') id:number){
+        return this.serviceMteriales.deleteMaterial(id);
+    }
 }

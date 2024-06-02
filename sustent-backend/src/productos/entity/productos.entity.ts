@@ -1,55 +1,38 @@
-import { pedidosEntity } from './../../pedidos/entity/pedidos.entity';
-import { IsEmail, IsNumber, IsString } from 'class-validator';
-import { artesanosEntity } from 'src/artesanos/entity/artesanos.entity';
-import { categoriasEntity } from 'src/categorias/entity/categorias.entity';
-import { materialesEntity } from 'src/materiales/entity/materiales.entity';
-
-import {
-  Column,
-  Double,
-  Entity,
-  JoinColumn,
-  ManyToMany,
-  ManyToOne,
-  OneToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { artesanosEntity } from "src/artesanos/entity/artesanos.entity";
+import { CategoriasEntity } from "src/categorias/entity/categorias.entity";
+import { MaterialesEntity } from "src/materiales/entity/materiales.entity";
+import { PedidosEntity } from "src/pedidos/entity/pedidos.entity";
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('productos')
-export class productosEntity {
+export class ProductoEntity {
+    @PrimaryGeneratedColumn()
+    id_producto: number;
 
+    @Column({type:'varchar'})
+    nombreP: string;
 
-  @PrimaryGeneratedColumn()
-  id_Producto: number;
+    @Column({type:'varchar'})
+    descripcion: string;
 
-  @Column({type:'varchar',length:30, nullable:true})
-  nombreP:string;
+    @Column({type:'real'})
+    precio_Venta: number;
 
-  @Column({type:'varchar',length:60, nullable:true})
-  descripcion :string;
+    @Column({type:'integer'})
+    stock: number;
 
-  @Column({type:'real',nullable:true})
-  precio_Venta:Double;
+    @Column({type:'varchar'})
+    historia: string;
 
-  @Column({type:'real',nullable:true})
-  stock:number;
+    @OneToMany(()=>MaterialesEntity,(mat)=>mat.producto,{nullable:true})
+    materiales: MaterialesEntity[];
 
-  @Column({type:'varchar',length:200, nullable:true})
-  historia:string;
+    @ManyToOne(()=>CategoriasEntity,(cat)=>cat.productos,{nullable:true})
+    categoria: CategoriasEntity;
 
-  @ManyToMany(()=>materialesEntity,(mat) => mat.productos,{nullable:true})
-  @JoinColumn()
-  materiales:materialesEntity;
+    @ManyToMany(()=>PedidosEntity,(ped)=>ped.productos,{nullable:true})
+    pedido: PedidosEntity[];
 
-  @ManyToMany(()=> artesanosEntity, (art) => art.productos,{nullable:true})
-  artesanos:artesanosEntity[];
-
-  @ManyToOne(()=> pedidosEntity, (ped) => ped.productos,{nullable:true})
-  @JoinColumn()
-  pedidos:pedidosEntity;
-
-  @OneToOne(()=>categoriasEntity, (cat)=> cat.productos,{nullable:true})
-  @JoinColumn()
-  categorias:categoriasEntity;
+    @ManyToOne(()=>artesanosEntity,(artesano)=>artesano.productos,{nullable:true})
+    artesano: artesanosEntity;
 }

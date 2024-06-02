@@ -1,33 +1,41 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { PagosService } from './pagos.service';
 import { PagosDto } from './dto/pagos.dto';
 
 @Controller('pagos')
 export class PagosController {
-    constructor(private service:PagosService)
-    {}
+  constructor(private servicePago: PagosService) {}
 
-    @Get()
-    obtenerPagos()
-    {
-        return this.service.obtenerPagos()
-    }
+  @Get()
+  getPagos() {
+    return this.servicePago.getPagos();
+  }
 
-    @Get(':id')
-    obtenerUnPago(@Param('id') id:number)
-    {
-        return this.service.onePago(id)
-    }
+  @Get(':id')
+  getPago(@Param('id') id: number) {
+    return this.servicePago.getPago(id);
+  }
 
-    @Post()
-    crearPago(@Body() newPago:PagosDto)
-    {
-        return this.service.crearPago(newPago)
-    }
+  @Post()
+  createPago(@Body() pago: PagosDto) {
+    return this.servicePago.createPago(pago);
+  }
 
-    @Put(':id')
-    actualizarPago(@Param('id') id:number,@Body() updatePago:PagosDto)
-    {
-        return this.service.updatePago(id,updatePago)
-    }
+  @Put(':id')
+  updatePago(@Param('id') id: number, @Body() pago: PagosDto) {
+    return this.servicePago.updatePago(id, pago);
+  }
+
+  @Delete(':id')
+  deletePago(@Param('id') id: number) {
+    return this.servicePago.deletePago(id);
+  }
 }

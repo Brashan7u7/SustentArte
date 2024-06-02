@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { MaterialesController } from './materiales.controller';
 
-@Module({})
+@Module({
+  controllers: []
+})
 export class MaterialesModule {}

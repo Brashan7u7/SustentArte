@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { DetallePagoEntity } from './entity/detallePago.entity';
 import { DetallePagoDto } from './dto/detallePago.dto';
-
+import { PagosEntity } from 'src/pagos/entity/pagos.entity';
 
 @Injectable()
 export class DetallePagoService {

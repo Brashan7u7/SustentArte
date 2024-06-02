@@ -1,41 +1,42 @@
-import { productosEntity } from 'src/productos/entity/productos.entity';
-import { usuariosEntity } from 'src/usuarios/entity/usuarios.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { ProductoEntity } from "src/productos/entity/productos.entity";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('artesanos')
-export class artesanosEntity {
-  @PrimaryGeneratedColumn()
-  id_Artesano: number;
+export class artesanosEntity
+{
+    @PrimaryGeneratedColumn()
+    id_artesano: number;
 
-  @OneToOne(() => usuariosEntity, (usuarios) => usuarios.artesanos, {
-    nullable: true,
-  })
-  usuarios: usuariosEntity;
+    @Column({type:'varchar'})
+    descripcionTrabajo: string;
 
-  @Column({ type: 'varchar', length: 50})
-  descripcion_Trabajo: string;
+    @Column({type:'varchar'})
+    correo: string;
 
-  @Column({ type: 'varchar', length: 50})
-  xp_Textil: string;
+    @Column({type:'varchar'})
+    password: string;
 
-  @Column({ type: 'varchar', length: 50})
-  tec_Artesanales: string;
+    @Column({type:'varchar',nullable:true})
+    xp_textil:string;
 
-  @Column({ type: 'varchar', length: 40})
-  reconocimientos: string;
+    @Column({type:'varchar',nullable:true})
+    tec_artesanales:string
 
-  @Column({ type: 'varchar', length: 40})
-  foto: string;
+    @Column({type:'varchar',nullable:true})
+    reconocimientos:string;
 
-  @ManyToMany(() => productosEntity, (productos) => productos.artesanos, {
-    nullable: true,
-  })
-  productos: productosEntity[];
+    @Column({type:'varchar',nullable:true})
+    foto:string;
+
+    @Column({type:'varchar',length:100})
+    nombre:string;
+
+    @Column({type:'varchar',length:100})
+    apellidoPaterno:string;
+
+    @Column({type:'varchar',length:100})
+    apellidoMaterno:string;
+
+    @OneToMany(()=>ProductoEntity,(prod)=>prod.artesano,{nullable:true})
+    productos: ProductoEntity[];
 }

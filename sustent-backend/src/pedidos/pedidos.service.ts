@@ -1,73 +1,95 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { pedidosEntity } from './entity/pedidos.entity';
-import { pedidosDto } from './dto/pedidos.dto';
-import { compradoresEntity } from 'src/compradores/entity/compradores.entity';
-import { productosEntity } from 'src/productos/entity/productos.entity';
-import { seguimientosEntity } from 'src/seguimientos/entity/seguimientos.entity';
+import { PedidosEntity } from './entity/pedidos.entity';
+import { PedidosDto } from './dto/pedidos.dto';
+import { compradorEntity } from 'src/compradores/entity/comprador.entity';
 
 @Injectable()
 export class PedidosService {
 
-    constructor(private datasource:DataSource)
-    {}
+    constructor(private dataSource:DataSource) { }
 
-    obtenerPedidos()
+    async getPedidos()
     {
         try {
-            return this.datasource.getRepository(pedidosEntity).find({relations:['compradores','productos','seguimientos']})
+            const pedidos = await this.dataSource.getRepository(PedidosEntity).find({relations:['productos,comprador']});
+            if (!pedidos) {
+                return new HttpException('No se encontraron pedidos',HttpStatus.NOT_FOUND);
+            }
+
+            return pedidos;
         } catch (error) {
-            throw new HttpException("No se pudo obtener los pedidos",HttpStatus.FOUND)
-        }
-    }
-
-    async unPedido(id:number)
-    {
-        try {
-            return this.datasource.getRepository(pedidosEntity).findOne({where:{id_pedidos:id},relations:['compradores','productos','seguimientos']})
-        } catch (error) {
-            throw new HttpException("No se pudo obtener los pedidos",HttpStatus.FOUND)
-        }
-    }
-
-    async crearPedido(createpedido:pedidosDto)
-    {
-        try {
-            const newPedido = await this.datasource.getRepository(pedidosEntity).create(createpedido)
-            const findComprador = await this.datasource.getRepository(compradoresEntity).findOne({where:{id_Compradores:createpedido.compradoresId}})
-            const findProduct = await this.datasource.getRepository(productosEntity).findOne({where:{id_Producto:createpedido.productosId}})
-            const findSeguimiento = await this.datasource.getRepository(seguimientosEntity).findOne({where:{id_seguimientos:createpedido.seguimientosId}})
-
-            newPedido.compradores = findComprador
-            newPedido.productos =findProduct
-            newPedido.seguimientos =findSeguimiento
-
-            const createPedido = await this.datasource.getRepository(pedidosEntity).save(newPedido)
-
-            return createPedido
-        } catch (error) {
+            console.log(error);
             
+            throw new HttpException('Error al obtener los pedidos',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    async actualizarPedido(id:number,pedidosDto:pedidosDto)
+    async getPedido(id:number)
     {
         try {
-            const pedidoActualiado = await this.datasource.getRepository(pedidosEntity).findOne({where:{id_pedidos:id},relations:['compradores','productos','seguimientos']})
+            const pedidoFind = await this.dataSource.getRepository(PedidosEntity).findOne({where:{id_pedido:id},relations:['productos,comprador']});
+            if (!pedidoFind) {
+                return new HttpException('No se encontro el pedido',HttpStatus.NOT_FOUND);
+            }
+
+            return pedidoFind;
+        } catch (error) {
+            throw new HttpException('Error al obtener el pedido',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async createPedido(pedido:PedidosDto)
+    {
+        try {
+            const pedidoBody = await this.dataSource.getRepository(PedidosEntity).create(pedido);
+
+            const findComprador = await this.dataSource.getRepository(compradorEntity).findOne({where:{id_comprador:pedido.compradorId},relations:['pedidos']});
+
+            if (!findComprador) {
+                return new HttpException('No se encontro el comprador',HttpStatus.NOT_FOUND);
+            }
+            const savePedido = await this.dataSource.getRepository(PedidosEntity).save(pedidoBody);
+
+            findComprador.pedidos.push(savePedido);
+
+            await this.dataSource.getRepository(compradorEntity).save(findComprador);
+            return savePedido;
+        } catch (error) {
+            throw new HttpException('Error al crear el pedido',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async updatePedido(id:number,pedido:PedidosDto)
+    {
+        try {
             
-            return await this.datasource.getRepository(pedidosEntity).update(pedidoActualiado,pedidosDto)
+            const pedidoFind = await this.dataSource.getRepository(PedidosEntity).findOne({where:{id_pedido:id}});
+
+            if (!pedidoFind) {
+                return new HttpException('No se encontro el pedido',HttpStatus.NOT_FOUND);
+            }
+
+            const updatePedido = await this.dataSource.getRepository(PedidosEntity).update({id_pedido:pedidoFind.id_pedido},pedido);
+
+            return updatePedido;
         } catch (error) {
-            throw new HttpException("No se pudo actualizar el pedido", HttpStatus.CONFLICT);
+            throw new HttpException('Error al actualizar el pedido',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    async eliminarPedido(id:number)
+    async deletePedido(id:number)
     {
         try {
-            const eliminarActualiado = await this.datasource.getRepository(pedidosEntity).findOne({where:{id_pedidos:id},relations:['compradores','productos','seguimientos']})
-            return await this.datasource.getRepository(pedidosEntity).delete(eliminarActualiado)
+            const pedidoFind = await this.dataSource.getRepository(PedidosEntity).findOne({where:{id_pedido:id}});
+
+            if (!pedidoFind) {
+                return new HttpException('No se encontro el pedido',HttpStatus.NOT_FOUND);
+            }
+
+            return await this.dataSource.getRepository(PedidosEntity).remove(pedidoFind);
         } catch (error) {
-            throw new HttpException("No se pudo eliminar el pedido", HttpStatus.CONFLICT);
+            throw new HttpException('Error al eliminar el pedido',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

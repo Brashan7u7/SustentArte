@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { PagosController } from './pagos.controller';
 
-@Module({})
+@Module({
+  controllers: [],
+})
 export class PagosModule {}

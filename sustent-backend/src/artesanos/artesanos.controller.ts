@@ -1,37 +1,41 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ArtesanosService } from './artesanos.service';
-import { artesanosDto } from './dto/artesanos.dto';
+import { artesanosDto } from './dto/artesanosLogin.dto';
+import { artesanosLoginDto } from './dto/artesanos.dto';
 
 @Controller('artesanos')
 export class ArtesanosController {
 
-    constructor(private service:ArtesanosService)
-    {
-
-    }
+    constructor(private artesanosService: ArtesanosService) { }
 
     @Get()
-    obtenerArtesanos()
-    {
-        return this.service.obtenerArtesanos()
+    async getArtesanos() {
+        return this.artesanosService.getArtesanos();
     }
 
     @Get(':id')
-    obtenerUnArtesano(@Param('id') id:number)
-    {
-        return this.service.unArtesano(id)
+    async getArtesano(@Param('id') id: number) {
+        return this.artesanosService.getArtesano(id);
     }
 
     @Post()
-    crearArtesano(@Body() newArtesano:artesanosDto)
-    {
-        return this.service.crearArtesano(newArtesano)
+    async createArtesano(@Body() artesano:artesanosDto) {
+        return this.artesanosService.createArtesano(artesano);
     }
 
     @Put(':id')
-    actualizarArtesano(@Param('id') id:number,@Body() updateArtesano:artesanosDto)
-    {
-        return this.service.actualizarArtesanos(id,updateArtesano)
+    async updateArtesano(@Param('id') id:number,@Body() artesano:artesanosDto) {
+        return this.artesanosService.updateArtesano(id,artesano);
+    }
+
+    @Delete(':id')
+    async deleteArtesano(@Param('id') id:number) {
+        return this.artesanosService.deleteArtesano(id);
+    }
+
+    @Post('login')
+    async loginArtesano(@Body() artesano:artesanosLoginDto) {
+        return this.artesanosService.loginArtesano(artesano.correo,artesano.password);
     }
 
 }

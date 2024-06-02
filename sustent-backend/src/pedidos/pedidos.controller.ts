@@ -1,38 +1,34 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { PedidosService } from './pedidos.service';
-import { pedidosDto } from './dto/pedidos.dto';
+import { PedidosDto } from './dto/pedidos.dto';
 
 @Controller('pedidos')
 export class PedidosController {
 
-
-    constructor(private service:PedidosService)
-    {
-
-    }
+    constructor(private servicePedido:PedidosService) { }
 
     @Get()
-    obtenerPedidos()
-    {
-        return this.service.obtenerPedidos()
+    async getPedidos() {
+        return this.servicePedido.getPedidos();
     }
 
     @Get(':id')
-    obtenerUnPedido(@Param('id') id:number)
-    {
-        return this.service.unPedido(id)
+    async getPedido(@Param('id') id:number) {
+        return this.servicePedido.getPedido(id);
     }
 
     @Post()
-    crearPedido(@Body() newPedido:pedidosDto)
-    {
-        return this.service.crearPedido(newPedido)
+    async createPedido(@Body() pedido:PedidosDto) {
+        return this.servicePedido.createPedido(pedido);
     }
 
     @Put(':id')
-    actualizarPedido(@Param('id') id:number,@Body() updatePedido:pedidosDto)
-    {
-        return this.service.actualizarPedido(id,updatePedido)
+    async updatePedido(@Param('id') id:number,@Body() pedido:PedidosDto) {
+        return this.servicePedido.updatePedido(id,pedido);
     }
 
+    @Delete(':id')
+    async deletePedido(@Param('id') id:number) {
+        return this.servicePedido.deletePedido(id);
+    }
 }

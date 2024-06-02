@@ -1,18 +1,19 @@
-import { productosEntity } from "src/productos/entity/productos.entity";
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ProductoEntity } from "src/productos/entity/productos.entity";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('categorias')
-export class categoriasEntity
-{
+export class CategoriasEntity {
 
     @PrimaryGeneratedColumn()
-    id_categoria:number
+    id_categoria: number;
 
-    @Column({type:'varchar'})
-    nombreCat:string
+    @Column({type:'varchar',length:100})
+    nombre_categoria: string;
 
-    @OneToOne(()=>productosEntity,(prod)=>prod.categorias,{nullable:true})
-    @JoinColumn()
-    productos:productosEntity
+    @Column({type:'boolean'})
+    matCategoria: boolean;
+
+    @OneToMany(()=>ProductoEntity,(prod)=>prod.categoria)
+    productos: ProductoEntity[];
     
 }

@@ -1,101 +1,113 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
+import { artesanosDto } from './dto/artesanosLogin.dto';
 import { artesanosEntity } from './entity/artesanos.entity';
-import { artesanosDto } from './dto/artesanos.dto';
-import { productosEntity } from 'src/productos/entity/productos.entity';
-import { usuariosEntity } from '../usuarios/entity/usuarios.entity';
 
 @Injectable()
 export class ArtesanosService {
-  constructor(private datasource: DataSource) {}
 
-  obtenerArtesanos() {
-    try {
-      return this.datasource.manager
-        .getRepository(artesanosEntity)
-        .find({ relations: ['productos', 'usuarios'] });
-    } catch (error) {
-      throw new HttpException(
-        'No se pudo obtener los artesanos',
-        HttpStatus.FOUND,
-      );
+    constructor(private dataSouce:DataSource) { }
+
+
+    async getArtesanos()
+    {
+        try {
+            const artesanos = await this.dataSouce.getRepository(artesanosEntity).find();
+            if (!artesanos) {
+                return new HttpException('No se encontraron artesanos',HttpStatus.NOT_FOUND);
+            }
+
+            return artesanos;
+        } catch (error) {
+            console.log(error);
+            
+            throw new HttpException('Error al obtener los artesanos',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-  }
 
-  async unArtesano(id: number) {
-    try {
-      return this.datasource
-        .getRepository(artesanosEntity)
-        .findOne({
-          where: { id_Artesano: id },
-          relations: ['productos', 'usuarios'],
-        });
-    } catch (error) {
-      throw new HttpException('No se pudo conectar', HttpStatus.CONFLICT);
+    async getArtesano(id:number)
+    {
+        try {
+            const artesanoFind = await this.dataSouce.getRepository(artesanosEntity).findOne({where:{id_artesano:id}});
+            if (!artesanoFind) {
+                return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
+            }
+
+            return artesanoFind;
+        } catch (error) {
+            throw new HttpException('Error al obtener el artesano',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-  }
 
-  async crearArtesano(createartesano: artesanosDto) {
-    try {
-      const newArtesano = await this.datasource
-        .getRepository(artesanosEntity)
-        .create(createartesano);
-      const findProductos = await this.datasource
-        .getRepository(productosEntity)
-        .findOne({ where: { id_Producto: createartesano.productosId } });
-      const findUsuarios = await this.datasource
-        .getRepository(usuariosEntity)
-        .findOne({ where: { id_usuario: createartesano.usuariosId } });
+    async createArtesano(artesano:artesanosDto)
+    {
+        try {
+            const artesanoBody = await this.dataSouce.getRepository(artesanosEntity).create(artesano);
 
-      newArtesano.productos.push(findProductos);
-      newArtesano.usuarios = findUsuarios;
+            artesanoBody.password = await this.encryptPassword(artesano.password);
 
-      const createArtesano = await this.datasource
-        .getRepository(artesanosEntity)
-        .save(newArtesano);
-      return createArtesano;
-    } catch (error) {
-      throw new HttpException(
-        'No se pudo crear el artesano',
-        HttpStatus.CONFLICT,
-      );
+            const saveArtesano = await this.dataSouce.getRepository(artesanosEntity).save(artesanoBody);
+
+            return saveArtesano;
+        } catch (error) {
+            throw new HttpException('Error al crear el artesano',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-  }
 
-  async actualizarArtesanos(id: number, artesanosDto: artesanosDto) {
-    try {
-      const artesanoActualizado = await this.datasource
-        .getRepository(artesanosEntity)
-        .findOne({
-          where: { id_Artesano: id },
-          relations: ['productos', 'usuarios'],
-        });
-      return await this.datasource
-        .getRepository(artesanosEntity)
-        .update(artesanoActualizado, artesanosDto);
-    } catch (error) {
-      throw new HttpException(
-        'No se pudo actualizar el artesano',
-        HttpStatus.CONFLICT,
-      );
+    async updateArtesano(id:number,artesano:artesanosDto)
+    {
+        try {
+            
+            const artesanoFind = await this.dataSouce.getRepository(artesanosEntity).findOne({where:{id_artesano:id}});
+
+            if (!artesanoFind) {
+                return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
+            }
+
+            return await this.dataSouce.getRepository(artesanosEntity).update({id_artesano:artesanoFind.id_artesano},artesano);
+        } catch (error) {
+            throw new HttpException('Error al actualizar el artesano',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-  }
-  async eliminarArtesano(id: number) {
-    try {
-      const artesanoEliminado = await this.datasource
-        .getRepository(artesanosEntity)
-        .findOne({
-          where: { id_Artesano: id },
-          relations: ['productos', 'usuarios'],
-        });
-      return await this.datasource
-        .getRepository(artesanosEntity)
-        .delete(artesanoEliminado);
-    } catch (error) {
-      throw new HttpException(
-        'No se pudo eliminar el artesano',
-        HttpStatus.CONFLICT,
-      );
+
+    async deleteArtesano(id:number)
+    {
+        try {
+            const artesanoFind = await this.dataSouce.getRepository(artesanosEntity).findOne({where:{id_artesano:id}});
+
+            if (!artesanoFind) {
+                return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
+            }
+
+            return await this.dataSouce.getRepository(artesanosEntity).remove(artesanoFind)
+        } catch (error) {
+            throw new HttpException('Error al eliminar el artesano',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-  }
+
+    async encryptPassword(password: string): Promise<string> {
+        const bcrypt = require('bcrypt');
+        const hashedPassword = await bcrypt.hash(password, 10);
+        return hashedPassword;
+    }
+
+    async loginArtesano(correo: string, password: string) {
+        try {
+            const artesanoFind = await this.dataSouce.getRepository(artesanosEntity).findOne({where:{correo:correo}});
+            if (!artesanoFind) {
+                return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
+            }
+
+            const bcrypt = require('bcrypt');
+
+            const validPassword = await bcrypt.compare(password,artesanoFind.password);
+            if (!validPassword) {
+                return false;
+            }
+
+            return artesanoFind;
+        } catch (error) {
+            throw new HttpException('Error al iniciar sesion',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
