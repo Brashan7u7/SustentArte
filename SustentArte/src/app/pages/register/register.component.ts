@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -14,10 +15,11 @@ export class RegisterComponent {
   id = 0;
   fb = inject(FormBuilder);
   activeRoute = inject(ActivatedRoute);
+  apiService = inject(ApiService);
   route = inject(Router);
-  formArtesano!: FormGroup;
+  formComprador!: FormGroup;
   constructor(){
-    this.formArtesano = this.fb.group({
+    this.formComprador = this.fb.group({
       nombre: ['', Validators.required],
       apellidoPaterno: ['', Validators.required],
       apellidoMaterno: ['', Validators.required],
@@ -31,6 +33,12 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4)]]
     });
+  }
+
+
+  registarComprador(){
+    console.log(this.formComprador.value);
+    this.apiService.crearComprador(this.formComprador.value);
   }
   
 }

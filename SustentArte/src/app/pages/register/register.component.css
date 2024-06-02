@@ -128,7 +128,10 @@
 @media (max-height: 785px) {
   .imagen2 {
     display: none;
+    
   }
+  
+
 }
 
 @media (max-width: 470px) {

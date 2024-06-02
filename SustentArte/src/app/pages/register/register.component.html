@@ -3,14 +3,14 @@
     <div class="col-lg-6 col-md-6 d-flex imagenCol" style="background-color: #F8CB97;">
       <img src="assets/img/SustentArte_Logo.png" alt="SustentArte Logo" class="imagen" />
     </div>
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-5 col-md-6">
       <div class="formulario">
         <div class="titulo">
           <img src="assets/img/SustentArte_Logo.png" alt="SustentArte Logo" class="imagen2" />
           <h4>Registrarse</h4>
         </div>
         <div class="container">
-          <form>
+          <form [formGroup]="formComprador" (ngSubmit)="registarComprador()">
             <div class="row">
               <label for="inputNombre" class="col-sm-4 col-form-label">Nombre</label>
               <div class="col-12">
@@ -115,7 +115,7 @@
               <label for="inputEmail" class="col-sm-4 col-form-label">Correo</label>
               <div class="col-12">
                 <div class="input-group">
-                  <input type="email" required="true" class="form-control input" name="inputEmail" id="inputEmail"
+                  <input type="email" formControlName="email" required="true" class="form-control input" name="inputEmail" id="inputEmail"
                     placeholder="Ingresa tu correo" />
                   <span class="input-group-text"><i class="fas fa-mail-bulk item icono"></i></span>
                 </div>
@@ -127,7 +127,7 @@
               </div>
               <div class="col-sm-12">
                 <div class="input-group">
-                  <input type="password" required="true" class="form-control input" name="inputPassword" id="inputPassword"
+                  <input type="password" formControlName="password" required="true" class="form-control input" name="inputPassword" id="inputPassword"
                     placeholder="Ingresa tu contraseña" />
                   <span class="input-group-text"><i class="fa fa-key item icono"></i></span>
                 </div>

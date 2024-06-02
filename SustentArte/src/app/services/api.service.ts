@@ -11,9 +11,13 @@ export class ApiService {
   private _http = inject(HttpClient);
   constructor() { }
 
-  crearArtesano(user: any){
+  crearArtesano(artesano: any){
     //return this._http.post<any>('http://localhost:8000/api/product',user);
-    console.log(user);
+    console.log(artesano);
+  }
+
+  crearComprador(comprador: any){
+    console.log(comprador)
   }
 
 
