@@ -39,6 +39,10 @@ import { materialesEntity } from './materiales/entity/materiales.entity';
 import { compradoresEntity } from './compradores/entity/compradores.entity';
 import { categoriasEntity } from './categorias/entity/categorias.entity';
 import { artesanosEntity } from './artesanos/entity/artesanos.entity';
+import { DetallePagoEntity } from './detalle-pago/entity/detallePago.entity';
+import { DetallePagoModule } from './detalle-pago/detalle-pago.module';
+import { DetallePagoController } from './detalle-pago/detalle-pago.controller';
+import { DetallePagoService } from './detalle-pago/detalle-pago.service';
 
 @Module({
   imports: [
@@ -47,7 +51,7 @@ import { artesanosEntity } from './artesanos/entity/artesanos.entity';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'qwe',
+      password: 'DJE20ben',
       database: 'sustent',
       entities: [
         productosEntity,
@@ -60,6 +64,7 @@ import { artesanosEntity } from './artesanos/entity/artesanos.entity';
         compradoresEntity,
         categoriasEntity,
         artesanosEntity,
+        DetallePagoEntity
       ],
       synchronize: true,
     }),
@@ -73,6 +78,7 @@ import { artesanosEntity } from './artesanos/entity/artesanos.entity';
     CompradoresModule,
     CategoriasModule,
     ArtesanosModule,
+    DetallePagoModule
   ],
   controllers: [
     AppController,
@@ -86,6 +92,7 @@ import { artesanosEntity } from './artesanos/entity/artesanos.entity';
     CategoriasController,
     ArtesanosController,
     ProductosController,
+    DetallePagoController
   ],
   providers: [
     AppService,
@@ -99,6 +106,7 @@ import { artesanosEntity } from './artesanos/entity/artesanos.entity';
     CategoriasService,
     ArtesanosService,
     ProductosService,
+    DetallePagoService
   ],
 })
 export class AppModule {}
