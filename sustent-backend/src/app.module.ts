@@ -19,14 +19,10 @@ import { CategoriasController } from './categorias/categorias.controller';
 import { PagosController } from './pagos/pagos.controller';
 import { DetallePagoController } from './detalle-pago/detalle-pago.controller';
 import { CompradoresModule } from './compradores/compradores.module';
-import { UsuarioModule } from './usuario/usuario.module';
 import { ArtesanosModule } from './artesanos/artesanos.module';
-import { usuarioEntity } from './usuario/entity/usuario.entity';
 import { compradorEntity } from './compradores/entity/comprador.entity';
-import { UsuarioService } from './usuario/usuario.service';
 import { CompradoresService } from './compradores/compradores.service';
 import { CompradoresController } from './compradores/compradores.controller';
-import { UsuarioController } from './usuario/usuario.controller';
 import { artesanosEntity } from './artesanos/entity/artesanos.entity';
 import { ArtesanosController } from './artesanos/artesanos.controller';
 import { ArtesanosService } from './artesanos/artesanos.service';
@@ -45,12 +41,12 @@ import { ProductosModule } from './productos/productos.module';
       password: 'DJE20ben',
       database: 'sustent',
       entities: [
-        MaterialesEntity, CategoriasEntity, PagosEntity, DetallePagoEntity,usuarioEntity,compradorEntity,artesanosEntity
+        MaterialesEntity, CategoriasEntity, PagosEntity, DetallePagoEntity,compradorEntity,artesanosEntity
       ],
       synchronize: true,
     }),
-    MaterialesModule, CategoriasModule, PagosModule, DetallePagoModule, CompradoresModule, UsuarioModule, ArtesanosModule,UsuarioModule,CompradoresModule,ArtesanosModule, SeguimientoModule, PedidosModule, ProductosModule],
-  controllers: [AppController, MaterialesController, CategoriasController, PagosController, DetallePagoController,CompradoresController,UsuarioController,ArtesanosController],
-  providers: [AppService, MaterialesService, CategoriasService, PagosService, DetallePagoService,UsuarioService,CompradoresService,ArtesanosService],
+    MaterialesModule, CategoriasModule, PagosModule, DetallePagoModule, CompradoresModule, ArtesanosModule,CompradoresModule,ArtesanosModule, SeguimientoModule, PedidosModule, ProductosModule],
+  controllers: [AppController, MaterialesController, CategoriasController, PagosController, DetallePagoController,CompradoresController,ArtesanosController],
+  providers: [AppService, MaterialesService, CategoriasService, PagosService, DetallePagoService,CompradoresService,ArtesanosService],
 })
 export class AppModule {}
