@@ -1,29 +1,35 @@
-import { compradorEntity } from "src/compradores/entity/comprador.entity";
-import { ProductoEntity } from "src/productos/entity/productos.entity";
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { compradoresEntity } from "src/compradores/entity/compradores.entity";
+import { productosEntity } from "src/productos/entity/productos.entity";
+import { seguimientosEntity } from "src/seguimientos/entity/seguimientos.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('pedidos')
-export class PedidosEntity {
+export class pedidosEntity
+{
     @PrimaryGeneratedColumn()
-    id_pedido: number;
+    id_pedidos:number
 
-    @Column({type:'timestamp'})
-    fecha_pedido: Date;
-
+    @Column({type:'date'})
+    fecha_pedido:Date
 
     @Column({type:'varchar'})
-    numero_Pedido: string;
+    numero_pedido:string
+
+    @Column({type:'varchar'})
+    lista_prod:string
 
     @Column({type:'real'})
-    precio_Total_Pedido: number;
+    precio_total_ped:number
+    
+    @ManyToOne(()=> compradoresEntity,(compra)=>compra.pedidos,{nullable:true})
+    @JoinColumn()
+    compradores:compradoresEntity
 
-    @Column({type:'integer'})
-    edo_Pedido: number;
+    @OneToMany(()=> productosEntity,(prod)=>prod.pedidos,{nullable:true})
+    @JoinColumn()
+    productos:productosEntity
 
-    @ManyToMany(()=>ProductoEntity,(prod)=>prod.pedido)
-    productos: ProductoEntity[];
-
-    @ManyToOne(()=>compradorEntity,(comprador)=>comprador.pedidos)
-    comprador: compradorEntity;
-
+    @OneToOne(()=> seguimientosEntity,(seg)=>seg.pedidos,{nullable:true})
+    @JoinColumn()
+    seguimientos:seguimientosEntity
 }

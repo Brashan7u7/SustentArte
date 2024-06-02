@@ -1,9 +1,26 @@
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from 'class-validator';
 
-export class artesanosLoginDto {
-    @IsString()
-    correo: string;
+export class artesanosDto {
+  @IsNumber()
+  id_Usuario: number;
 
-    @IsString()
-    password: string;
+  @IsString()
+  descripcion_Trabajo: string;
+
+  @IsString()
+  xp_Textil: string;
+
+  @IsString()
+  tec_Artesanales: string;
+
+  @IsString()
+  reconocimientos: string;
+
+  @IsString()
+  foto: string;
+
+  @IsNumber()
+  productosId: number;
+  @IsNumber()
+  usuariosId: number;
 }
