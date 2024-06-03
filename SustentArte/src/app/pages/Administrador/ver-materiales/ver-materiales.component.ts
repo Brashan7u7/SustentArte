@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { MaterialesInterface } from '../../../interfaces/materiales.interface';
 
 @Component({
   selector: 'app-ver-materiales',
@@ -10,28 +12,28 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ver-materiales.component.css'
 })
 export class VerMaterialesComponent {
-  materiales: any[] = [];
+  apiService = inject(ApiService);
+  router = inject(Router);
 
-  constructor(private apiService: ApiService) { }
+  misMateriales : MaterialesInterface[] =[];
 
-  ngOnInit(): void {
+  constructor(){
     this.obtenerMateriales();
   }
 
-  obtenerMateriales(): void {
-    this.apiService.obtenerMateriales();
+  obtenerMateriales(){
+    this.apiService.obtenerMateriales().subscribe(material => {
+      this.misMateriales=material;
+    })
   }
-  eliminarMaterial(id: number): void {
-    this.apiService.eliminarMaterial(id).subscribe(
-      (response: any) => {
-        console.log(response);
-        // Actualizar la lista de materiales después de eliminar
-        this.materiales = this.materiales.filter(material => material.id !== id);
-      },
-      (error: any) => {
-        console.error(error);
-        // Manejar el error aquí
-      }
-    );
+  eliminarMaterial(material : MaterialesInterface){
+    this.apiService.eliminarMaterial(material).subscribe(material =>{
+      console.log(material);
+      this.obtenerMateriales();
+    });
+  }
+  
+  editarMaterial(material : MaterialesInterface){
+    this.router.navigateByUrl('/editarMaterial/'+material.id_material)
   }
 }

@@ -48,6 +48,10 @@ export const routes: Routes = [
     component : AgregarMaterialComponent,
   },
   {
+    path :'editarMaterial/:id',
+    component : AgregarMaterialComponent,
+  },
+  {
     path :'verMateriales',
     component : VerMaterialesComponent,
     

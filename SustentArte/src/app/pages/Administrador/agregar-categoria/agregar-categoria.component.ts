@@ -69,7 +69,7 @@ export class AgregarCategoriaComponent {
         this.alertService.alert('Categoria creada', 'success');
         this.route.navigateByUrl('verCategorias');
       });
-      
+
     }else{
       this.apiService.editarCategoria(this.formCategoria.value, this.id).subscribe(data=>{
         console.log(data);
