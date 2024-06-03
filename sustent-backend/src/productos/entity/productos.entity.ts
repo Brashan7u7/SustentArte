@@ -23,8 +23,8 @@ export class ProductoEntity {
     @Column({type:'varchar'})
     historia: string;
 
-    @OneToMany(()=>MaterialesEntity,(mat)=>mat.producto,{nullable:true})
-    materiales: MaterialesEntity[];
+    @ManyToOne(()=>MaterialesEntity,(mat)=>mat.producto,{nullable:true})
+    materiales: MaterialesEntity;
 
     @ManyToOne(()=>CategoriasEntity,(cat)=>cat.productos,{nullable:true})
     categoria: CategoriasEntity;

@@ -1,5 +1,5 @@
 import { ProductoEntity } from "src/productos/entity/productos.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('materiales')
 export class MaterialesEntity {
@@ -13,7 +13,7 @@ export class MaterialesEntity {
     @Column({type:'varchar',length:100})
     descripcion_material: string;
     
-    @ManyToOne(()=>ProductoEntity,(prod)=>prod.materiales)
-    producto: ProductoEntity;
+    @OneToMany(()=>ProductoEntity,(prod)=>prod.materiales,{nullable:true})
+    producto: ProductoEntity[];
     
 }
