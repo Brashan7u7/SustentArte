@@ -19,7 +19,7 @@ export class ProductosDto{
     @IsNumber()
     artesanoId:number;
     @IsNumber()
-    pedidoId:number;
+    materialesId:number;
     @IsNumber()
     categoriaId:number;
 }

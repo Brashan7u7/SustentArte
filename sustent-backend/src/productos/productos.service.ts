@@ -4,6 +4,7 @@ import { ProductoEntity } from './entity/productos.entity';
 import { artesanosEntity } from 'src/artesanos/entity/artesanos.entity';
 import { ProductosDto } from './dto/productos.dto';
 import { CategoriasEntity } from 'src/categorias/entity/categorias.entity';
+import { MaterialesEntity } from 'src/materiales/entity/materiales.entity';
 
 @Injectable()
 export class ProductosService {
@@ -45,7 +46,11 @@ export class ProductosService {
     {
         try {
             const productoBody = await this.dataSource.getRepository(ProductoEntity).create(producto);
+            const findMaterial = await this.dataSource.getRepository(MaterialesEntity).findOne({where:{id_material:producto.materialesId},relations:['productos']});
 
+            if (!findMaterial) {
+                return new HttpException('No se encontro el material',HttpStatus.NOT_FOUND);
+            }
             const findArtesano = await this.dataSource.getRepository(artesanosEntity).findOne({where:{id_artesano:producto.artesanoId},relations:['productos']});
             if (!findArtesano) {
                 return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
@@ -63,7 +68,10 @@ export class ProductosService {
 
             findccategoria.productos.push(saveProducto);
 
+            findMaterial.producto.push(saveProducto);
+
             await this.dataSource.getRepository(artesanosEntity).save(findArtesano);
+            await this.dataSource.getRepository(MaterialesEntity).save(findMaterial);
             await this.dataSource.getRepository(CategoriasEntity).save(findccategoria);
 
             return saveProducto;
