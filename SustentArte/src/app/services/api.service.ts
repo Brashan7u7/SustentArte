@@ -15,8 +15,9 @@ export class ApiService {
   constructor() { }
 
   crearArtesano(artesano: any){
-    //return this._http.post<any>('http://localhost:8000/api/product',user);
     console.log(artesano);
+    return this._http.post<any>('http://localhost:8000/artesanos',artesano);
+    
   }
 
   crearComprador(comprador: any){
@@ -25,16 +26,15 @@ export class ApiService {
   }
 
   agregarMaterial(material: any) {
-    //return this._http.post<any>('http://localhost:8000/api/material', material);
-    console.log(material)
+    return this._http.post<any>('http://localhost:8000/materiales', material);
   }
 
   agregarCategoria(categoria: any) {
-    return this._http.post<CategoriaInterface>('http://localhost:3000/categoria',categoria);
+    return this._http.post<CategoriaInterface>('http://localhost:3000/categorias',categoria);
   }
 
   obtenerMateriales(){
-    return this._http.get<any[]>('http://localhost:3000/api/materiales');
+    return this._http.get<any[]>('http://localhost:3000/materiales');
   }
   obtenerProductos(){
     return this._http.get<ProductosInterface[]>('http://localhost:3000/productos',{ headers: { 'Access-Control-Allow-Origin': '*' } });
@@ -49,10 +49,11 @@ export class ApiService {
     return this._http.get<CategoriaInterface[]>('http://localhost:3000/categorias',{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   obtenerCategoria(id:number){
-    return this._http.get<CategoriaInterface>(`http://localhost:3000/categoria/`+id,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+    return this._http.get<CategoriaInterface>(`http://localhost:3000/categorias/${id}`,{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   editarCategoria(categoria : CategoriaInterface,id:number){
-    return this._http.put<CategoriaInterface>(`http://localhost:3000/categoria/`+id,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+    console.log(categoria)
+    return this._http.put<CategoriaInterface>(`http://localhost:3000/categorias/`+id,categoria,{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
 
@@ -64,7 +65,7 @@ export class ApiService {
     return this._http.delete(`http://localhost:3000/api/materiales/${id}`);
   }
   eliminarCategoria(categoria: CategoriaInterface) {
-    return this._http.delete(`http://localhost:3000/api/categoria/${categoria.id_categoria}`);
+    return this._http.delete(`http://localhost:3000/categorias/${categoria.id_categoria}`);
   }
 
 

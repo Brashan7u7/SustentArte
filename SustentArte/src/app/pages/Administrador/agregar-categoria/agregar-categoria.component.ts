@@ -24,8 +24,7 @@ export class AgregarCategoriaComponent {
 
   constructor() {
     this.formCategoria = this.formBuilder.group({
-      nombreCat: ['', Validators.required],
-      matCategoria: ['', '']
+      nombreCat: ['', Validators.required]
     });
     this.activeRoute.params.subscribe((params: any) => {
       console.log(params);
@@ -55,16 +54,20 @@ export class AgregarCategoriaComponent {
 
   agregarCategoria() {
     console.log(this.formCategoria.value);
-
+    
+    
     if (this.formCategoria.invalid) {
       return console.log("Form rellenado de manera incorrecta");
     }
 
     if(this.isNew){
-      this.apiService.agregarCategoria(this.formCategoria.value);
-      this.formCategoria.reset();
-      this.alertService.alert('Categoria creada', 'success');
-      this.route.navigateByUrl('verCategorias');
+      this.apiService.agregarCategoria(this.formCategoria.value).subscribe(data=>{
+        console.log(data)
+        this.formCategoria.reset();
+        this.alertService.alert('Categoria creada', 'success');
+        this.route.navigateByUrl('verCategorias');
+      });
+      
     }else{
       this.apiService.editarCategoria(this.formCategoria.value, this.id).subscribe(data=>{
         console.log(data);
