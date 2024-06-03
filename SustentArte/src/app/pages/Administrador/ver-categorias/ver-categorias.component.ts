@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
+import { Router } from '@angular/router';
+import { CategoriaInterface } from '../../../interfaces/categoria.interface';
 
 @Component({
   selector: 'app-ver-categorias',
@@ -10,23 +12,25 @@ import { ApiService } from '../../../services/api.service';
   styleUrl: './ver-categorias.component.css'
 })
 export class VerCategoriasComponent {
-  categorias: any[] = [];
+  apiService = inject(ApiService);
+  router = inject(Router);
 
-  constructor(private apiService: ApiService) { }
+  misCategorias : CategoriaInterface[] =[];
 
-  ngOnInit(): void {
+  constructor(){
     this.obtenerCategorias();
   }
 
-  obtenerCategorias(): void {
-    this.apiService.obtenerCategorias().subscribe(
-      (data: any[]) => {
-        this.categorias = data;
-      },
-      (error: any) => {
-        console.error(error);
-        // Manejar el error aquí
-      }
-    );
+  obtenerCategorias(){
+    this.apiService.obtenerCategorias().subscribe(categorias => {
+      this.misCategorias=categorias;
+    })
   }
+  eliminarCategoria(categoria : CategoriaInterface){
+    this.apiService.eliminarCategoria(categoria.id_categoria).subscribe(categoria =>{
+      console.log(categoria);
+      this.obtenerCategorias();
+    });
+  }
+  
 }
