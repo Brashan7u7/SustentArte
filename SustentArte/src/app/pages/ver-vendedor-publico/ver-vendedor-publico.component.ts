@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { ArtesanoInterface } from '../../interfaces/artesano.interface';
 import { ProductosInterface } from '../../interfaces/producto.interface';
@@ -13,7 +13,8 @@ import { ProductosInterface } from '../../interfaces/producto.interface';
 })
 export class VerVendedorPublicoComponent {
 
-  private route = inject(ActivatedRoute)
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   private apiService = inject(ApiService);
 
@@ -35,6 +36,10 @@ export class VerVendedorPublicoComponent {
       });
     })
     
+  }
+
+  mostrarProducto(id: number) {
+    this.router.navigate(['/productoPublic'], { queryParams: { prod: id} });
   }
 
 }
