@@ -29,8 +29,7 @@ export class ApiService {
   }
 
   agregarCategoria(categoria: any) {
-    //return this._http.post<any>('http://localhost:8000/api/categoria', categoria);
-    console.log(categoria)
+    return this._http.post<CategoriaInterface>('http://localhost:3000/categoria',categoria);
   }
 
   obtenerMateriales(){
@@ -63,7 +62,7 @@ export class ApiService {
   eliminarMaterial(id: number) {
     return this._http.delete(`http://localhost:3000/api/materiales/${id}`);
   }
-  eliminarCategoria(id: number) {
-    return this._http.delete(`http://localhost:3000/api/categoria/${id}`);
+  eliminarCategoria(categoria: CategoriaInterface) {
+    return this._http.delete(`http://localhost:3000/api/categoria/${categoria.id_categoria}`);
   }
 }
