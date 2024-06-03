@@ -29,11 +29,11 @@
     <div class="col-lg-3 col-md-4 col-sm-6">
       @for (item of productos; track $index) {
       <div class="card card-tam">
-        <img class="card-img-top imagen" src="assets/img/Canasto.jpg" alt="ProductImage" />
+        <img class="card-img-top imagen" [src]="item.imagen" alt="ProductImage" />
         <div class="card-body">
-          <h4 class="card-title">Name Product</h4>
-          <span class="badge bg-dark mt-2">Material/Category</span>
-          <p class="card-text mt-3">Product Description</p>
+          <h4 class="card-title">{{item.nombreP}}</h4>
+          <span class="badge bg-dark mt-2">{{item.categoria.nombre_categoria}}</span>
+          <p class="card-text mt-3">{{item.descripcion}}</p>
         </div>
         <div class="d-grid gap-2">
           <a name="" id="" class="btn btn-primary" routerLinkActive="active" routerLink="/productoPublic/2"

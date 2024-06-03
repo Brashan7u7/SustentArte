@@ -46,17 +46,17 @@ export class ProductosService {
     {
         try {
             const productoBody = await this.dataSource.getRepository(ProductoEntity).create(producto);
-            const findMaterial = await this.dataSource.getRepository(MaterialesEntity).findOne({where:{id_material:producto.materialesId}});
+            const findMaterial = await this.dataSource.getRepository(MaterialesEntity).findOne({where:{id_material:producto.materialesId},relations:['producto']});
 
             if (!findMaterial) {
                 return new HttpException('No se encontro el material',HttpStatus.NOT_FOUND);
             }
-            const findArtesano = await this.dataSource.getRepository(artesanosEntity).findOne({where:{id_artesano:producto.artesanoId}});
+            const findArtesano = await this.dataSource.getRepository(artesanosEntity).findOne({where:{id_artesano:producto.artesanoId},relations:['productos']});
             if (!findArtesano) {
                 return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
             }
 
-            const findccategoria = await this.dataSource.getRepository(CategoriasEntity).findOne({where:{id_categoria:producto.categoriaId}});
+            const findccategoria = await this.dataSource.getRepository(CategoriasEntity).findOne({where:{id_categoria:producto.categoriaId},relations:['productos']});
 
             if (!findccategoria) {
                 return new HttpException('No se encontro la categoria',HttpStatus.NOT_FOUND);
@@ -76,7 +76,10 @@ export class ProductosService {
 
             return saveProducto;
         } catch (error) {
+            console.log(error);
+            
             throw new HttpException('Error al crear el producto',HttpStatus.INTERNAL_SERVER_ERROR);
+
         }
     }
 

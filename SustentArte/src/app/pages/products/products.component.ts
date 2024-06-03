@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet,RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
+import { ProductosInterface } from '../../interfaces/producto.interface';
 
 @Component({
   selector: 'app-products',
@@ -15,7 +16,7 @@ export class ProductsComponent {
 
   private apiService = inject(ApiService);
 
-  productos = Array<any>();
+  productos = Array<ProductosInterface>();
 
 
   constructor() {

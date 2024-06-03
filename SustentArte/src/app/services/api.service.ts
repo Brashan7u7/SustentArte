@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Usuario } from '../interfaces/usuario';
 import { Observable } from 'rxjs';
+import { ProductosInterface } from '../interfaces/producto.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class ApiService {
     return this._http.get<any[]>('http://localhost:8000/api/materiales');
   }
   obtenerProductos(){
-    return this._http.get<any[]>('http://localhost:3000/productos');
+    return this._http.get<ProductosInterface[]>('http://localhost:3000/productos',{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   obtenerCategorias(){
     return this._http.get<any[]>('http://localhost:8000/api/materiales');

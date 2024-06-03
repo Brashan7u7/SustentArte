@@ -36,7 +36,7 @@ export class ProductosController {
         return this.serviceProductos.updateProducto(id,producto);
     }
 
-    @Delete()
+    @Delete(':id')
     async deleteProducto(@Param('id') id:number) {
         return this.serviceProductos.deleteProducto(id);
     }
