@@ -117,7 +117,8 @@ export class ProductosService {
     async filtroMateriales(material:string)
     {
         try {
-            const productos = await this.dataSource.getRepository(MaterialesEntity).find({where:{nombre_material:material},relations:['materiales','artesano','categoria']});
+            const findMaterial = await this.dataSource.getRepository(MaterialesEntity).findOne({where:{nombre_material:material},relations:['producto']});
+            const productos = await this.dataSource.getRepository(ProductoEntity).find({where:{materiales:findMaterial},relations:['materiales','artesano','categoria']});
             if (!productos) {
                 return new HttpException('No se encontraron productos',HttpStatus.NOT_FOUND);
             }
@@ -133,7 +134,8 @@ export class ProductosService {
     async filtroCategorias(categoria:string)
     {
         try {
-            const productos = await this.dataSource.getRepository(CategoriasEntity).find({where:{nombre_categoria:categoria},relations:['materiales','artesano','categoria']});
+            const findccategoria = await this.dataSource.getRepository(CategoriasEntity).findOne({where:{nombre_categoria:categoria},relations:['productos']});
+            const productos = await this.dataSource.getRepository(ProductoEntity).find({where:{categoria:findccategoria},relations:['materiales','artesano','categoria']});
             if (!productos) {
                 return new HttpException('No se encontraron productos',HttpStatus.NOT_FOUND);
             }

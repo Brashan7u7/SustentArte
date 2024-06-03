@@ -43,6 +43,10 @@ export class ApiService {
     return this._http.get<CategoriaInterface[]>('http://localhost:3000/categorias',{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
+  obtenerProductosxCategorias(categoria: string){
+    return this._http.get<ProductosInterface[]>(`http://localhost:3000/productos/categoria/${categoria}`,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
   eliminarMaterial(id: number) {
     return this._http.delete(`http://localhost:8000/api/materiales/${id}`);
   }

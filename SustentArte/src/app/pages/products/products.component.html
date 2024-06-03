@@ -15,7 +15,7 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 @for (item of categorias; track $index) {
-                <li><a class="dropdown-item" href="#">{{item.nombre_categoria}}</a></li>
+                <li><a class="dropdown-item" (click)="filtrarCategoria(item.nombre_categoria)">{{item.nombre_categoria}}</a></li>
                 }
               </ul>
             </div>

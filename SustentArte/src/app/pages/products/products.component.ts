@@ -33,4 +33,12 @@ export class ProductsComponent {
   }
 
 
+  filtrarCategoria(categoria: string) {
+    this.productos = [];
+    this.apiService.obtenerProductosxCategorias(categoria).subscribe((res) => {
+      this.productos = res;
+    });
+  }
+
+
 }
