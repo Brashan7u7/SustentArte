@@ -1,0 +1,21 @@
+<div class="container mt-2 mb-5">
+    <div class="row justify-content-center mb-3">
+        <div class="col-1 text-center">
+            <a class="btn btn-danger btn-sm" href="panelAdmin" role="button">Regresar</a>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Ver Categorías <i class="fa-solid fa-eye"></i></h1>
+        </div>
+    </div>
+    <div *ngIf="categorias.length > 0; else noCategories">
+        <div class="list-group">
+            <a *ngFor="let categoria of categorias" class="list-group-item list-group-item-action">
+                <h5 class="mb-1">{{ categoria.nombre }}</h5>
+                <p class="mb-1">{{ categoria.material }}</p>
+            </a>
+        </div>
+    </div>
+    <ng-template #noCategories>
+        <p class="text-center">No hay categorías disponibles.</p>
+    </ng-template>
+</div>

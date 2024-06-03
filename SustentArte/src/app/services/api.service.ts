@@ -17,8 +17,28 @@ export class ApiService {
   }
 
   crearComprador(comprador: any){
+    //return this._http.post<any>('http://localhost:8000/api/comprador', comprador);
     console.log(comprador)
   }
 
+  agregarMaterial(material: any) {
+    //return this._http.post<any>('http://localhost:8000/api/material', material);
+    console.log(material)
+  }
 
+  agregarCategoria(categoria: any) {
+    //return this._http.post<any>('http://localhost:8000/api/categoria', categoria);
+    console.log(categoria)
+  }
+
+  obtenerMateriales(){
+    return this._http.get<any[]>('http://localhost:8000/api/materiales');
+  }
+  obtenerCategorias(){
+    return this._http.get<any[]>('http://localhost:8000/api/materiales');
+  }
+
+  eliminarMaterial(id: number) {
+    return this._http.delete(`http://localhost:8000/api/materiales/${id}`);
+  }
 }
