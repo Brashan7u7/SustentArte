@@ -6,6 +6,7 @@ import { ProductosInterface } from '../interfaces/producto.interface';
 import { CategoriaInterface } from '../interfaces/categoria.interface';
 import { ArtesanoInterface } from '../interfaces/artesano.interface';
 import { MaterialesInterface } from '../interfaces/materiales.interface';
+import { CompradoresInterface } from '../interfaces/compradores.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +18,15 @@ export class ApiService {
 
   
 
-  crearComprador(comprador: any){
-    //return this._http.post<any>('http://localhost:8000/api/comprador', comprador);
-    console.log(comprador)
+  crearComprador(comprador: CompradoresInterface){
+    return this._http.post<CompradoresInterface>('http://localhost:3000/compradores', comprador,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
+  editarComprador(comprador: CompradoresInterface,id:number){
+    return this._http.put<CompradoresInterface>(`http://localhost:3000/compradores/${id}`, comprador,{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
   
-
-  
-
   //////////////////////////////////////////////////////////
   ////////////////////////Materiales////////////////////////
   //////////////////////////////////////////////////////////

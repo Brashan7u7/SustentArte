@@ -10,7 +10,7 @@
           <h4>Registrarse</h4>
         </div>
         <div class="container">
-          <form [formGroup]="formComprador" (ngSubmit)="registarComprador()">
+          <form [formGroup]="formComprador" (ngSubmit)="crearComprador()">
             <div class="row">
               <label for="inputNombre" class="col-sm-4 col-form-label">Nombre</label>
               <div class="col-12">
@@ -115,7 +115,7 @@
               <label for="inputEmail" class="col-sm-4 col-form-label">Correo</label>
               <div class="col-12">
                 <div class="input-group">
-                  <input type="email" formControlName="email" required="true" class="form-control input" name="inputEmail" id="inputEmail"
+                  <input type="email" formControlName="correo" required="true" class="form-control input" name="inputEmail" id="inputEmail"
                     placeholder="Ingresa tu correo" />
                   <span class="input-group-text"><i class="fas fa-mail-bulk item icono"></i></span>
                 </div>
