@@ -1,7 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
+import { AlertsService } from '../../../services/alerts.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-categoria',
@@ -11,25 +13,65 @@ import { ApiService } from '../../../services/api.service';
   styleUrl: './agregar-categoria.component.css'
 })
 export class AgregarCategoriaComponent {
-
+  isNew = true;
+  id = 0;
   formBuilder = inject(FormBuilder);
+  activeRoute = inject(ActivatedRoute);
   formCategoria !: FormGroup;
   route = inject(Router);
   apiService = inject(ApiService);
+  alertService = inject(AlertsService);
 
-  constructor(){
+  constructor() {
     this.formCategoria = this.formBuilder.group({
       nombreCat: ['', Validators.required],
       matCategoria: ['', Validators.required]
     });
+    this.activeRoute.params.subscribe((params: any) => {
+      console.log(params);
+      if (params.id) {
+        this.id = params.id;
+        this.isNew = false;
+        this.apiService.obtenerCategoria(this.id).subscribe((categoria) => {
+          this.formCategoria.reset(categoria)
+        })
+      }
+    })
+  }
+  async showConfirmationAlert(title: string, text: string): Promise<boolean> {
+    const result = await Swal.fire({
+      title: title,
+      text: text,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+    });
+    return result.isConfirmed;
   }
 
 
-  agregarCategoria(){
+  agregarCategoria() {
     console.log(this.formCategoria.value);
-    
-    if (this.formCategoria.valid) {
-      this.apiService.agregarCategoria(this.formCategoria.value)
+
+    if (this.formCategoria.invalid) {
+      return console.log("Form rellenado de manera incorrecta");
     }
+
+    if(this.isNew){
+      this.apiService.agregarCategoria(this.formCategoria.value);
+      this.formCategoria.reset();
+      this.alertService.alert('Categoria creada', 'success');
+      this.route.navigateByUrl('verCategorias');
+    }else{
+      this.apiService.editarCategoria(this.formCategoria.value, this.id).subscribe(data=>{
+        console.log(data);
+        this.formCategoria.reset();
+        this.route.navigateByUrl('')
+      })
+    }
+
   }
 }

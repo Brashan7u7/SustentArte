@@ -19,7 +19,6 @@ import { AgregarCategoriaComponent } from './pages/Administrador/agregar-categor
 import { AgregarMaterialComponent } from './pages/Administrador/agregar-material/agregar-material.component';
 import { VerMaterialesComponent } from './pages/Administrador/ver-materiales/ver-materiales.component';
 import { VerCategoriasComponent } from './pages/Administrador/ver-categorias/ver-categorias.component';
-import { EditarCategoriaComponent } from './pages/Administrador/editar-categoria/editar-categoria.component';
 
 
 
@@ -41,6 +40,10 @@ export const routes: Routes = [
     component : AgregarCategoriaComponent,
   },
   {
+    path :'editarCategoria/:id',
+    component : AgregarCategoriaComponent,
+  },
+  {
     path :'agregarMaterial',
     component : AgregarMaterialComponent,
   },
@@ -52,11 +55,6 @@ export const routes: Routes = [
   {
     path :'verCategorias',
     component : VerCategoriasComponent,
-    
-  },
-  {
-    path :'editarCategorias',
-    component : EditarCategoriaComponent,
     
   },
   {

@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   obtenerMateriales(){
-    return this._http.get<any[]>('http://localhost:8000/api/materiales');
+    return this._http.get<any[]>('http://localhost:3000/api/materiales');
   }
   obtenerProductos(){
     return this._http.get<ProductosInterface[]>('http://localhost:3000/productos',{ headers: { 'Access-Control-Allow-Origin': '*' } });
@@ -42,15 +42,22 @@ export class ApiService {
   obtenerCategorias(){
     return this._http.get<CategoriaInterface[]>('http://localhost:3000/categorias',{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
+  obtenerCategoria(id:number){
+    return this._http.get<CategoriaInterface>(`http://localhost:3000/categoria/`+id,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+  editarCategoria(categoria : CategoriaInterface,id:number){
+    return this._http.put<CategoriaInterface>(`http://localhost:3000/categoria/`+id,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
 
   obtenerProductosxCategorias(categoria: string){
     return this._http.get<ProductosInterface[]>(`http://localhost:3000/productos/categoria/${categoria}`,{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
   eliminarMaterial(id: number) {
-    return this._http.delete(`http://localhost:8000/api/materiales/${id}`);
+    return this._http.delete(`http://localhost:3000/api/materiales/${id}`);
   }
   eliminarCategoria(id: number) {
-    return this._http.delete(`http://localhost:8000/api/categorias/${id}`);
+    return this._http.delete(`http://localhost:3000/api/categoria/${id}`);
   }
 }
