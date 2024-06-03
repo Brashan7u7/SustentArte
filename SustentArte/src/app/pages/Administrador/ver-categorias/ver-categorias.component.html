@@ -7,15 +7,29 @@
             <h1>Ver Categorías <i class="fa-solid fa-eye"></i></h1>
         </div>
     </div>
-    <div *ngIf="categorias.length > 0; else noCategories">
+    <div>
         <div class="list-group">
-            <a *ngFor="let categoria of categorias" class="list-group-item list-group-item-action">
-                <h5 class="mb-1">{{ categoria.nombre }}</h5>
-                <p class="mb-1">{{ categoria.material }}</p>
+            @for (categoria of misCategorias; track categoria.id_categoria) {
+            <a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class=" col-6">
+                        <h5 class="mb-1">{{ categoria.nombre_categoria }}</h5>
+                    </div>
+                    <div class=" col-2">
+                        <a name="" id="" class="btn btn-primary" href="#" role="button">Editar <i class="fa fa-edit" aria-hidden="true"></i></a>
+                    </div>
+                    <div class=" col-2">
+                        <button
+                            type="button"
+                            class="btn btn-primary" (click)="eliminarCategoria(categoria)"
+                        >
+                            Elimianr <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                        
+                    </div>
+                </div>
             </a>
+            }
         </div>
     </div>
-    <ng-template #noCategories>
-        <p class="text-center">No hay categorías disponibles.</p>
-    </ng-template>
 </div>

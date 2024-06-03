@@ -50,4 +50,7 @@ export class ApiService {
   eliminarMaterial(id: number) {
     return this._http.delete(`http://localhost:8000/api/materiales/${id}`);
   }
+  eliminarCategoria(id: number) {
+    return this._http.delete(`http://localhost:8000/api/categorias/${id}`);
+  }
 }
