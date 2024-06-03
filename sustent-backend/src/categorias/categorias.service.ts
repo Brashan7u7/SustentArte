@@ -70,7 +70,7 @@ export class CategoriasService {
             if (!findCategoria) {
                 return new HttpException('No se encontro la categoria', HttpStatus.NOT_FOUND);
             }
-            return await this.dataSource.getRepository(CategoriasEntity).delete(findCategoria);
+            return await this.dataSource.getRepository(CategoriasEntity).remove(findCategoria);
 
         } catch (error) {
             throw new HttpException('Error al eliminar la categoria', HttpStatus.INTERNAL_SERVER_ERROR);

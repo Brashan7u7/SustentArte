@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet,RouterModule } from '@angular/router';
+import { RouterOutlet,RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { ProductosInterface } from '../../interfaces/producto.interface';
@@ -14,6 +14,7 @@ import { CategoriaInterface } from '../../interfaces/categoria.interface';
 })
 export class ProductsComponent {
 
+  private router = inject(Router)
 
   private apiService = inject(ApiService);
 
@@ -40,5 +41,13 @@ export class ProductsComponent {
     });
   }
 
+  mostrarProducto(nameProduct: string) 
+  {
+    this.router.navigate(['/productoPublic'],{
+      queryParams:{
+        prod: JSON.stringify(nameProduct)
+      }
+    });
+  }
 
 }
