@@ -3,6 +3,7 @@ import { DataSource } from 'typeorm';
 import { PedidosEntity } from './entity/pedidos.entity';
 import { PedidosDto } from './dto/pedidos.dto';
 import { compradorEntity } from 'src/compradores/entity/comprador.entity';
+import { SeguimientoEntity } from 'src/seguimiento/entity/seguimiento.entity';
 
 @Injectable()
 export class PedidosService {
@@ -43,6 +44,18 @@ export class PedidosService {
     {
         try {
             const pedidoBody = await this.dataSource.getRepository(PedidosEntity).create(pedido);
+            const baseSguimiento =                {
+                num_Guia:'',
+                empresa_Transporte:'',
+                edo_seguimiento:'En espera de envio',
+                pedidoId:pedidoBody.id_pedido
+            }
+
+            const seguimientoBody = await this.dataSource.getRepository(SeguimientoEntity).create(baseSguimiento);
+
+            const saveSeguimiento = await this.dataSource.getRepository(SeguimientoEntity).save(seguimientoBody);
+
+            pedidoBody.seguimiento = saveSeguimiento;
 
             const findComprador = await this.dataSource.getRepository(compradorEntity).findOne({where:{id_comprador:pedido.compradorId},relations:['pedidos']});
 

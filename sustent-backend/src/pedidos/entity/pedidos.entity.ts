@@ -1,6 +1,7 @@
 import { compradorEntity } from "src/compradores/entity/comprador.entity";
 import { ProductoEntity } from "src/productos/entity/productos.entity";
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { SeguimientoEntity } from "src/seguimiento/entity/seguimiento.entity";
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('pedidos')
 export class PedidosEntity {
@@ -10,7 +11,6 @@ export class PedidosEntity {
     @Column({type:'timestamp'})
     fecha_pedido: Date;
 
-
     @Column({type:'varchar'})
     numero_Pedido: string;
 
@@ -19,8 +19,11 @@ export class PedidosEntity {
 
     @Column({type:'integer'})
     edo_Pedido: number;
-    
+
     @ManyToOne(()=>compradorEntity,(comprador)=>comprador.pedidos)
     comprador: compradorEntity;
+
+    @OneToOne(()=>SeguimientoEntity,(seg)=>seg.pedidoId)
+    seguimiento: SeguimientoEntity;
 
 }
