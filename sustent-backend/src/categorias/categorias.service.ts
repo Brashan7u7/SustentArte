@@ -61,7 +61,7 @@ export class CategoriasService {
             }
 
             const updateCategoria = await this.dataSource.getRepository(CategoriasEntity).save(findCategoria);
-            return await this.dataSource.getRepository(CategoriasEntity).update(updateCategoria, categoria);
+            return await this.dataSource.getRepository(CategoriasEntity).update({id_categoria:findCategoria.id_categoria}, categoria);
 
         } catch (error) {
             throw new HttpException('Error al actualizar la categoria', HttpStatus.INTERNAL_SERVER_ERROR);

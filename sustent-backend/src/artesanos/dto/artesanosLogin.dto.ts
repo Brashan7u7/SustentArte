@@ -32,4 +32,6 @@ export class artesanosDto
     @IsString()
     apellidoMaterno: string;
 
+    @IsString()
+    localidad: string;
 }

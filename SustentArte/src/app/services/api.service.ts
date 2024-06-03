@@ -4,6 +4,7 @@ import { Usuario } from '../interfaces/usuario';
 import { Observable } from 'rxjs';
 import { ProductosInterface } from '../interfaces/producto.interface';
 import { CategoriaInterface } from '../interfaces/categoria.interface';
+import { ArtesanoInterface } from '../interfaces/artesano.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -65,4 +66,12 @@ export class ApiService {
   eliminarCategoria(categoria: CategoriaInterface) {
     return this._http.delete(`http://localhost:3000/api/categoria/${categoria.id_categoria}`);
   }
+
+
+
+  obtenerArtesanos()
+  {
+    return this._http.get<ArtesanoInterface[]>('http://localhost:3000/artesanos',{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
 }

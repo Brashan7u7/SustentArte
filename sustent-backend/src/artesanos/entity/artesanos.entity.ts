@@ -37,6 +37,9 @@ export class artesanosEntity
     @Column({type:'varchar',length:100})
     apellidoMaterno:string;
 
+    @Column({type:'varchar',length:100})
+    localidad:string;
+
     @OneToMany(()=>ProductoEntity,(prod)=>prod.artesano,{nullable:true})
     productos: ProductoEntity[];
 }

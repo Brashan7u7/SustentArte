@@ -11,4 +11,5 @@ export interface ArtesanoInterface
     nombre:string;
     apellidoPaterno:string;
     apellidoMaterno:string;
+    localidad:string;
 }

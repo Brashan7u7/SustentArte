@@ -1,12 +1,13 @@
 <div class="contenedorProcipal">
     <div class="row d-flex justify-content-center align-items-center mb-4">
         <div class="col-lg-4 col-md-4 col-sm-6">
+            @for (item of artesanos; track $index) {
             <div class="card card-tam">
-                <img class="card-img-top imagen" src="assets/img/seller1.jpg" alt="ProductImage" />
+                <img class="card-img-top imagen" [src]="item.foto" alt="ProductImage" />
                 <div class="card-body">
-                    <h4 class="card-title">Nombre vendedor</h4>
-                    <span class="badge bg-dark mt-2">Localidad</span>
-                    <p class="card-text mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, autem similique odit tempora, reprehenderit sapiente dolores dolore minus nulla ipsa fugiat recusandae maxime, earum voluptatum facilis. Obcaecati perferendis aliquid temporibus</p>
+                    <h4 class="card-title">{{item.nombre}}</h4>
+                    <span class="badge bg-dark mt-2">{{item.localidad}}</span>
+                    <p class="card-text mt-3">{{item.descripcionTrabajo}}</p>
                 </div>
                 <div class="d-grid gap-2">
                     <a
@@ -20,6 +21,7 @@
                     
                 </div>
             </div>
+        }
         </div>
         
     </div>

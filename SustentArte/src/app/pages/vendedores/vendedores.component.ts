@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { ApiService } from '../../services/api.service';
+import { ArtesanoInterface } from '../../interfaces/artesano.interface';
 
 @Component({
   selector: 'app-vendedores',
@@ -10,5 +12,15 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './vendedores.component.css'
 })
 export class VendedoresComponent {
+
+  private apiService = inject(ApiService);
+
+  artesanos = Array<ArtesanoInterface>();
+
+  constructor() {
+    this.apiService.obtenerArtesanos().subscribe((res) => {
+      this.artesanos = res;
+    });
+  }
 
 }
