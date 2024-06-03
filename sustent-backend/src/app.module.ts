@@ -36,6 +36,9 @@ import { AdminService } from './admin/admin.service';
 import { AdminController } from './admin/admin.controller';
 import { AdminModule } from './admin/admin.module';
 import { AdminEntity } from './admin/entity/admin.entity';
+import { SeguimientoEntity } from './seguimiento/entity/seguimiento.entity';
+import { SeguimientoController } from './seguimiento/seguimiento.controller';
+import { SeguimientoService } from './seguimiento/seguimiento.service';
 
 
 
@@ -49,12 +52,12 @@ import { AdminEntity } from './admin/entity/admin.entity';
       password: 'qwe',
       database: 'sus',
       entities: [
-        artesanosEntity,CategoriasEntity,compradorEntity,DetallePagoEntity,MaterialesEntity,PagosEntity,PedidosEntity,ProductoEntity,AdminEntity
+        artesanosEntity,CategoriasEntity,compradorEntity,DetallePagoEntity,MaterialesEntity,PagosEntity,PedidosEntity,ProductoEntity,AdminEntity,SeguimientoEntity
       ],
       synchronize: true,
     }),
     MaterialesModule, CategoriasModule, PagosModule, DetallePagoModule, CompradoresModule, ArtesanosModule,CompradoresModule,ArtesanosModule, PedidosModule, ProductosModule, AdminModule],
-  controllers: [AppController, MaterialesController, CategoriasController, PagosController, DetallePagoController,CompradoresController,ArtesanosController, AdminController],
-  providers: [AppService, MaterialesService, CategoriasService, PagosService, DetallePagoService,CompradoresService,ArtesanosService, AdminService],
+  controllers: [AppController, MaterialesController, CategoriasController, PagosController, DetallePagoController,CompradoresController,ArtesanosController, AdminController,SeguimientoController],
+  providers: [AppService, MaterialesService, CategoriasService, PagosService, DetallePagoService,CompradoresService,ArtesanosService, AdminService,SeguimientoService],
 })
 export class AppModule {}
