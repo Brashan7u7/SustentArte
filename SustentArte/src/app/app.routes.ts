@@ -19,6 +19,7 @@ import { AgregarCategoriaComponent } from './pages/Administrador/agregar-categor
 import { AgregarMaterialComponent } from './pages/Administrador/agregar-material/agregar-material.component';
 import { VerMaterialesComponent } from './pages/Administrador/ver-materiales/ver-materiales.component';
 import { VerCategoriasComponent } from './pages/Administrador/ver-categorias/ver-categorias.component';
+import { CategoriaFiltoComponent } from './pages/categoria-filto/categoria-filto.component';
 
 
 
@@ -60,6 +61,10 @@ export const routes: Routes = [
   {
     path :'misProductosVendedor',
     component : VerProductosComponent,
+  },
+  {
+    path :'productosFiltrados',
+    component : CategoriaFiltoComponent,
   },
   {
     path :'productos',
