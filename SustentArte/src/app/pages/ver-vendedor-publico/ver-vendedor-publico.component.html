@@ -7,13 +7,11 @@
             <div class="card card-tam">
                 <img class="card-img-top imagen" src="assets/img/seller1.jpg" alt="ProductImage" />
                 <div class="card-body">
-                    <h4 class="card-title">Nombre vendedor</h4>
-                    <span class="badge bg-dark mt-2">Experiencia textil</span>
-                    <p class="card-text mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, autem
-                        similique odit tempora, reprehenderit sapiente dolores dolore minus nulla ipsa fugiat recusandae
-                        maxime, earum voluptatum facilis. Obcaecati perferendis aliquid temporibus</p>
-                    <p class="card-text mt-3">Reconocimientos</p>
-                    <p class="card-text mt-3">Tecnicas Artesanales</p>
+                    <h4 class="card-title">{{artesano.nombre}}</h4>
+                    <span class="badge bg-dark mt-2">{{artesano.xp_textil}}</span>
+                    <p class="card-text mt-3">L{{artesano.descripcionTrabajo}}</p>
+                    <p class="card-text mt-3">{{artesano.reconocimientos}}</p>
+                    <p class="card-text mt-3">{{artesano.tec_artesanales}}</p>
 
                 </div>
             </div>
@@ -38,27 +36,6 @@
                         id=""
                         class="btn btn-primary"
                         routerLinkActive="active" routerLink="/productoPublic/1"
-                        role="button"
-                        >Ver Producto</a
-                    >
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="card carta">
-                <img class="card-img-top imagen" src="assets/img/Canasto.jpg" alt="ProductImage" />
-                <div class="card-body">
-                    <h4 class="card-title">Name Product</h4>
-                    <span class="badge bg-dark mt-2">Material/Category</span>
-                    <p class="card-text mt-3">Product Description</p>
-                </div>
-                <div class="d-grid gap-2">
-                    <a
-                        name=""
-                        id=""
-                        class="btn btn-primary"
-                        routerLinkActive="active" routerLink="/productoPublic/2"
                         role="button"
                         >Ver Producto</a
                     >

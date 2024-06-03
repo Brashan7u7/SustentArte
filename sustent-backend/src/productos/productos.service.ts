@@ -147,4 +147,21 @@ export class ProductosService {
             throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    async filtroArtesanos(id:number)
+    {
+        try {
+            const findArtesano = await this.dataSource.getRepository(artesanosEntity).findOne({where:{id_artesano:id},relations:['productos']});
+
+            const productos = await this.dataSource.getRepository(ProductoEntity).find({where:{artesano:findArtesano},relations:['materiales','artesano','categoria']});
+            if (!findArtesano) {
+                return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
+            }
+
+            return productos;
+        } catch (error) {
+            throw new HttpException('Error al obtener el artesano',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

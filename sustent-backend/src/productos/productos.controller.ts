@@ -25,6 +25,11 @@ export class ProductosController {
     async getProductoCategoria(@Param('cat') cat:string) {
         return this.serviceProductos.filtroCategorias(cat);
     }
+    
+    @Get('artesano/:art')
+    async getProductoArtesano(@Param('art') art:number) {
+        return this.serviceProductos.filtroArtesanos(art);
+    }
 
     @Post()
     async createProducto(@Body() producto:ProductosDto) {

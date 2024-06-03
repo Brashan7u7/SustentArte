@@ -49,7 +49,7 @@ import { SeguimientoService } from './seguimiento/seguimiento.service';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: '123',
+      password: 'qwe',
       database: 'sus',
       entities: [
         artesanosEntity,CategoriasEntity,compradorEntity,DetallePagoEntity,MaterialesEntity,PagosEntity,PedidosEntity,ProductoEntity,AdminEntity,SeguimientoEntity

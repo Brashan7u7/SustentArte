@@ -28,7 +28,7 @@ export const routes: Routes = [
     component : VerProductoPublicoComponent,
   },
   {
-    path :'vendedorPublic/:id',
+    path :'vendedorPublic',
     component : VerVendedorPublicoComponent,
   },
   {
