@@ -14,9 +14,9 @@
                 Todos
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Palma</a></li>
-                <li><a class="dropdown-item" href="#">Tela</a></li>
-                <li><a class="dropdown-item" href="#">Plástico</a></li>
+                @for (item of categorias; track $index) {
+                <li><a class="dropdown-item" href="#">{{item.nombre_categoria}}</a></li>
+                }
               </ul>
             </div>
           </div>
