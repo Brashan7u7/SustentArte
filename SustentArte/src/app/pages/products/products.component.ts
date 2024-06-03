@@ -41,11 +41,11 @@ export class ProductsComponent {
     });
   }
 
-  mostrarProducto(nameProduct: string) 
+  mostrarProducto(id: number) 
   {
     this.router.navigate(['/productoPublic'],{
       queryParams:{
-        prod: JSON.stringify(nameProduct)
+        prod: JSON.stringify(id)
       }
     });
   }

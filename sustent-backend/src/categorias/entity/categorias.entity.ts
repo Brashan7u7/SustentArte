@@ -10,9 +10,6 @@ export class CategoriasEntity {
     @Column({type:'varchar',length:100})
     nombre_categoria: string;
 
-    @Column({type:'boolean'})
-    matCategoria: boolean;
-
     @OneToMany(()=>ProductoEntity,(prod)=>prod.categoria)
     productos: ProductoEntity[];
     

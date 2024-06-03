@@ -5,6 +5,4 @@ export class CategoriasDto {
     id_categoria: number;
     @IsString()
     nombre_categoria: string;
-    @IsBoolean()
-    matCategoria: boolean;
 }

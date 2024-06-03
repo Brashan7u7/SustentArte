@@ -39,6 +39,12 @@ export class ApiService {
   obtenerProductos(){
     return this._http.get<ProductosInterface[]>('http://localhost:3000/productos',{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
+
+  obtenerProducto(id: number){
+    return this._http.get<ProductosInterface>(`http://localhost:3000/productos/${id}`,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  
+  }
+
   obtenerCategorias(){
     return this._http.get<CategoriaInterface[]>('http://localhost:3000/categorias',{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }

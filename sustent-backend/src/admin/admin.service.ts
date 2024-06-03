@@ -124,5 +124,5 @@ export class AdminService {
           });
           this.logger.verbose('First user created: ' + usuarioCreado.email);
         }
-      }
+    }
 }
