@@ -29,6 +29,9 @@ import { ArtesanosService } from './artesanos/artesanos.service';
 import { SeguimientoModule } from './seguimiento/seguimiento.module';
 import { PedidosModule } from './pedidos/pedidos.module';
 import { ProductosModule } from './productos/productos.module';
+import { PedidosEntity } from './pedidos/entity/pedidos.entity';
+import { ProductoEntity } from './productos/entity/productos.entity';
+import { SeguimientoEntity } from './seguimiento/entity/seguimiento.entity';
 
 
 @Module({
@@ -38,10 +41,10 @@ import { ProductosModule } from './productos/productos.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'DJE20ben',
-      database: 'sustent',
+      password: 'qwe',
+      database: 'sus',
       entities: [
-        MaterialesEntity, CategoriasEntity, PagosEntity, DetallePagoEntity,compradorEntity,artesanosEntity
+        artesanosEntity,CategoriasEntity,compradorEntity,DetallePagoEntity,MaterialesEntity,PagosEntity,PedidosEntity,ProductoEntity,SeguimientoEntity
       ],
       synchronize: true,
     }),

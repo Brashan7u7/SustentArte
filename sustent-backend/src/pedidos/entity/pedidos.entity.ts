@@ -19,10 +19,7 @@ export class PedidosEntity {
 
     @Column({type:'integer'})
     edo_Pedido: number;
-
-    @ManyToMany(()=>ProductoEntity,(prod)=>prod.pedido)
-    productos: ProductoEntity[];
-
+    
     @ManyToOne(()=>compradorEntity,(comprador)=>comprador.pedidos)
     comprador: compradorEntity;
 
