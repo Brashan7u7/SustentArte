@@ -27,6 +27,7 @@
 
   <div class="row d-flex justify-content-center align-items-center mb-4">
     <div class="col-lg-3 col-md-4 col-sm-6">
+      @for (item of productos; track $index) {
       <div class="card card-tam">
         <img class="card-img-top imagen" src="assets/img/Canasto.jpg" alt="ProductImage" />
         <div class="card-body">
@@ -39,6 +40,7 @@
             role="button">Ver Producto</a>
         </div>
       </div>
+    }
     </div>
 
 

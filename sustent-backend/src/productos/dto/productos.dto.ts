@@ -7,6 +7,9 @@ export class ProductosDto{
     @IsString()
     descripcion:string;
 
+    @IsString()
+    imagen:string;
+
     @IsNumber()
     precio_Venta:number;
 

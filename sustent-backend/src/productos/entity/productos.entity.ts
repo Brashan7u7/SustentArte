@@ -12,6 +12,9 @@ export class ProductoEntity {
     nombreP: string;
 
     @Column({type:'varchar'})
+    imagen: string;
+
+    @Column({type:'varchar'})
     descripcion: string;
 
     @Column({type:'real'})

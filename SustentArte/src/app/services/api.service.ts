@@ -34,6 +34,9 @@ export class ApiService {
   obtenerMateriales(){
     return this._http.get<any[]>('http://localhost:8000/api/materiales');
   }
+  obtenerProductos(){
+    return this._http.get<any[]>('http://localhost:3000/productos');
+  }
   obtenerCategorias(){
     return this._http.get<any[]>('http://localhost:8000/api/materiales');
   }

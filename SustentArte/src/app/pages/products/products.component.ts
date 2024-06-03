@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet,RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-products',
@@ -10,5 +11,18 @@ import { CommonModule } from '@angular/common';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
+
+
+  private apiService = inject(ApiService);
+
+  productos = Array<any>();
+
+
+  constructor() {
+    this.apiService.obtenerProductos().subscribe((res) => {
+      this.productos = res;
+    });
+  }
+
 
 }
