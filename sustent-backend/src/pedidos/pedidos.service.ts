@@ -13,7 +13,7 @@ export class PedidosService {
     async getPedidos()
     {
         try {
-            const pedidos = await this.dataSource.getRepository(PedidosEntity).find({relations:['productos,comprador']});
+            const pedidos = await this.dataSource.getRepository(PedidosEntity).find({relations:['comprador']});
             if (!pedidos) {
                 return new HttpException('No se encontraron pedidos',HttpStatus.NOT_FOUND);
             }
@@ -29,7 +29,7 @@ export class PedidosService {
     async getPedido(id:number)
     {
         try {
-            const pedidoFind = await this.dataSource.getRepository(PedidosEntity).findOne({where:{id_pedido:id},relations:['productos,comprador']});
+            const pedidoFind = await this.dataSource.getRepository(PedidosEntity).findOne({where:{id_pedido:id},relations:['comprador']});
             if (!pedidoFind) {
                 return new HttpException('No se encontro el pedido',HttpStatus.NOT_FOUND);
             }
@@ -57,7 +57,7 @@ export class PedidosService {
 
             pedidoBody.seguimiento = saveSeguimiento;
 
-            const findComprador = await this.dataSource.getRepository(compradorEntity).findOne({where:{id_comprador:pedido.compradorId},relations:['pedidos']});
+            const findComprador = await this.dataSource.getRepository(compradorEntity).findOne({where:{id_comprador:pedido.compradorId}});
 
             if (!findComprador) {
                 return new HttpException('No se encontro el comprador',HttpStatus.NOT_FOUND);

@@ -13,7 +13,7 @@ export class CompradoresService {
     {
         try {
 
-            const compradores = await this.dataSorce.getRepository(compradorEntity).find({relations:['usuario','pagos']});
+            const compradores = await this.dataSorce.getRepository(compradorEntity).find({relations:['pagos']});
             if(!compradores)
                 {
                     return new HttpException("No se encontraron compradores",HttpStatus.NOT_FOUND)
@@ -28,7 +28,7 @@ export class CompradoresService {
     {
         try {
 
-            const compradorFind = await this.dataSorce.getRepository(compradorEntity).findOne({where:{id_comprador:id},relations:['usuario']});
+            const compradorFind = await this.dataSorce.getRepository(compradorEntity).findOne({where:{id_comprador:id}});
 
             if(!compradorFind)
                 {

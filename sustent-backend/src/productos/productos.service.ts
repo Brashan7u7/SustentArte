@@ -15,7 +15,7 @@ export class ProductosService {
     async getProductos()
     {
         try {
-            const productos = await this.dataSource.getRepository(ProductoEntity).find({relations:['materiales,artesano,categoria,pedido']});
+            const productos = await this.dataSource.getRepository(ProductoEntity).find({relations:['materiales','artesano','categoria']});
             if (!productos) {
                 return new HttpException('No se encontraron productos',HttpStatus.NOT_FOUND);
             }
@@ -31,7 +31,7 @@ export class ProductosService {
     async getProducto(id:number)
     {
         try {
-            const productoFind = await this.dataSource.getRepository(ProductoEntity).findOne({where:{id_producto:id},relations:['materiales,artesano,categoria,pedido']});
+            const productoFind = await this.dataSource.getRepository(ProductoEntity).findOne({where:{id_producto:id},relations:['materiales','artesano','categoria']});
             if (!productoFind) {
                 return new HttpException('No se encontro el producto',HttpStatus.NOT_FOUND);
             }
@@ -46,17 +46,17 @@ export class ProductosService {
     {
         try {
             const productoBody = await this.dataSource.getRepository(ProductoEntity).create(producto);
-            const findMaterial = await this.dataSource.getRepository(MaterialesEntity).findOne({where:{id_material:producto.materialesId},relations:['productos']});
+            const findMaterial = await this.dataSource.getRepository(MaterialesEntity).findOne({where:{id_material:producto.materialesId}});
 
             if (!findMaterial) {
                 return new HttpException('No se encontro el material',HttpStatus.NOT_FOUND);
             }
-            const findArtesano = await this.dataSource.getRepository(artesanosEntity).findOne({where:{id_artesano:producto.artesanoId},relations:['productos']});
+            const findArtesano = await this.dataSource.getRepository(artesanosEntity).findOne({where:{id_artesano:producto.artesanoId}});
             if (!findArtesano) {
                 return new HttpException('No se encontro el artesano',HttpStatus.NOT_FOUND);
             }
 
-            const findccategoria = await this.dataSource.getRepository(CategoriasEntity).findOne({where:{id_categoria:producto.categoriaId},relations:['productos']});
+            const findccategoria = await this.dataSource.getRepository(CategoriasEntity).findOne({where:{id_categoria:producto.categoriaId}});
 
             if (!findccategoria) {
                 return new HttpException('No se encontro la categoria',HttpStatus.NOT_FOUND);
@@ -108,6 +108,38 @@ export class ProductosService {
             return await this.dataSource.getRepository(ProductoEntity).remove(productoFind)
         } catch (error) {
             throw new HttpException('Error al eliminar el producto',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async filtroMateriales(material:string)
+    {
+        try {
+            const productos = await this.dataSource.getRepository(MaterialesEntity).find({where:{nombre_material:material},relations:['materiales','artesano','categoria']});
+            if (!productos) {
+                return new HttpException('No se encontraron productos',HttpStatus.NOT_FOUND);
+            }
+
+            return productos;
+        } catch (error) {
+            console.log(error);
+            
+            throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async filtroCategorias(categoria:string)
+    {
+        try {
+            const productos = await this.dataSource.getRepository(CategoriasEntity).find({where:{nombre_categoria:categoria},relations:['materiales','artesano','categoria']});
+            if (!productos) {
+                return new HttpException('No se encontraron productos',HttpStatus.NOT_FOUND);
+            }
+
+            return productos;
+        } catch (error) {
+            console.log(error);
+            
+            throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

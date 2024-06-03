@@ -17,6 +17,15 @@ export class ProductosController {
         return this.serviceProductos.getProducto(id);
     }
 
+    @Get('material/:mat')
+    async getProductoMaterial(@Param('mat') mat:string) {
+        return this.serviceProductos.filtroMateriales(mat);
+    }
+    @Get('categoria/:cat')
+    async getProductoCategoria(@Param('cat') cat:string) {
+        return this.serviceProductos.filtroCategorias(cat);
+    }
+
     @Post()
     async createProducto(@Body() producto:ProductosDto) {
         return this.serviceProductos.createProducto(producto);

@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { AdminEntity } from './entity/admin.entity';
 import { adminDto } from './dto/admin.dto';
+import { AdminLoginDto } from './dto/adminLogin.dto';
 
 @Injectable()
 export class AdminService {
@@ -13,7 +14,7 @@ export class AdminService {
 
     async getAdmins(){
         try{
-            const admins = await this.dataSource.getRepository(AdminEntity).find()
+            const admins = await this.dataSource.getRepository(AdminEntity).find({select:['id_Admin','nombre','email']})
             if(!admins){
                 return new HttpException('No se encuentran admins', HttpStatus.NOT_FOUND);
             }
@@ -27,7 +28,7 @@ export class AdminService {
     async getAdmin(id:number)
     {
         try {
-            const adminFind = await this.dataSource.getRepository(AdminEntity).findOne({where:{id_Admin:id}});
+            const adminFind = await this.dataSource.getRepository(AdminEntity).findOne({where:{id_Admin:id},select:['id_Admin','nombre','email']});
             if (!adminFind) {
                 return new HttpException('No se encontro el admin',HttpStatus.NOT_FOUND);
             }
@@ -44,7 +45,7 @@ export class AdminService {
             const adminBody = await this.dataSource.getRepository(AdminEntity).create(admin);
 
             
-            
+            adminBody.password = await this.encryptPassword(admin.password);
 
             const saveAdmin = await this.dataSource.getRepository(AdminEntity).save(adminBody);
 
@@ -82,6 +83,32 @@ export class AdminService {
             return await this.dataSource.getRepository(AdminEntity).remove(adminFind)
         } catch (error) {
             throw new HttpException('Error al eliminar el admin',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async encryptPassword(password: string): Promise<string> {
+        const bcrypt = require('bcrypt');
+        const hashedPassword = await bcrypt.hash(password, 10);
+        return hashedPassword;
+    }
+
+    async loginAdmin(admi:AdminLoginDto)
+    {
+        try {
+            const admin = await this.dataSource.getRepository(AdminEntity).findOne({where:{email:admi.email}});
+            if (!admin) {
+                return new HttpException('No se encontro el admin',HttpStatus.NOT_FOUND);
+            }
+            
+            const bcrypt = require('bcrypt');
+            const validPassword = await bcrypt.compare(admi.password,admin.password);
+            if (validPassword) {
+                return new HttpException('Contraseña incorrecta',HttpStatus.BAD_REQUEST);
+            }
+
+            return admin;
+        } catch (error) {
+            throw new HttpException('Error al iniciar sesion',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
