@@ -28,7 +28,7 @@ export class AgregarMaterialComponent {
       if (params.id) {
         this.id = params.id;
         this.isNew = false;
-        this.apiService.obtenerCategoria(this.id).subscribe((material) => {
+        this.apiService.obtenerMaterial(this.id).subscribe((material) => {
           this.formMaterial.reset(material)
         })
       }
@@ -47,6 +47,13 @@ export class AgregarMaterialComponent {
         this.formMaterial.reset();
         this.route.navigateByUrl('verMateriales');
       });
+    }else{
+      this.apiService.editarMaterial(this.formMaterial.value,this.id).subscribe(data=>{
+        console.log(data);
+        this.formMaterial.reset();
+        this.route.navigateByUrl('verMateriales')
+        
+      })
     }
   }
 }
