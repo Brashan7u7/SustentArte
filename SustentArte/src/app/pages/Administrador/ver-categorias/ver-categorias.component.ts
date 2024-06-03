@@ -27,10 +27,13 @@ export class VerCategoriasComponent {
     })
   }
   eliminarCategoria(categoria : CategoriaInterface){
-    this.apiService.eliminarCategoria(categoria.id_categoria).subscribe(categoria =>{
+    this.apiService.eliminarCategoria(categoria).subscribe(categoria =>{
       console.log(categoria);
       this.obtenerCategorias();
     });
   }
   
+  editarCategoria(categoria : CategoriaInterface){
+    this.router.navigateByUrl('/editarCategoria/'+categoria.id_categoria)
+  }
 }

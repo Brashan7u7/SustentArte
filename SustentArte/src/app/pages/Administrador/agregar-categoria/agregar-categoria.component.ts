@@ -25,7 +25,7 @@ export class AgregarCategoriaComponent {
   constructor() {
     this.formCategoria = this.formBuilder.group({
       nombreCat: ['', Validators.required],
-      matCategoria: ['', Validators.required]
+      matCategoria: ['', '']
     });
     this.activeRoute.params.subscribe((params: any) => {
       console.log(params);
@@ -69,7 +69,7 @@ export class AgregarCategoriaComponent {
       this.apiService.editarCategoria(this.formCategoria.value, this.id).subscribe(data=>{
         console.log(data);
         this.formCategoria.reset();
-        this.route.navigateByUrl('')
+        this.route.navigateByUrl('verCategorias')
       })
     }
 

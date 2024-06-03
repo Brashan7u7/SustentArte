@@ -1,5 +1,5 @@
 export interface MaterialesInterface {
-    id_material: number;
+    id_material?: number;
 
     nombre_material: string;
 
