@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { ApiService } from '../../../services/api.service';
+import { ArtesanoInterface } from '../../../interfaces/artesano.interface';
 
 @Component({
   selector: 'app-ver-vendedores',
@@ -10,4 +12,29 @@ import { RouterModule } from '@angular/router';
 })
 export class VerVendedoresComponent {
 
+  private router = inject(Router);
+
+  private apiService = inject(ApiService);
+
+  artesanos = Array<ArtesanoInterface>();
+
+  constructor() {
+    this.apiService.obtenerArtesanos().subscribe((res) => {
+      this.artesanos = res;
+    });
+  }
+
+  eliminarArtesano(id: number) {
+    this.apiService.eliminarArtesano(id).subscribe((res) => {
+      this.artesanos = this.artesanos.filter((artesano) => artesano.id_artesano !== id);
+    });
+  }
+
+  mostrarArtesano(id: number) {
+    this.router.navigate(['/vendedorAdmin'], {
+      queryParams: {
+        art: JSON.stringify(id)
+      }
+    });
+  }
 }

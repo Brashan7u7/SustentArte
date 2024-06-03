@@ -10,7 +10,7 @@
     <form [formGroup]="formCategoria" (ngSubmit)="agregarCategoria()" class="needs-validation" novalidate>
         <div class="form-group">
             <label for="nombreCat">Nombre de la Categoría</label>
-            <input id="nombreCat" formControlName="nombreCat" class="form-control" required>
+            <input id="nombreCat" formControlName="nombre_categoria" class="form-control" required>
             <div class="invalid-feedback">Por favor, ingrese el nombre de la categoría.</div>
         </div>
         <button type="submit" class="btn btn-primary mt-3">{{isNew ? 'Agregar Categoría': 'Editar'}}</button>

@@ -44,10 +44,11 @@ export class CategoriasService {
 
     async createCategoria(categoria: CategoriasDto) {
         try {
-            const bodyCategoria = this.dataSource.getRepository(CategoriasEntity).create(categoria);
+            const categoryBody = await this.dataSource.getRepository(CategoriasEntity).create(categoria);
+            
+            const saveCategoria = await this.dataSource.getRepository(CategoriasEntity).save(categoryBody);
 
-            return await this.dataSource.getRepository(CategoriasEntity).save(bodyCategoria);
-
+            return saveCategoria;
         } catch (error) {
             throw new HttpException('Error al crear la categoria', HttpStatus.INTERNAL_SERVER_ERROR);
         }

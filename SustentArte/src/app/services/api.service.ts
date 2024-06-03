@@ -14,10 +14,19 @@ export class ApiService {
   private _http = inject(HttpClient);
   constructor() { }
 
-  crearArtesano(artesano: any){
-    console.log(artesano);
-    return this._http.post<any>('http://localhost:8000/artesanos',artesano);
+  crearArtesano(artesano: ArtesanoInterface){
+    return this._http.post<any>('http://localhost:3000/artesanos',artesano,{ headers: { 'Access-Control-Allow-Origin': '*' } });
     
+  }
+
+  ediyarArtesano(artesano: ArtesanoInterface,id:number){
+    return this._http.put<any>(`http://localhost:8000/artesanos/${id}`,artesano,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+    
+  }
+
+
+  eliminarArtesano(id: number) {
+    return this._http.delete(`http://localhost:3000/artesanos/${id}`);
   }
 
   crearComprador(comprador: any){
@@ -30,7 +39,8 @@ export class ApiService {
   }
 
   agregarCategoria(categoria: CategoriaInterface) {
-    return this._http.post('http://localhost:3000/categorias',categoria,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+    
+    return this._http.post<CategoriaInterface>('http://localhost:3000/categorias',categoria,{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
   obtenerMateriales(){
@@ -45,6 +55,9 @@ export class ApiService {
   
   }
 
+  eliminarProducto(id: number) {
+    return this._http.delete(`http://localhost:3000/productos/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
 
 
   obtenerCategorias(){

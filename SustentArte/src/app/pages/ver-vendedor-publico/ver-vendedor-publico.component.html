@@ -5,7 +5,7 @@
     <div class="row d-flex justify-content-center align-items-center mb-4">
         <div class="col-lg-6 col-md-6 col-sm-6 mb-4">
             <div class="card card-tam">
-                <img class="card-img-top imagen" src="assets/img/seller1.jpg" alt="ProductImage" />
+                <img class="card-img-top imagen" [src]="artesano.foto" alt="ProductImage" />
                 <div class="card-body">
                     <h4 class="card-title">{{artesano.nombre}}</h4>
                     <span class="badge bg-dark mt-2">{{artesano.xp_textil}}</span>
@@ -23,12 +23,13 @@
     </div>
     <div class="row d-flex justify-content-center align-items-center mb-4">
         <div class="col-lg-3 col-md-4 col-sm-6">
+            @for (item of productos; track $index) {
             <div class="card carta">
-                <img class="card-img-top imagen" src="assets/img/Canasto.jpg" alt="ProductImage" />
+                <img class="card-img-top imagen" [src]="item.imagen" alt="ProductImage" />
                 <div class="card-body">
-                    <h4 class="card-title">Name Product</h4>
-                    <span class="badge bg-dark mt-2">Material/Category</span>
-                    <p class="card-text mt-3">Product Description</p>
+                    <h4 class="card-title">{{item.nombreP}}</h4>
+                    <span class="badge bg-dark mt-2">{{item.materiales.nombre_material}} / {{item.categoria.nombre_categoria}}</span>
+                    <p class="card-text mt-3">{{item.descripcion}}</p>
                 </div>
                 <div class="d-grid gap-2">
                     <a
@@ -42,6 +43,7 @@
                     
                 </div>
             </div>
+        }
         </div>
 
     </div>

@@ -58,7 +58,7 @@ export const routes: Routes = [
     
   },
   {
-    path :'vendedorAdmin/:id',
+    path :'vendedorAdmin',
     component : VerVendedorComponent,
   },
   {

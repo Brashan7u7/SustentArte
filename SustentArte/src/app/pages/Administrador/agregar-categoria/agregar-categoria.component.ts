@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { AlertsService } from '../../../services/alerts.service';
 import Swal from 'sweetalert2';
+import { CategoriaInterface } from '../../../interfaces/categoria.interface';
 
 @Component({
   selector: 'app-agregar-categoria',
@@ -24,7 +25,7 @@ export class AgregarCategoriaComponent {
 
   constructor() {
     this.formCategoria = this.formBuilder.group({
-      nombreCat: ['', Validators.required]
+      nombre_categoria: ['', Validators.required]
     });
     this.activeRoute.params.subscribe((params: any) => {
       console.log(params);
@@ -61,7 +62,8 @@ export class AgregarCategoriaComponent {
     }
 
     if(this.isNew){
-      this.apiService.agregarCategoria(this.formCategoria.value).subscribe(data=>{
+      const formCategory = this.formCategoria.value as CategoriaInterface;
+      this.apiService.agregarCategoria(formCategory).subscribe(data=>{
         console.log(data)
         this.formCategoria.reset();
         this.alertService.alert('Categoria creada', 'success');
