@@ -72,7 +72,7 @@ export class CrearArtesanoComponent {
       });
       
     }else{
-      this.apiService.ediyarArtesano(this.formArtesano.value, this.id).subscribe(data=>{
+      this.apiService.editarArtesano(this.formArtesano.value, this.id).subscribe(data=>{
         console.log(data);
         this.formArtesano.reset();
         this.route.navigateByUrl('vendedoresAdmin')
