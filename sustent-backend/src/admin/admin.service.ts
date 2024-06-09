@@ -3,6 +3,8 @@ import { DataSource } from 'typeorm';
 import { AdminEntity } from './entity/admin.entity';
 import { adminDto } from './dto/admin.dto';
 import { AdminLoginDto } from './dto/adminLogin.dto';
+import { artesanosEntity } from 'src/artesanos/entity/artesanos.entity';
+import { compradorEntity } from 'src/compradores/entity/comprador.entity';
 
 @Injectable()
 export class AdminService {
@@ -92,35 +94,57 @@ export class AdminService {
         return hashedPassword;
     }
 
-    async loginAdmin(admi:AdminLoginDto)
+    async loginAdmin(bodyLogin:AdminLoginDto)
     {
         try {
-            const admin = await this.dataSource.getRepository(AdminEntity).findOne({where:{email:admi.email}});
-            if (!admin) {
-                return new HttpException('No se encontro el admin',HttpStatus.NOT_FOUND);
+            const bcrypt = require('bcrypt');
+            const adminFind = await this.dataSource.getRepository(AdminEntity).findOne({where:{email:bodyLogin.email}});
+            if (adminFind) {
+                const validatePassword:boolean = await bcrypt.compare(bodyLogin.password,adminFind.password);
+                if (!validatePassword) {
+                    return new HttpException('Contraseña incorrecta',HttpStatus.UNAUTHORIZED);
+                }
+                return {adminFind,rol:'admin'};
+            }
+            const artesanoFind = await this.dataSource.getRepository(artesanosEntity).findOne({where:{correo:bodyLogin.email}});
+            
+            if (artesanoFind) {
+                const validatePassword:boolean = await bcrypt.compare(bodyLogin.password,artesanoFind.password);
+                if (validatePassword) {
+                    return new HttpException('Contraseña incorrecta',HttpStatus.UNAUTHORIZED);
+                }
+                return {artesanoFind,rol:'artesano'};
+            }
+            const compradorFind = await this.dataSource.getRepository(compradorEntity).findOne({where:{correo:bodyLogin.email}});
+            console.log(compradorFind);
+            
+            if (compradorFind) {
+                const validatePassword:boolean = await bcrypt.compare(bodyLogin.password,compradorFind.password);
+                console.log(validatePassword);
+                
+                if (!validatePassword) {
+                    return new HttpException('Contraseña incorrecta',HttpStatus.UNAUTHORIZED);
+                }
+                return {compradorFind,rol:'comprador'};
             }
             
-            const bcrypt = require('bcrypt');
-            const validPassword = await bcrypt.compare(admi.password,admin.password);
-            if (validPassword) {
-                return new HttpException('Contraseña incorrecta',HttpStatus.BAD_REQUEST);
-            }
-
-            return admin;
         } catch (error) {
-            throw new HttpException('Error al iniciar sesion',HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new HttpException('Error al loguear el admin',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     async crearPrimerUsuario() {
+
         const usuario =
           await this.dataSource.getRepository(AdminEntity).findOne({where:{email:'super@dominio.com'}});
         if (!usuario) {
           this.logger.verbose('Creating the first user');
+          const passwordN = '123456';
+          const passwordEncriptada = await this.encryptPassword(passwordN);
           const usuarioCreado = await this.dataSource.getRepository(AdminEntity).save({
             nombre: 'Super Usuario',
             email: 'super@dominio.com',
-            password: '123456',
+            password: passwordEncriptada,
           });
           this.logger.verbose('First user created: ' + usuarioCreado.email);
         }
