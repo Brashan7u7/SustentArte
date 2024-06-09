@@ -1,28 +1,24 @@
-<div class="contenedorProcipal">
+<div class="container">
     <div class="row d-flex justify-content-center align-items-center mb-4">
-        <div class="col-lg-4 col-md-4 col-sm-6">
-            @for (item of artesanos; track $index) {
-            <div class="card card-tam">
-                <img class="card-img-top imagen" [src]="item.foto" alt="ProductImage" />
+        @for (item of artesanos; track $index) {
+        <div class="col-lg-3 col-md-6 col-sm-12">
+
+            <div class="card card-tam mb-4">
+                <img class="card-img-top imagen" [src]="item.foto" alt="Product Image" />
                 <div class="card-body">
-                    <h4 class="card-title">{{item.nombre}}</h4>
-                    <span class="badge bg-dark mt-2">{{item.localidad}}</span>
-                    <p class="card-text mt-3">{{item.descripcionTrabajo}}</p>
+                    <h4 class="card-title">{{ item.nombre }}</h4>
+                    <span class="badge mt-2">{{ item.localidad }}</span>
+                    <p class="card-text mt-3">{{ item.descripcionTrabajo }}</p>
                 </div>
                 <div class="d-grid gap-2">
-                    <a
-                        name=""
-                        id=""
-                        class="btn btn-primary"
-                        routerLinkActive="active" (click)="mostrarVendedor(item.id_artesano)"
-                        role="button"
-                        >Ver Vendedor</a
-                    >
-                    
+                    <a class="btn btn-primary" routerLinkActive="active" (click)="mostrarVendedor(item.id_artesano)"
+                        role="button">
+                        Ver Vendedor
+                    </a>
                 </div>
             </div>
-        }
+
         </div>
-        
+        }
     </div>
 </div>

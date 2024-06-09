@@ -7,6 +7,7 @@ import { CategoriaInterface } from '../interfaces/categoria.interface';
 import { ArtesanoInterface } from '../interfaces/artesano.interface';
 import { MaterialesInterface } from '../interfaces/materiales.interface';
 import { CompradoresInterface } from '../interfaces/compradores.interface';
+import { Admin } from '../interfaces/admin.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -127,5 +128,23 @@ export class ApiService {
   eliminarArtesano(id: number) {
     return this._http.delete(`http://localhost:3000/artesanos/${id}`);
   }
+
+
+
+
+  //////////////////////////////////////////////////////////
+  ////////////////////////Artesanos/////////////////////////
+  //////////////////////////////////////////////////////////
+
+
+  loginAdmin(admin: Admin) {
+    console.log(admin);
+    return this._http.post<CategoriaInterface>('http://localhost:3000/admin/login',admin,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+  loginArtesano(artesano: ArtesanoInterface) {
+    console.log(artesano);
+    return this._http.post<CategoriaInterface>('http://localhost:3000/atesanos/login',artesano,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
 
 }

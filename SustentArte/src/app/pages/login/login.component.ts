@@ -1,51 +1,73 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { AlertsService } from '../../services/alerts.service';
+import { ApiService } from '../../services/api.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, RouterModule, FormsModule, HttpClientModule],
+  imports: [RouterOutlet, CommonModule, RouterModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  email:string ="cruzfabianhiram@gmail.com";
-  pwd:string ="12345";
-  onlogin(){
-    if(this.loginObj.EmailId===this.email && this.loginObj.Password===this.pwd){
-      this.router.navigateByUrl('/panelAdmin')
-    }
-    else{
-      alert("Revisa tus credenciales");
-    }
+  formBuilder = inject (FormBuilder);
+  formLogin !: FormGroup;
+  route = inject(Router);
+  alertService = inject(AlertsService);
+  apiService = inject(ApiService);
+
+
+  constructor(){
+    this.formLogin = this.formBuilder.group({
+      email :['', Validators.required],
+      password :['', Validators.required]
+    })
   }
 
-loginObj: Login;
-
-  constructor( private http: HttpClient, private router: Router){
-    this.loginObj= new Login();
-  }/*
-  onlogin(){
-    this.http.post('https://freeapi.miniprojectideas.com/api/User/Login',this.loginObj).subscribe((res : any)=>{
-      if(res.result){
-        alert("Inicio de sesion correcta");
-        this.router.navigateByUrl('/panelAdmin')
-      }else{
-        alert("res.message");
-      }
+  async showConfirmationAlert(title: string, text: string): Promise<boolean> {
+    const result = await Swal.fire({
+      title: title,
+      text: text,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
     });
-  }*/
-}
+    return result.isConfirmed;
+  }
 
-export class Login
-{
-  EmailId: string;
-  Password: string;
-  constructor(){
-    this.EmailId = '';
-    this.Password = '';
+
+
+  onlogin() {
+    if (this.formLogin.invalid) {
+      this.alertService.alert('Por favor complete todos los campos', 'error');
+      return;
+    }
+
+    console.log(this.formLogin.value);
+    this.apiService.loginAdmin(this.formLogin.value).subscribe((data: any) => {
+        console.log(data);
+        if (data.rol === 'admin') {
+          this.formLogin.reset();
+          this.alertService.alert('Bienvenido Administrador', 'info');
+          this.route.navigateByUrl('panelAdmin');
+        } else if(data.rol === 'artesano') {
+          this.formLogin.reset();
+          this.alertService.alert('Bienvenido Artesano', 'info');
+          this.route.navigateByUrl('panelVendedor');
+        }
+      },
+      error => {
+        this.alertService.alert('Error en el inicio de sesión', 'error');
+        console.error(error);
+      }
+    );
   }
 }

@@ -1,18 +1,44 @@
-<div class="contenedorProcipal">
+<div class="contenedorProcipal container-fluid">
     <div class="boton">
         <a routerLinkActive="active" routerLink="/vendedores" class="btn btn-primary">Volver</a>
     </div>
-    <div class="row d-flex justify-content-center align-items-center mb-4">
-        <div class="col-lg-6 col-md-6 col-sm-6 mb-4">
+    <div class="row rowCard d-flex justify-content-center align-items-center mb-4">
+        <div class="col-lg-10 col-md-10 col-sm-10">
             <div class="card card-tam">
                 <img class="card-img-top imagen" [src]="artesano.foto" alt="ProductImage" />
                 <div class="card-body">
-                    <h4 class="card-title">{{artesano.nombre}}</h4>
-                    <span class="badge bg-dark mt-2">{{artesano.xp_textil}}</span>
-                    <p class="card-text mt-3">L{{artesano.descripcionTrabajo}}</p>
-                    <p class="card-text mt-3">{{artesano.reconocimientos}}</p>
-                    <p class="card-text mt-3">{{artesano.tec_artesanales}}</p>
-
+                    <div class="divProperty">
+                        <h4 class="card-title nombreVendedor">{{artesano.nombre +" "+ artesano.apellidoPaterno+" "+ artesano.apellidoMaterno}}</h4>
+                        <div class=" badge2">
+                            <span
+                                class="badge property"
+                                >{{artesano.localidad}}</span
+                            >
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="divProperty">
+                        <p class="propertyTitle">Correo: </p>
+                        <p class="property">{{artesano.correo}}</p>
+                    </div>
+                    <div class="divProperty">
+                        <p class="propertyTitle">Descripcion de trabajo: </p>
+                        <p class="property">{{artesano.descripcionTrabajo}}</p>
+                    </div>
+                    <div class="divProperty">
+                        <p class="propertyTitle">Experiencia textil: </p>
+                        <p class="property">{{artesano.xp_textil}}</p>
+                    </div>
+                    <div class="divProperty">
+                        <p class="propertyTitle">Tecnicas Artesanales: </p>
+                        <p class="property">{{artesano.xp_textil}}</p>
+                    </div>
+                    <div class="divProperty">
+                        <p class="propertyTitle">Reconocimientos: </p>
+                        <p class="property">{{artesano.xp_textil}}</p>
+                    </div>
+                    
                 </div>
             </div>
         </div>

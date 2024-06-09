@@ -1,4 +1,9 @@
-
+.contenedorPrincipal{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: none;
+  font-weight: 400;
+  font-style: normal;
+}
 .textContainer{
   margin: 50vw;
 }
@@ -23,6 +28,7 @@
   align-items: center;
   text-align: center;
   margin: 8vw;
+  font-family: "Antonio", sans-serif;
 }
 
 /* Media queries */

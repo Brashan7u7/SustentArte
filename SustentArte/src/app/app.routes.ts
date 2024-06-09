@@ -23,26 +23,30 @@ import { VerCategoriasComponent } from './pages/Administrador/ver-categorias/ver
 
 
 export const routes: Routes = [
+
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
+  ////////////Administrador Routes//////////////////
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
   {
-    path :'productoPublic',
-    component : VerProductoPublicoComponent,
+    path: 'panelAdmin',
+    component: PanelAdministradorComponent
   },
-  {
-    path :'vendedorPublic',
-    component : VerVendedorPublicoComponent,
-  },
+    //Artesanos CRUD
   {
     path :'crearArtesano',
     component : CrearArtesanoComponent,
   },
   {
-    path :'agregarCategoria',
-    component : AgregarCategoriaComponent,
+    path:'vendedoresAdmin',
+    component: VerVendedoresComponent
   },
   {
-    path :'editarCategoria/:id',
-    component : AgregarCategoriaComponent,
+    path :'vendedorAdmin',
+    component : VerVendedorComponent,
   },
+    //Material CRUD
   {
     path :'agregarMaterial',
     component : AgregarMaterialComponent,
@@ -56,43 +60,50 @@ export const routes: Routes = [
     component : VerMaterialesComponent,
     
   },
+    //Categoria CRUD
+  {
+    path :'agregarCategoria',
+    component : AgregarCategoriaComponent,
+  },
+  {
+    path :'editarCategoria/:id',
+    component : AgregarCategoriaComponent,
+  },
   {
     path :'verCategorias',
     component : VerCategoriasComponent,
     
   },
+
+
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
+  ////////////Artesano Routes//////////////////
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
   {
-    path :'vendedorAdmin',
-    component : VerVendedorComponent,
-  },
-  {
-    path :'misProductosVendedor',
-    component : VerProductosComponent,
-  },
-  {
-    path :'productos',
-    component : ProductsComponent,
-  },
-  {
-    path :'vendedores',
-    component : VendedoresComponent
-  },
-  {
-    path :'register',
-    component : RegisterComponent
+    path: 'panelVendedor',
+    component: PanelVendedorComponent
   },
   {
     path:'addProducto',
     component: AddProductoComponent
   },
   {
-    path: 'panelAdmin',
-    component: PanelAdministradorComponent
+    path:'ventasVendedor', 
+    component:VerVentasComponent
   },
   {
-    path: 'panelVendedor',
-    component: PanelVendedorComponent
+    path :'misProductosVendedor',
+    component : VerProductosComponent,
   },
+
+
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
+  ///////Paginas Publicas Routes///////////////
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
   {
     path :'home',
     component : HomeComponent
@@ -106,13 +117,28 @@ export const routes: Routes = [
     component : LoginComponent
   },
   {
-    path:'vendedoresAdmin',
-    component: VerVendedoresComponent
+    path :'register',
+    component : RegisterComponent
   },
   {
-    path:'ventasVendedor', 
-    component:VerVentasComponent
+    path :'productos',
+    component : ProductsComponent,
   },
+  {
+    path :'productoPublic',
+    component : VerProductoPublicoComponent,
+  },
+  {
+    path :'vendedores',
+    component : VendedoresComponent
+  },
+  {
+    path :'vendedorPublic',
+    component : VerVendedorPublicoComponent,
+  },
+
+  
+  
   {
     path : '**',
     pathMatch : 'full',
