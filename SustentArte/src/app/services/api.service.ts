@@ -106,8 +106,12 @@ export class ApiService {
 
 
   //////////////////////////////////////////////////////////
-  ////////////////////////Artesanos/////////////////////////
+  ////////////////////////Adimnistrador/////////////////////
   //////////////////////////////////////////////////////////
+  loginAdmin(admin: Admin) {
+    console.log(admin);
+    return this._http.post<CategoriaInterface>('http://localhost:3000/admin/login',admin,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
   obtenerArtesanos()
   {
     return this._http.get<ArtesanoInterface[]>('http://localhost:3000/artesanos',{ headers: { 'Access-Control-Allow-Origin': '*' } });
@@ -136,15 +140,12 @@ export class ApiService {
   ////////////////////////Artesanos/////////////////////////
   //////////////////////////////////////////////////////////
 
-
-  loginAdmin(admin: Admin) {
-    console.log(admin);
-    return this._http.post<CategoriaInterface>('http://localhost:3000/admin/login',admin,{ headers: { 'Access-Control-Allow-Origin': '*' } });
-  }
   loginArtesano(artesano: ArtesanoInterface) {
     console.log(artesano);
     return this._http.post<CategoriaInterface>('http://localhost:3000/atesanos/login',artesano,{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
-
+  agregarProducto(product: ProductosInterface){
+    return this._http.post<ProductosInterface>('http://localhost:3000/productos',product,{ headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
 
 }

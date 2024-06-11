@@ -1,6 +1,6 @@
 <div class="container-fluid mt-2 mb-5">
   <div>
-    <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="../panelVendedor">Regresar</a>
+    <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="../panelVendedor/">Regresar</a>
   </div>
   <div class="row titulo">
     <h5>Agregar producto:</h5>
@@ -13,7 +13,7 @@
         <form [formGroup]="productoForm" (ngSubmit)="agregarProducto()" class="needs-validation" novalidate>
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre:</label>
-            <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Ingresa el nombre del producto" required />
+            <input type="text" class="form-control" formControlName="nombreP" id="nombre" placeholder="Ingresa el nombre del producto" required />
             <div class="invalid-feedback">Por favor, ingrese el nombre del producto.</div>
           </div>
           <div class="mb-3">
@@ -22,21 +22,55 @@
             <div class="invalid-feedback">Por favor, ingrese la descripcion del producto.</div>
           </div>
           <div class="mb-3">
-            <label for="categoria" class="form-label">Categorias</label>
-            <select class="form-select" formControlName="categoria" id="categoria" aria-label="Default select example" required>
-              <option selected disabled>Elije la categoria</option>
-              <option *ngFor="let cat of categorias" [value]="cat">{{cat}}</option>
-            </select>
-            <div class="invalid-feedback">Por favor, elija una categoria.</div>
-          </div>
-          <div class="mb-3">
-            <label for="cantidad" class="form-label">Cantidad:</label>
-            <input type="number" class="form-control" formControlName="cantidad" id="cantidad" placeholder="Ingresa la cantidad de productos" required />
+            <label for="precio_Venta" class="form-label">Pecio de venta:</label>
+            <input type="number" class="form-control" formControlName="precio_Venta" id="precio_Venta" placeholder="Ingresa la cantidad de productos" required />
             <div class="invalid-feedback">Por favor, ingrese la cantidad de productos.</div>
           </div>
           <div class="mb-3">
+            <label for="stock" class="form-label">Cantidad:</label>
+            <input type="number" class="form-control" formControlName="stock" id="stock" placeholder="Ingresa la cantidad de productos" required />
+            <div class="invalid-feedback">Por favor, ingrese la cantidad de productos.</div>
+          </div>
+          <div class="mb-3">
+            <label for="historia" class="form-label">Hitorria del prroducto:</label>
+            <textarea class="form-control" formControlName="historia" id="historia" rows="3" placeholder="Ingresa la descripcion del producto" required></textarea>
+            <div class="invalid-feedback">Por favor, ingrese la descripcion del producto.</div>
+          </div>
+          <div class="mb-3">
+            <label for="categoria" class="form-label">Material</label>
+            <div class="align-items-left justify-content-left">
+              <div class="dropdown elemento combo">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  @for (item of materiales; track item.id_material) {
+                  <li><a class="dropdown-item" (click)="selecMaterial(item.id_material)">{{item.nombre_material}}</a></li>
+                  }
+                </ul>
+              </div>
+            </div>
+            <div class="invalid-feedback">Por favor, elija una categoria.</div>
+          </div>
+          <div class="mb-3">
+            <label for="categoria" class="form-label">Categorias</label>
+            <div class="align-items-left justify-content-left">
+              <div class="dropdown elemento combo">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  @for (item of categorias; track item.id_categoria) {
+                  <li><a class="dropdown-item" (click)="selecCategoria(item.id_categoria)">{{item.nombre_categoria}}</a></li>
+                  }
+                </ul>
+              </div>
+            </div>
+            <div class="invalid-feedback">Por favor, elija una categoria.</div>
+          </div>
+          <div class="mb-3">
             <label for="urlImagen" class="form-label">URL de la imagen:</label>
-            <input type="url" class="form-control" formControlName="urlImagen" id="urlImagen" placeholder="Ingresa la URL de la imagen del producto" required />
+            <input type="url" class="form-control" formControlName="imagen" id="urlImagen" placeholder="Ingresa la URL de la imagen del producto" required />
             <div class="invalid-feedback">Por favor, ingrese la URL de la imagen.</div>
           </div>
           <div class="mb-3 row">

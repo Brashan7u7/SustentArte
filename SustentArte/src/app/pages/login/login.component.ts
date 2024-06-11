@@ -55,12 +55,14 @@ export class LoginComponent {
     this.apiService.loginAdmin(this.formLogin.value).subscribe((data: any) => {
         console.log(data);
         if (data.rol === 'admin') {
+          console.log();
           this.formLogin.reset();
           this.alertService.alert('Bienvenido Administrador', 'info');
           this.route.navigateByUrl('panelAdmin');
         } else if(data.rol === 'artesano') {
           this.formLogin.reset();
           this.alertService.alert('Bienvenido Artesano', 'info');
+          sessionStorage.setItem('id_artesano', data.artesanoFind.id_artesano);
           this.route.navigateByUrl('panelVendedor');
         }
       },
