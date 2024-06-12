@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-carrito-productos',
@@ -9,5 +10,15 @@ import { Component } from '@angular/core';
   styleUrl: './carrito-productos.component.css'
 })
 export class CarritoProductosComponent {
-
+  apiService = inject(ApiService);
+  total : number=0;
+  get cart(){
+    console.log(this.apiService.carrito);
+    return this.apiService.carrito;
+  }
+  constructor(){
+    this.cart.forEach(producto => {
+      this.total += producto.precio_Venta;
+    });
+  }
 }
