@@ -20,17 +20,19 @@
                     >
                     
                 </div>
-                <div class="d-grid gap-2">
-                    <button
-                        type="button"
-                        name=""
-                        id=""
-                        class="btn btn-primary"
-                        routerLink="/login"
-                    >
-                        COMPRAR <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                    </button>
-                </div>
+                @if (rol=='') {
+                    <div class="d-grid gap-2">
+                        <button
+                            type="button"
+                            name=""
+                            id=""
+                            class="btn btn-primary"
+                            routerLink="/login"
+                        >
+                            COMPRAR <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                }
                 
             </div>
         </div>

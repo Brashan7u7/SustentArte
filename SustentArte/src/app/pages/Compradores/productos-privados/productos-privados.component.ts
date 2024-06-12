@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { ProductosInterface } from '../../../interfaces/producto.interface';
@@ -7,6 +7,7 @@ import { CategoriaInterface } from '../../../interfaces/categoria.interface';
 import Swal from 'sweetalert2';
 import { AlertsService } from '../../../services/alerts.service';
 import { timestamp } from 'rxjs';
+import { NavbarService } from '../../../services/navbar.service';
 
 @Component({
   selector: 'app-productos-privados',
@@ -16,6 +17,7 @@ import { timestamp } from 'rxjs';
   styleUrl: './productos-privados.component.css'
 })
 export class ProductosPrivadosComponent {
+  rol: string = '';
 
   private router = inject(Router)
 
@@ -30,7 +32,7 @@ export class ProductosPrivadosComponent {
   categorias = Array<CategoriaInterface>();
 
 
-  constructor() {
+  constructor(private navbarService: NavbarService, private cd: ChangeDetectorRef) {
     this.apiService.obtenerProductos().subscribe((res) => {
       this.productos = res;
     });
@@ -40,7 +42,12 @@ export class ProductosPrivadosComponent {
     });
 
     console.log(this.apiService.obtenerCarrito());
-    
+    this.rol = sessionStorage.getItem('rol') || '';
+    this.navbarService.navbarUpdate$.subscribe(() => {
+      this.rol = sessionStorage.getItem('rol') || '';
+      this.cd.detectChanges();
+    });
+    this.navbarService.updateNavbar();
   }
 
   agregarCarrito(id: number) {
@@ -69,3 +76,10 @@ export class ProductosPrivadosComponent {
     });
   }
 }
+/*
+
+
+  constructor() {
+    
+  }
+*/

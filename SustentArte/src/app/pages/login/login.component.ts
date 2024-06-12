@@ -22,6 +22,7 @@ export class LoginComponent {
   apiService = inject(ApiService);
 
 
+
   constructor(){
     this.formLogin = this.formBuilder.group({
       email :['', Validators.required],

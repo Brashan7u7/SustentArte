@@ -121,3 +121,43 @@
         font-size: 0.8rem;
     }
 }
+
+
+
+.card2 {
+    margin-top: 2vh;
+    height: 100%;
+}
+
+.card-tam2 {
+    width: 18rem;
+    height: 26rem; /* Ajusta este valor según tus necesidades */
+}
+
+.imagenContenedor2 {
+    width: auto;
+    height: 50%; /* Ajusta este valor según tus necesidades */
+    display: inline-flex;
+}
+
+.boton2 {
+    background-color: #F38E17;
+    border-color: #F38E17;
+}
+
+.btn2 {
+    background-color: #F38E17;
+    border-color: #F38E17;
+}
+
+@media (max-width: 1020px) {
+    .text2 {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .titulo2 {
+        font-size: 4vw;
+    }
+}

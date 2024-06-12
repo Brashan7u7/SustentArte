@@ -18,13 +18,43 @@
                 class="visually-hidden">(current)</span></a>
           </li>
           <li class="nav-item elementos">
-            <a class="nav-link active" routerLinkActive="active" routerLink="../productos"
-              aria-current="page">Productos<span class="visually-hidden">(current)</span></a>
-          </li>
-          <li class="nav-item elementos">
             <a class="nav-link active" routerLinkActive="active" routerLink="../vendedores" aria-current="page">Artesanos<span class="visually-hidden">(current)</span></a>
           </li>
+          @if(rol=='administador') {
+            <li class="nav-item elementos">
+              <a class="nav-link active" routerLinkActive="active" routerLink="panelAdmin"
+                aria-current="page">Panel Administrador<span class="visually-hidden">(current)</span></a>
+            </li>
+          }
+          @if(rol=='atesano') {
+            <li class="nav-item elementos">
+              <a class="nav-link active" routerLinkActive="active" routerLink="panelVendedor"
+                aria-current="page">Panel Artesano<span class="visually-hidden">(current)</span></a>
+            </li>
+            <li class="nav-item elementos">
+              <a class="nav-link active" routerLinkActive="active" routerLink="misProductosVendedor"
+                aria-current="page">Mis Productos <i class="fa-solid fa-store"></i> <span class="visually-hidden">(current)</span></a>
+            </li>
+            <li class="nav-item elementos">
+              <a class="nav-link active" routerLinkActive="active" routerLink="ventasVendedor"
+                aria-current="page">Mis Ventas <i class="fa-solid fa-truck-fast"></i><span class="visually-hidden">(current)</span></a>
+            </li>
+          }
+          @if(rol=='comprador') {
+            <li class="nav-item elementos">
+              <a class="nav-link active" routerLinkActive="active" routerLink="productoPrivate"
+                aria-current="page">Productos<span class="visually-hidden">(current)</span></a>
+            </li>
+            <li class="nav-item elementos">
+              <a class="nav-link active" routerLinkActive="active" routerLink="carritoComprador"
+                aria-current="page">Mi Carrito<i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="visually-hidden">(current)</span></a>
+            </li>
+          }
           @if (rol=='') {
+            <li class="nav-item elementos">
+              <a class="nav-link active" routerLinkActive="active" routerLink="../productos"
+                aria-current="page">Productos<span class="visually-hidden">(current)</span></a>
+            </li>
             <li class="nav-item">
               <a class="nav-link active" routerLinkActive="active" routerLink="../login" aria-current="page">
                 <button type="button" class="btn bgColor">Login</button>
@@ -48,6 +78,7 @@
               </a>
             </li>
           }
+          
           
         </ul>
       </div>

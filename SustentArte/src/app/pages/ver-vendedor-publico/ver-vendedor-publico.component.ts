@@ -12,6 +12,7 @@ import { ProductosInterface } from '../../interfaces/producto.interface';
   styleUrl: './ver-vendedor-publico.component.css'
 })
 export class VerVendedorPublicoComponent {
+  rol:string='';
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -35,6 +36,7 @@ export class VerVendedorPublicoComponent {
         this.productos = res;
       });
     })
+    
     
   }
 

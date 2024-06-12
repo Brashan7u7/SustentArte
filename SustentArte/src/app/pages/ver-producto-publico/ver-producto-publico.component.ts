@@ -11,6 +11,7 @@ import { ProductosInterface } from '../../interfaces/producto.interface';
   styleUrl: './ver-producto-publico.component.css'
 })
 export class VerProductoPublicoComponent {
+  rol:string = '';
 
   private apiService = inject(ApiService);
 
@@ -27,6 +28,7 @@ export class VerProductoPublicoComponent {
         this.producto = res;
       });
     })
+    this.rol = sessionStorage.getItem('rol') || '';
   }
 
 }
