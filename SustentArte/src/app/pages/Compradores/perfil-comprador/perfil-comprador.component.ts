@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class PerfilCompradorComponent {
 
+  idComprador = "";
+  constructor() {
+    this.idComprador = sessionStorage.getItem('id_comprador')||"";
+    console.log(this.idComprador);
+    
+  }
 }
