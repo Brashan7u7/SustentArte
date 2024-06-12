@@ -68,7 +68,7 @@ export class LoginComponent {
           this.formLogin.reset();
           this.alertService.alert('Bienvenido Comprador', 'info');
           sessionStorage.setItem('id_comprador', data.compradorFind.id_comprador);
-          this.route.navigateByUrl('productos');
+          this.route.navigateByUrl('productoPrivate');
         }
       },
       error => {
