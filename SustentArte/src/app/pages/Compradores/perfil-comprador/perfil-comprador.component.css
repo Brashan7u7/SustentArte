@@ -1,0 +1,46 @@
+.container-fluid {
+  margin-top: 30px;
+  width: 90%;
+  max-width: 1200px;
+  border-radius: 50px;
+  padding: 30px;
+  border: 2px solid #000;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Añade sombra para profundidad */
+  background-color: #f7f7f7; /* Color de fondo suave */
+}
+
+.titulo h4 {
+  font-size: 40px;
+  color: #2c3e50;
+  text-align: center;
+  margin: 0; /* Elimina márgenes por defecto */
+  padding: 20px 0; /* Espaciado superior e inferior */
+}
+
+.formulario {
+  display: grid;
+  gap: 20px;
+  padding: 20px; /* Espaciado interno */
+}
+
+.input {
+  border: 2px solid #000;
+  padding: 10px; /* Espaciado interno para los inputs */
+  border-radius: 50px; /* Bordes redondeados para los inputs */
+}
+
+.btn-custom-guardar {
+  background-color: #DF7A25;
+  color: #ffffff;
+  border-color: #DF7A25;
+  border-radius: 50px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 20px; /* Tamaño de la fuente */
+  transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+}
+
+.btn-custom-guardar:hover {
+  color: #DF7A25;
+  background-color: #ffffff;
+  border-color: #DF7A25;
+}

@@ -25,6 +25,7 @@ import { PerfilCompradorComponent } from './pages/Compradores/perfil-comprador/p
 import { PagarProductosComponent } from './pages/Compradores/pagar-productos/pagar-productos.component';
 import { ProductosCompradosComponent } from './pages/Compradores/productos-comprados/productos-comprados.component';
 import { ProductoPrivadoComponent } from './pages/Compradores/producto-privado/producto-privado.component';
+import { EditarCompradorComponent } from './pages/Compradores/editar-comprador/editar-comprador.component';
 
 
 
@@ -157,6 +158,10 @@ export const routes: Routes = [
   { 
     path:'perfilComprador',
     component:PerfilCompradorComponent
+  },
+  { 
+    path:'editarComprador',
+    component:EditarCompradorComponent
   },
   {
     path:'pagarComprador',

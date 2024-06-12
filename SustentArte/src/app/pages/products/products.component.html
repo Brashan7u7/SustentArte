@@ -28,10 +28,11 @@
 
   <div class="row d-flex justify-content-center align-items-center mb-4">
     @for (item of productos; track $index) {
-    <div class="col-lg-3 col-md-4 col-sm-6">
-
-      <div class="card card-tam">
-        <img class="card-img-top imagen" [src]="item.imagen" alt="ProductImage" />
+    <div class="col-lg- col-md-4 col-sm-6 card-tam">
+      <div class="card ">
+        <div class="imagenContenedor">
+          <img class="card-img-top imagen" [src]="item.imagen" alt="ProductImage" />
+        </div>
         <div class="card-body">
           <h4 class="card-title">{{item.nombreP}}</h4>
           <span class="badge bg-dark mt-2">{{item.categoria.nombre_categoria}}</span>
@@ -45,10 +46,5 @@
 
     </div>
     }
-
-
   </div>
-
-
-
 </div>
