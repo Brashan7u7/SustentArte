@@ -21,6 +21,8 @@ export class ProductosPrivadosComponent {
 
   private router = inject(Router)
 
+  private routerM = inject(ActivatedRoute)
+
   private apiService = inject(ApiService);
 
   private alertService = inject(AlertsService)

@@ -1,27 +1,23 @@
-import { IsDate, IsString, IsNumber } from "class-validator";
+import { IsDate, IsString, IsNumber, IsArray } from "class-validator";
+import { ProductosA } from "./productosA.dto";
 
 export class PedidosDto{
     @IsDate()
-    fecha_Pedido: Date;
+    fecha_pedido: Date;
 
     @IsString()
     numero_Pedido: string;
 
-    @IsString()
-    lista_Prod: string;
+    @IsNumber()
+    precio_Total_Pedido: number;
 
     @IsNumber()
-    precio_Total_Ped: number;
+    edo_Pedido: number;
 
-    @IsNumber()
-    edo_Ped: number;
-
-    @IsNumber()
-    productoId: number;
-
-    @IsNumber()
-    seguimientoId: number;
+    @IsArray()
+    productosA: Array<ProductosA>;
     
     @IsNumber()
     compradorId: number;
+
 }

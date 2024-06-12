@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CompradoresInterface } from '../../../interfaces/compradores.interface';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-perfil-comprador',
@@ -9,9 +11,16 @@ import { Component } from '@angular/core';
 })
 export class PerfilCompradorComponent {
 
+  private apiService = inject(ApiService);
+  comprador = <CompradoresInterface>{};
   idComprador = "";
   constructor() {
     this.idComprador = sessionStorage.getItem('id_comprador')||"";
     console.log(this.idComprador);
+
+    this.apiService.obtenerComprador(this.idComprador).subscribe((res:CompradoresInterface) => {
+      this.comprador = res;
+      console.log(this.comprador);
+    });
   }
 }

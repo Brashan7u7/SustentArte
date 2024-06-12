@@ -17,6 +17,11 @@ export class PedidosController {
         return this.servicePedido.getPedido(id);
     }
 
+    @Get('comprador/:id')
+    async pedidosComprador(@Param('id') id:number) {
+        return this.servicePedido.pedidosComprador(id);
+    }
+
     @Post()
     async createPedido(@Body() pedido:PedidosDto) {
         return this.servicePedido.createPedido(pedido);

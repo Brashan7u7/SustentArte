@@ -39,6 +39,10 @@ import { AdminEntity } from './admin/entity/admin.entity';
 import { SeguimientoEntity } from './seguimiento/entity/seguimiento.entity';
 import { SeguimientoController } from './seguimiento/seguimiento.controller';
 import { SeguimientoService } from './seguimiento/seguimiento.service';
+import { PedidosProductosModule } from './pedidos-productos/pedidos-productos.module';
+import { PedidosProductoEntity } from './pedidos-productos/entities/pedidos-producto.entity';
+import { PedidosProductosController } from './pedidos-productos/pedidos-productos.controller';
+import { PedidosProductosService } from './pedidos-productos/pedidos-productos.service';
 
 
 
@@ -52,12 +56,12 @@ import { SeguimientoService } from './seguimiento/seguimiento.service';
       password: 'qwe',
       database: 'sus',
       entities: [
-        artesanosEntity,CategoriasEntity,compradorEntity,DetallePagoEntity,MaterialesEntity,PagosEntity,PedidosEntity,ProductoEntity,AdminEntity,SeguimientoEntity
+        artesanosEntity,CategoriasEntity,compradorEntity,DetallePagoEntity,MaterialesEntity,PagosEntity,PedidosEntity,ProductoEntity,AdminEntity,SeguimientoEntity,PedidosProductoEntity
       ],
       synchronize: true,
     }),
-    MaterialesModule, CategoriasModule, PagosModule, DetallePagoModule, CompradoresModule, ArtesanosModule,CompradoresModule,ArtesanosModule, PedidosModule, ProductosModule, AdminModule],
-  controllers: [AppController, MaterialesController, CategoriasController, PagosController, DetallePagoController,CompradoresController,ArtesanosController, AdminController,SeguimientoController],
-  providers: [AppService, MaterialesService, CategoriasService, PagosService, DetallePagoService,CompradoresService,ArtesanosService, AdminService,SeguimientoService],
+    MaterialesModule, CategoriasModule, PagosModule, DetallePagoModule, CompradoresModule, ArtesanosModule,CompradoresModule,ArtesanosModule, PedidosModule, ProductosModule, AdminModule, PedidosProductosModule],
+  controllers: [AppController, MaterialesController, CategoriasController, PagosController, DetallePagoController,CompradoresController,ArtesanosController, AdminController,SeguimientoController,PedidosProductosController],
+  providers: [AppService, MaterialesService, CategoriasService, PagosService, DetallePagoService,CompradoresService,ArtesanosService, AdminService,SeguimientoService,PedidosProductosService],
 })
 export class AppModule {}

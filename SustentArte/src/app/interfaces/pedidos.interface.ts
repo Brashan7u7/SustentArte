@@ -12,6 +12,7 @@ export interface PedidosInterface {
     precio_Total_Pedido: number;
 
     edo_Pedido: number;
+
     productos: Array<ProductosInterface>;
 
     comprador: CompradoresInterface;

@@ -6,26 +6,27 @@
         <h5 class="titulo">Productos comprados:</h5>
         <hr class="linea">
     </div>
+    @for (item of productosComprador; track $index) {
     <div class="card producto">
         <div class="row">
             <div class="col-4">
-                <img class="card-img-top productoimg" src="https://http2.mlstatic.com/D_NQ_NP_886533-MLM54181486806_032023-O.webp" alt="Title" />
+                <img class="card-img-top productoimg" [src]="item.imagen" alt="Title" />
             </div>
             <div class="col-4">
                 <div class="card-body">
-                    <h4 class="card-title tituloProd">Producto Nombre</h4>
-                    <p class="card-text descProd">Descripcion</p>
+                    <h4 class="card-title tituloProd">{{item.nombreP}}</h4>
+                    <p class="card-text descProd">{{item.descripcion}}</p>
                 </div>
             </div>
             <div class="col-2">
                 <div class="card-body">
-                    <a href="" class="accion"> <p class="card-title iconosVisibles">Comprado el: <span class="fechaCompra">Fecha</span></p></a>
-                    <a href="" class="accion"> <p class="card-title iconosVisibles">Total: <span class="totalCompra">Precio</span></p> </a>
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Comprado el: <span class="fechaCompra">{{item.fecha_entrega}}</span></p></a>
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Total: <span class="totalCompra">{{item.cantidad}}</span></p> </a>
                 </div>
             </div>
             <div class="col-2">
                 <div class="card-body">
-                    <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">Estado</span></p> </a>
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">{{item.estado}}</span></p> </a>
                 </div>
             </div>
         </div>
@@ -34,7 +35,7 @@
         </div>
         
     </div>
-    
+}
     
 
 </div>
