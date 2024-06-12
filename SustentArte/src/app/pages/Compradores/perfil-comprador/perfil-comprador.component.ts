@@ -13,6 +13,5 @@ export class PerfilCompradorComponent {
   constructor() {
     this.idComprador = sessionStorage.getItem('id_comprador')||"";
     console.log(this.idComprador);
-    
   }
 }
