@@ -27,6 +27,8 @@ import { ProductosCompradosComponent } from './pages/Compradores/productos-compr
 import { ProductoPrivadoComponent } from './pages/Compradores/producto-privado/producto-privado.component';
 import { EditarCompradorComponent } from './pages/Compradores/editar-comprador/editar-comprador.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthGuardComprador } from './guards/auth-comprador.guard';
+import { AuthGuardArtesano } from './guards/auth-artesano.guard';
 
 
 
@@ -34,7 +36,7 @@ export const routes: Routes = [
 
   /////////////////////////////////////////////
   /////////////////////////////////////////////
-  ////////////Administrador Routes//////////////////
+  ////////////Administrador Routes/////////////
   /////////////////////////////////////////////
   /////////////////////////////////////////////
   {
@@ -100,20 +102,70 @@ export const routes: Routes = [
   /////////////////////////////////////////////
   {
     path: 'panelVendedor',
-    component: PanelVendedorComponent
+    component: PanelVendedorComponent,
+    canActivate:[AuthGuardArtesano]
   },
   {
     path:'addProducto',
-    component: AddProductoComponent
+    component: AddProductoComponent,
+    canActivate:[AuthGuardArtesano]
   },
   {
     path:'ventasVendedor', 
-    component:VerVentasComponent
+    component:VerVentasComponent,
+    canActivate:[AuthGuardArtesano]
   },
   {
     path :'misProductosVendedor',
     component : VerProductosComponent,
+    canActivate:[AuthGuardArtesano]
   },
+
+
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
+  //////////////Comprador Routes///////////////
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
+
+  {
+    path :'productoPrivate',
+    component : ProductosPrivadosComponent,
+    canActivate:[AuthGuardComprador]
+  },
+  {
+    path:'oneProduct',
+    component:ProductoPrivadoComponent,
+    canActivate:[AuthGuardComprador]
+  },
+  {
+    path:'carritoComprador',
+    component:CarritoProductosComponent,
+    canActivate:[AuthGuardComprador]
+  },
+  { 
+    path:'perfilComprador',
+    component:PerfilCompradorComponent,
+    canActivate:[AuthGuardComprador]
+  },
+  { 
+    path:'editarComprador',
+    component:EditarCompradorComponent,
+    canActivate:[AuthGuardComprador]
+  },
+  {
+    path:'pagarComprador',
+    component:PagarProductosComponent,
+    canActivate:[AuthGuardComprador]
+  },
+  {
+    path:'productosComprados',
+    component:ProductosCompradosComponent,
+    canActivate:[AuthGuardComprador]
+  },
+  
+
+
 
 
   /////////////////////////////////////////////
@@ -154,36 +206,6 @@ export const routes: Routes = [
     path :'vendedorPublic',
     component : VerVendedorPublicoComponent,
   },
-  {
-    path :'productoPrivate',
-    component : ProductosPrivadosComponent,
-  },
-  {
-    path:'oneProduct',
-    component:ProductoPrivadoComponent
-  },
-  {
-    path:'carritoComprador',
-    component:CarritoProductosComponent
-  },
-  { 
-    path:'perfilComprador',
-    component:PerfilCompradorComponent
-  },
-  { 
-    path:'editarComprador',
-    component:EditarCompradorComponent
-  },
-  {
-    path:'pagarComprador',
-    component:PagarProductosComponent
-  },
-  {
-    path:'productosComprados',
-    component:ProductosCompradosComponent
-  },
-  
-  
   {
     path : '**',
     pathMatch : 'full',

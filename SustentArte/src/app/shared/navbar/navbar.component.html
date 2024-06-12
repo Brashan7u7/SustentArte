@@ -38,7 +38,7 @@
               </a>
             </li>
           }
-          @if(rol=='administador') {
+          @if(rol=='administador' || rol=='comprador' || rol=='atesano') {
             <li class="nav-item">
               <a class="nav-link active" routerLinkActive="active" routerLink="../home" aria-current="page">
                 <button type="button" class="btn bgColor" (click)="clearSessionStorage()">
