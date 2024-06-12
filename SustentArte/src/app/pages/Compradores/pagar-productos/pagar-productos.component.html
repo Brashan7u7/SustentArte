@@ -1,5 +1,6 @@
 <div class="container">
     <h2>Formulario de Pago</h2>
+    
     <form class="formulario">
         <div class="form-group">
             <label for="nombreTitular">Nombre del Titular:</label>
@@ -42,6 +43,7 @@
                 </div>
             </div>
         </div>
+        <h3>Total: {{total | currency : 'MXN'}}</h3>
         <button type="submit" class="btn btn-pagar">Pagar</button>
     </form>
 </div>
