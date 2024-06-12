@@ -1,58 +1,61 @@
 <div class="contenedorProcipal">
-    <div class="container-fluid navBarProd">
-      <div class="row align-items-center justify-content-center ">
-        <div class="col-6">
-          <h2 class=" elementos titulo">Nuestros Productos</h2>
-        </div>
-        <div class="col-2">
-          <div class="row elementos">
-  
-            <div class="align-items-left justify-content-left">
-              <div class="dropdown elemento combo">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  Todos
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  @for (item of categorias; track $index) {
-                  <li><a class="dropdown-item" (click)="filtrarCategoria(item.nombre_categoria)">{{item.nombre_categoria}}</a></li>
-                  }
-                </ul>
-              </div>
+  <div class="container-fluid navBarProd">
+    <div class="row align-items-center justify-content-center ">
+      <div class="col-6">
+        <h2 class=" elementos titulo">Nuestros Productos</h2>
+      </div>
+      <div class="col-2">
+        <div class="row elementos">
+
+          <div class="align-items-left justify-content-left">
+            <div class="dropdown elemento combo">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Todos
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                @for (item of categorias; track $index) {
+                <li><a class="dropdown-item"
+                    (click)="filtrarCategoria(item.nombre_categoria)">{{item.nombre_categoria}}</a></li>
+                }
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-  
-    <div class="row d-flex justify-content-center align-items-center mb-4">
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        @for (item of productos; track $index) {
-        <div class="card card-tam">
-          <img class="card-img-top imagen" [src]="item.imagen" alt="ProductImage" />
-          <div class="card-body">
-            <h4 class="card-title">{{item.nombreP}}</h4>
-            <span class="badge bg-dark mt-2">{{item.categoria.nombre_categoria}}</span>
-            <button class="carritoCompras" (click)="agregarCarrito(item.id_producto)"
-            [disabled]="carritoButom">
-                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
-                    <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
-                </svg>
-            </button>
-            <p class="card-text mt-3">{{item.descripcion}}</p>
-          </div>
-          <div class="d-grid gap-2">
-            <a name="" id="" class="btn btn-primary" (click)="mostrarProducto(item.id_producto)"
-              role="button">Ver Producto</a>
-          </div>
-        </div>
-      }
-      </div>
-  
-  
-  
-    </div>
-  
-  
-  
   </div>
+
+  <div class="row d-flex justify-content-center align-items-center mb-4">
+    @for (item of productos; track $index) {
+    <div class="col-lg-3 col-md-4 col-sm-6 producto">
+      <div class="card card-tam">
+        <img class="card-img-top imagen" [src]="item.imagen" alt="ProductImage" />
+        <div class="card-body">
+          <h4 class="card-title">{{item.nombreP}}</h4>
+          <span class="badge bg-dark mt-2">{{item.categoria.nombre_categoria}}</span>
+          <button class="carritoCompras" (click)="agregarCarrito(item.id_producto)" [disabled]="carritoButom">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+              <path
+                d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+            </svg>
+          </button>
+          <p class="card-text mt-3">{{item.descripcion}}</p>
+        </div>
+        <div class="d-grid gap-2">
+          <a name="" id="" class="btn btn-primary" (click)="mostrarProducto(item.id_producto)" role="button">Ver
+            Producto</a>
+        </div>
+      </div>
+
+    </div>
+    }
+
+
+  </div>
+
+
+
+</div>

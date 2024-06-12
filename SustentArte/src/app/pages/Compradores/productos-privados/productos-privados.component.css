@@ -43,6 +43,10 @@
     background-color: #F38E17;
 }
 
+.producto{
+    min-height: 10vh;
+}
+
 @media (max-width: 1020px) {
     .text{
       display: none;
