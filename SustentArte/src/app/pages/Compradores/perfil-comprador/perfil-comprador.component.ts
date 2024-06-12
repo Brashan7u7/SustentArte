@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CompradoresInterface } from '../../../interfaces/compradores.interface';
 import { ApiService } from '../../../services/api.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-comprador',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './perfil-comprador.component.html',
   styleUrl: './perfil-comprador.component.css'
 })

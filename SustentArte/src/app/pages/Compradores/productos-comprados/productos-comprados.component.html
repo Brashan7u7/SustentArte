@@ -26,7 +26,15 @@
             </div>
             <div class="col-2">
                 <div class="card-body">
-                    <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">{{item.estado}}</span></p> </a>
+                    @if (item.estado === 0) {
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">En Proceso</span></p> </a>
+                    }
+                    @if (item.estado === 1) {
+                        <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">En camino</span></p> </a>
+                        }
+                        @if (item.estado === 2) {
+                            <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">Entregado</span></p> </a>
+                            }
                 </div>
             </div>
         </div>

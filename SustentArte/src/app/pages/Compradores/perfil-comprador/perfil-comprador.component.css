@@ -9,6 +9,18 @@
   background-color: #f7f7f7; /* Color de fondo suave */
 }
 
+.boton {
+  background-color: #F38E17;
+  font-size: 20px;
+  border-color: #F38E17;
+  height: 30%;
+  width: 15%;
+  
+  align-items: center;
+  border: 2px ;
+  border-radius: 10px;
+}
+
 .titulo h4 {
   font-size: 40px;
   color: #2c3e50;
