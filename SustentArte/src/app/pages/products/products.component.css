@@ -1,45 +1,61 @@
-.navBarProd{
+.navBarProd {
     background-color: #F1D8B3;
 }
-.text{
+
+.text {
     margin-top: 1.3vw;
     font-size: 3vh;
     margin-right: 3vh;
 }
 
-.titulo{
+.titulo {
     color: #F38E17;
     font-size: 3vw;
 }
-.elementos{
+
+.elementos {
     margin: 2vh;
 }
-.combo{
+
+.combo {
     font-size: 3vw !important;
     margin-right: 1vh !important;
 }
-.card{
+
+.card {
     margin-top: 2vh;
+    height: 100%;
 }
-.imagen{
-    max-width: auto !important;
-    max-height: auto !important;
+
+.card-tam {
+    width: 18rem;
+    height: 26rem; /* Ajusta este valor según tus necesidades */
 }
-.boton{
+
+.imagenContenedor {
+    width: auto;
+    height: 50%; /* Ajusta este valor según tus necesidades */
+    display: inline-flex;
+}
+
+.boton {
     background-color: #F38E17;
     border-color: #F38E17;
 }
-.btn{
+
+.btn {
     background-color: #F38E17;
+    border-color: #F38E17;
 }
 
 @media (max-width: 1020px) {
-    .text{
-      display: none;
+    .text {
+        display: none;
     }
 }
+
 @media (max-width: 500px) {
-    .titulo{
-      font-size: 4vw;
+    .titulo {
+        font-size: 4vw;
     }
 }
