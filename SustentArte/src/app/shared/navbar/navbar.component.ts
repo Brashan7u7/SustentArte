@@ -9,5 +9,12 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  rol: string = '';
 
+  constructor() {
+    this.rol = sessionStorage.getItem('rol') || '';
+  }
+  clearSessionStorage() {
+    sessionStorage.clear();
+  }
 }

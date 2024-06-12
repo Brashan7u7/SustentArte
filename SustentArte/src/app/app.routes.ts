@@ -26,6 +26,7 @@ import { PagarProductosComponent } from './pages/Compradores/pagar-productos/pag
 import { ProductosCompradosComponent } from './pages/Compradores/productos-comprados/productos-comprados.component';
 import { ProductoPrivadoComponent } from './pages/Compradores/producto-privado/producto-privado.component';
 import { EditarCompradorComponent } from './pages/Compradores/editar-comprador/editar-comprador.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -38,48 +39,57 @@ export const routes: Routes = [
   /////////////////////////////////////////////
   {
     path: 'panelAdmin',
-    component: PanelAdministradorComponent
+    component: PanelAdministradorComponent,
+    canActivate:[AuthGuard]
   },
     //Artesanos CRUD
   {
     path :'crearArtesano',
     component : CrearArtesanoComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'vendedoresAdmin',
-    component: VerVendedoresComponent
+    component: VerVendedoresComponent,
+    canActivate:[AuthGuard]
   },
   {
     path :'vendedorAdmin',
     component : VerVendedorComponent,
+    canActivate:[AuthGuard]
   },
     //Material CRUD
   {
     path :'agregarMaterial',
     component : AgregarMaterialComponent,
+    canActivate:[AuthGuard]
   },
   {
     path :'editarMaterial/:id',
     component : AgregarMaterialComponent,
+    canActivate:[AuthGuard]
   },
   {
     path :'verMateriales',
     component : VerMaterialesComponent,
+    canActivate:[AuthGuard]
     
   },
     //Categoria CRUD
   {
     path :'agregarCategoria',
     component : AgregarCategoriaComponent,
+    canActivate:[AuthGuard]
   },
   {
     path :'editarCategoria/:id',
     component : AgregarCategoriaComponent,
+    canActivate:[AuthGuard]
   },
   {
     path :'verCategorias',
     component : VerCategoriasComponent,
-    
+    canActivate:[AuthGuard]
   },
 
 
@@ -111,6 +121,7 @@ export const routes: Routes = [
   ///////Paginas Publicas Routes///////////////
   /////////////////////////////////////////////
   /////////////////////////////////////////////
+  
   {
     path :'home',
     component : HomeComponent

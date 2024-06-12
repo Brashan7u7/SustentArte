@@ -58,16 +58,20 @@ export class LoginComponent {
           console.log();
           this.formLogin.reset();
           this.alertService.alert('Bienvenido Administrador', 'info');
+          sessionStorage.setItem('id_artesano', data.adminFind.id_Admin);
+          sessionStorage.setItem('rol', "administador");
           this.route.navigateByUrl('panelAdmin');
         } else if(data.rol === 'artesano') {
           this.formLogin.reset();
           this.alertService.alert('Bienvenido Artesano', 'info');
           sessionStorage.setItem('id_artesano', data.artesanoFind.id_artesano);
+          sessionStorage.setItem('rol', "atesano");
           this.route.navigateByUrl('panelVendedor');
         }else if(data.rol === 'comprador'){
           this.formLogin.reset();
           this.alertService.alert('Bienvenido Comprador', 'info');
           sessionStorage.setItem('id_comprador', data.compradorFind.id_comprador);
+          sessionStorage.setItem('rol', "comprador");
           this.route.navigateByUrl('productoPrivate');
         }
       },

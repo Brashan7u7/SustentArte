@@ -24,18 +24,31 @@
           <li class="nav-item elementos">
             <a class="nav-link active" routerLinkActive="active" routerLink="../vendedores" aria-current="page">Artesanos<span class="visually-hidden">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLinkActive="active" routerLink="../login" aria-current="page">
-              <button type="button" class="btn bgColor">Login</button>
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLinkActive="active" routerLink="../register" aria-current="page">
-              <button type="button" class="btn bgColor">Register</button>
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
+          @if (rol=='') {
+            <li class="nav-item">
+              <a class="nav-link active" routerLinkActive="active" routerLink="../login" aria-current="page">
+                <button type="button" class="btn bgColor">Login</button>
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" routerLinkActive="active" routerLink="../register" aria-current="page">
+                <button type="button" class="btn bgColor">Register</button>
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+          }
+          @if(rol=='administador') {
+            <li class="nav-item">
+              <a class="nav-link active" routerLinkActive="active" routerLink="../home" aria-current="page">
+                <button type="button" class="btn bgColor" (click)="clearSessionStorage()">
+                  Cerrar Sesion
+                </button>
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+          }
+          
         </ul>
       </div>
     </div>
