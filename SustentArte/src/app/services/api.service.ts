@@ -134,12 +134,9 @@ export class ApiService {
   }
 
 
-
-
   //////////////////////////////////////////////////////////
   ////////////////////////Artesanos/////////////////////////
   //////////////////////////////////////////////////////////
-
   loginArtesano(artesano: ArtesanoInterface) {
     console.log(artesano);
     return this._http.post<CategoriaInterface>('http://localhost:3000/atesanos/login',artesano,{ headers: { 'Access-Control-Allow-Origin': '*' } });
@@ -147,5 +144,4 @@ export class ApiService {
   agregarProducto(product: ProductosInterface){
     return this._http.post<ProductosInterface>('http://localhost:3000/productos',product,{ headers: { 'Access-Control-Allow-Origin': '*' } });
   }
-
 }
