@@ -1,33 +1,33 @@
 <div class="container">
     <h2>Formulario de Pago</h2>
     
-    <form class="formulario">
+    <form class="formulario" [formGroup]="formPago" (ngSubmit)="pagar()">
         <div class="form-group">
             <label for="nombreTitular">Nombre del Titular:</label>
-            <input type="text" class="form-control" id="nombreTitular" name="nombreTitular" placeholder="Nombre del Titular">
+            <input type="text" class="form-control" id="nombreTitular" formControlName="nombreTitular" name="nombreTitular" placeholder="Nombre del Titular">
         </div>
         <div class="form-group">
             <label for="numeroTarjeta">Número de Tarjeta:</label>
-            <input type="text" class="form-control" id="numeroTarjeta" name="numeroTarjeta" placeholder="Número de Tarjeta">
+            <input type="text" class="form-control" id="numeroTarjeta" formControlName="numTarjeta" name="numeroTarjeta" placeholder="Número de Tarjeta">
         </div>
         <div class="form-group">
             <label for="fechaExpiracion">Fecha de Expiración:</label>
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" id="mesExpiracion" name="mesExpiracion" placeholder="MM">
+                    <input type="text" class="form-control" id="mesExpiracion" formControlName="fechaVencimiento" name="mesExpiracion" placeholder="MM">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" id="anoExpiracion" name="anoExpiracion" placeholder="AA">
+                    <input type="text" class="form-control" id="anoExpiracion" formControlName="anoVencimiento" name="anoExpiracion" placeholder="AA">
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label for="codigoSeguridad">Código de Seguridad:</label>
-            <input type="text" class="form-control" id="codigoSeguridad" name="codigoSeguridad" placeholder="Código de Seguridad">
+            <input type="text" class="form-control" id="codigoSeguridad" formControlName="cvv" name="codigoSeguridad" placeholder="Código de Seguridad">
         </div>
         <div class="form-group">
             <label for="tipoTarjeta">Tipo de Tarjeta:</label>
-            <select class="form-control" id="tipoTarjeta" name="tipoTarjeta">
+            <select class="form-control" id="tipoTarjeta" formControlName="tipoTarjeta" name="tipoTarjeta">
                 <option value="credito">Tarjeta de Crédito</option>
                 <option value="debito">Tarjeta de Débito</option>
             </select>

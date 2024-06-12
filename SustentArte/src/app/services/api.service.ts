@@ -9,6 +9,10 @@ import { MaterialesInterface } from '../interfaces/materiales.interface';
 import { CompradoresInterface } from '../interfaces/compradores.interface';
 import { Admin } from '../interfaces/admin.interface';
 import { PedidosInterface } from '../interfaces/pedidos.interface';
+import { PedidoDetalleInterface } from '../interfaces/pedidoDetalle.interface';
+import { PagoInterface } from '../interfaces/pago.interface';
+import { pedidoCreateInterface } from '../interfaces/pedidosCreate.interface';
+import { ProductoStockInterface } from '../interfaces/stockProducto.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +69,22 @@ export class ApiService {
   }
 
 
+
+  crearDetallePedido(pedido: PedidoDetalleInterface) {
+    return this._http.post<PedidoDetalleInterface>('http://localhost:3000/detallepago', pedido, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
+  crearPago(pago:PagoInterface)
+  {
+    return this._http.post<PagoInterface>('http://localhost:3000/pagos', pago, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
+
+  crearPedido(pedido:pedidoCreateInterface)
+  {
+    return this._http.post<PagoInterface>('http://localhost:3000/pedidos', pedido, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
   //////////////////////////////////////////////////////////
   ////////////////////////Materiales////////////////////////
   //////////////////////////////////////////////////////////
@@ -99,6 +119,11 @@ export class ApiService {
   }
   eliminarProducto(id: number) {
     return this._http.delete(`http://localhost:3000/productos/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
+
+  quitarStockProducto(producto: ProductoStockInterface) {
+    return this._http.post<ProductosInterface>(`http://localhost:3000/productos/stock`, producto, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
 
