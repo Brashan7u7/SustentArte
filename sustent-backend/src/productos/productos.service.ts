@@ -28,6 +28,20 @@ export class ProductosService {
         }
     }
 
+    async eliminarStock(id:number,cantidad:number)
+    {
+        try {
+            const productoFind = await this.dataSource.getRepository(ProductoEntity).findOne({where:{id_producto:id}});
+            if (!productoFind) {
+                return new HttpException('No se encontro el producto',HttpStatus.NOT_FOUND);
+            }
+            productoFind.stock = productoFind.stock - cantidad;
+            return await this.dataSource.getRepository(ProductoEntity).save(productoFind);
+        } catch (error) {
+            throw new HttpException('Error al modificar el stock del producto',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     async getProducto(id:number)
     {
         try {

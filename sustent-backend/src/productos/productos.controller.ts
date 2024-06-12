@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ProductosService } from './productos.service';
 import { ProductosDto } from './dto/productos.dto';
+import { ProductoStockDto } from './dto/productoStock.dto';
 
 @Controller('productos')
 export class ProductosController {
@@ -39,6 +40,11 @@ export class ProductosController {
     @Put(':id')
     async updateProducto(@Param('id') id:number,@Body() producto:ProductosDto) {
         return this.serviceProductos.updateProducto(id,producto);
+    }
+
+    @Post('stock')
+    async updateStock(@Body() producto:ProductoStockDto) {
+        return this.serviceProductos.eliminarStock(producto.id_producto,producto.stock);
     }
 
     @Delete(':id')
