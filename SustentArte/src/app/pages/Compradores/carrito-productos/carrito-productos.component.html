@@ -32,7 +32,8 @@
         </tbody>
     </table>
     <p class="total">Total: {{ total | currency: 'MXN' }}</p>
-    <button class="btn btn-primary">Realizar pedido</button>
+    <a class="btn btn-primary" routerLinkActive="active" routerLink="../pagarComprador/">Proceder al pago</a>
+    
     }@else {
     <div class="alert alert-danger text-center justify-content-center" role="alert">
         <div class="row">
