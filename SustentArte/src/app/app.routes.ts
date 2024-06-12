@@ -19,6 +19,10 @@ import { AgregarCategoriaComponent } from './pages/Administrador/agregar-categor
 import { AgregarMaterialComponent } from './pages/Administrador/agregar-material/agregar-material.component';
 import { VerMaterialesComponent } from './pages/Administrador/ver-materiales/ver-materiales.component';
 import { VerCategoriasComponent } from './pages/Administrador/ver-categorias/ver-categorias.component';
+import { ProductosPrivadosComponent } from './Compradores/productos-privados/productos-privados.component';
+import { CarritoProductosComponent } from './Compradores/carrito-productos/carrito-productos.component';
+import { PerfilCompradorComponent } from './Compradores/perfil-comprador/perfil-comprador.component';
+import { PagarProductosComponent } from './Compradores/pagar-productos/pagar-productos.component';
 
 
 
@@ -136,7 +140,22 @@ export const routes: Routes = [
     path :'vendedorPublic',
     component : VerVendedorPublicoComponent,
   },
-
+  {
+    path :'productoPrivate',
+    component : ProductosPrivadosComponent,
+  },
+  {
+    path:'carritoComprador',
+    component:CarritoProductosComponent
+  },
+  { 
+    path:'perfilComprador',
+    component:PerfilCompradorComponent
+  },
+  {
+    path:'pagarComprador',
+    component:PagarProductosComponent
+  },
   
   
   {
