@@ -62,7 +62,7 @@ export class ProductosPrivadosComponent {
 
   mostrarProducto(id: number) 
   {
-    this.router.navigate(['/productoPublic'],{
+    this.router.navigate(['/oneProduct'],{
       queryParams:{
         prod: JSON.stringify(id)
       }

@@ -24,6 +24,7 @@ import { CarritoProductosComponent } from './pages/Compradores/carrito-productos
 import { PerfilCompradorComponent } from './pages/Compradores/perfil-comprador/perfil-comprador.component';
 import { PagarProductosComponent } from './pages/Compradores/pagar-productos/pagar-productos.component';
 import { ProductosCompradosComponent } from './pages/Compradores/productos-comprados/productos-comprados.component';
+import { ProductoPrivadoComponent } from './pages/Compradores/producto-privado/producto-privado.component';
 
 
 
@@ -144,6 +145,10 @@ export const routes: Routes = [
   {
     path :'productoPrivate',
     component : ProductosPrivadosComponent,
+  },
+  {
+    path:'oneProduct',
+    component:ProductoPrivadoComponent
   },
   {
     path:'carritoComprador',
