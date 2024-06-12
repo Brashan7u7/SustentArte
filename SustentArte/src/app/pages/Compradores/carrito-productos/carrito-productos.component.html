@@ -1,1 +1,31 @@
-<p>carrito-productos works!</p>
+<div class="container">
+    <h1>Carrito de compras</h1>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Producto</th>
+                <th>Nombe</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="fondoTabla">
+            <tr>
+                <td><img src="assets/img/Canasto.jpg" width="120px"></td>
+                <td>Producto nombre</td>
+                <td>{{ 25 | currency: 'MXN' }}</td>
+                <td>
+                    <input class="form-control" type="number" min="1" />
+                </td>
+                <td>{{ 50 | currency: 'MXN' }}</td>
+                <td>
+                    <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="total">Total: {{ 60 | currency: 'MXN' }}</p>
+    <button class="btn btn-primary">Realizar pedido</button>
+</div>

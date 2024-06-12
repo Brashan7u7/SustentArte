@@ -15,9 +15,26 @@ import { Admin } from '../interfaces/admin.interface';
 export class ApiService {
 
   private _http = inject(HttpClient);
-  constructor() { }
+  carrito: ProductosInterface[] = [];
 
-  
+  constructor() {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      this.carrito = JSON.parse(cart);
+    }
+  }
+
+  agregarCarrito(id: number) {
+    this.obtenerProducto(id).subscribe((producto: ProductosInterface) => {
+      this.carrito.push(producto);
+      localStorage.setItem('cart', JSON.stringify(this.carrito));
+    });
+  }
+
+  obtenerCarrito() {
+    return this.carrito;
+  }
+
 
   crearComprador(comprador: CompradoresInterface){
     return this._http.post<CompradoresInterface>('http://localhost:3000/compradores', comprador,{ headers: { 'Access-Control-Allow-Origin': '*' } });
