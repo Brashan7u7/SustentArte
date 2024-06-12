@@ -1,80 +1,92 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-5 col-md-6">
-      <div class="formulario">
-        <div class="titulo">
-          <h4>Perfil</h4>
-        </div>
-
-        <div class="container">
-          <div class="row">
-
-            <div class="input-name input">
-              <label class="name text">name</label>
-            </div>
-
-            <div class="row">
-              <div class="input-firstname input"> 
-                <label class="firstname text">firstname</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-lastname input">
-                <label class="lastname text">lastname</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-correo input">
-                <label class="correo text">correo</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-telefono input">
-                <label class="telefono text">telefono</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-ciudad input">
-                <label class="ciudad text">ciudad</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-estado input">
-                <label class="estado text">estado</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-cp input">
-                <label class="cp text">codigo postal</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-colonia input">
-                <label class="colonia text">colonia</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-calle input">
-                <label class="calle text">calle</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-numerocasa input">
-                <label class="numerocasa text">numero de casa</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="row titulo">
+      <h4 class="titulo">Información del Perfil:</h4>
+      <hr class="linea">
   </div>
+  <form class="formulario">
+      <!-- Primera fila -->
+      <div class="row">
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="name">Nombre:</label>
+                  <input type="text" class="form-control input" id="name" name="name" placeholder="Nombre">
+              </div>
+          </div>
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="firstname">Primer Apellido:</label>
+                  <input type="text" class="form-control input" id="firstname" name="firstname" placeholder="Primer Apellido">
+              </div>
+          </div>
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="lastname">Segundo Apellido:</label>
+                  <input type="text" class="form-control input" id="lastname" name="lastname" placeholder="Segundo Apellido">
+              </div>
+          </div>
+      </div>
+      <!-- Segunda fila -->
+      <div class="row">
+          <div class="col-6">
+              <div class="form-group">
+                  <label for="telefono">Teléfono:</label>
+                  <input type="text" class="form-control input" id="telefono" name="telefono" placeholder="Teléfono">
+              </div>
+          </div>
+          <div class="col-6">
+              <div class="form-group">
+                  <label for="correo">Correo Electrónico:</label>
+                  <input type="email" class="form-control input" id="correo" name="correo" placeholder="Correo Electrónico">
+              </div>
+          </div>
+      </div>
+      <!-- Tercera fila -->
+      <div class="row">
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="ciudad">Ciudad:</label>
+                  <input type="text" class="form-control input" id="ciudad" name="ciudad" placeholder="Ciudad">
+              </div>
+          </div>
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="estado">Estado:</label>
+                  <input type="text" class="form-control input" id="estado" name="estado" placeholder="Estado">
+              </div>
+          </div>
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="codigoPostal">Código Postal:</label>
+                  <input type="text" class="form-control input" id="codigoPostal" name="codigoPostal" placeholder="Código Postal">
+              </div>
+          </div>
+      </div>
+      <!-- Cuarta fila -->
+      <div class="row">
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="calle">Calle:</label>
+                  <input type="text" class="form-control input" id="calle" name="calle" placeholder="Calle">
+              </div>
+          </div>
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="colonia">Colonia:</label>
+                  <input type="text" class="form-control input" id="colonia" name="colonia" placeholder="Colonia">
+              </div>
+          </div>
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="numCasa">Número de Casa:</label>
+                  <input type="text" class="form-control input" id="numCasa" name="numCasa" placeholder="Número de Casa">
+              </div>
+          </div>
+      </div>
+      <!-- Botón de guardar -->
+      <div class="row">
+          <div class="col-12 text-center">
+              <button type="submit" class="btn btn-custom-guardar">Guardar</button>
+          </div>
+      </div>
+  </form>
 </div>
