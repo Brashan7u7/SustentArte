@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { ProductosInterface } from '../../interfaces/producto.interface';
 
 @Component({
   selector: 'app-ver-producto-publico',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule,RouterLink],
   templateUrl: './ver-producto-publico.component.html',
   styleUrl: './ver-producto-publico.component.css'
 })

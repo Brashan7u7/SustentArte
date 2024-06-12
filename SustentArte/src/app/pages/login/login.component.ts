@@ -64,6 +64,11 @@ export class LoginComponent {
           this.alertService.alert('Bienvenido Artesano', 'info');
           sessionStorage.setItem('id_artesano', data.artesanoFind.id_artesano);
           this.route.navigateByUrl('panelVendedor');
+        }else if(data.rol === 'comprador'){
+          this.formLogin.reset();
+          this.alertService.alert('Bienvenido Comprador', 'info');
+          sessionStorage.setItem('id_comprador', data.compradorFind.id_comprador);
+          this.route.navigateByUrl('productos');
         }
       },
       error => {
