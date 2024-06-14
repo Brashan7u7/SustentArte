@@ -9,11 +9,15 @@ import { MaterialesInterface } from '../interfaces/materiales.interface';
 import { CompradoresInterface } from '../interfaces/compradores.interface';
 import { Admin } from '../interfaces/admin.interface';
 import { PedidosInterface } from '../interfaces/pedidos.interface';
+<<<<<<< Updated upstream
 import { PedidoDetalleInterface } from '../interfaces/pedidoDetalle.interface';
 import { PagoInterface } from '../interfaces/pago.interface';
 import { pedidoCreateInterface } from '../interfaces/pedidosCreate.interface';
 import { ProductoStockInterface } from '../interfaces/stockProducto.interface';
 import { PedidosArtesanosInterface } from '../interfaces/pedidosArtesanos.interface';
+=======
+import { CambioStock } from '../interfaces/cambio-stock';
+>>>>>>> Stashed changes
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +76,9 @@ export class ApiService {
   editarComprador(comprador: CompradoresInterface, id: number) {
     return this._http.put<CompradoresInterface>(`http://localhost:3000/compradores/${id}`, comprador, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
-
+  quitarStock(datosStock:CambioStock){
+    return this._http.post<any>('http://localhost:3000/stock', datosStock, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
 
 
   crearDetallePedido(pedido: PedidoDetalleInterface) {
