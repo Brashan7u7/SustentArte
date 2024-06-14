@@ -111,6 +111,11 @@ export const routes: Routes = [
     canActivate:[AuthGuardArtesano]
   },
   {
+    path:'editProduct/:id',
+    component: AddProductoComponent,
+    canActivate:[AuthGuardArtesano]
+  },
+  {
     path:'ventasVendedor', 
     component:VerVentasComponent,
     canActivate:[AuthGuardArtesano]

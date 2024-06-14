@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { ArtesanoInterface } from '../../../interfaces/artesano.interface';
 import { ProductosInterface } from '../../../interfaces/producto.interface';
@@ -13,6 +13,7 @@ import { ProductosInterface } from '../../../interfaces/producto.interface';
 })
 export class VerProductosComponent {
   apiService = inject(ApiService);
+  router = inject(Router);
   idArtesano:number;
   artesano = <ArtesanoInterface>{};
   productos = Array<ProductosInterface>();
@@ -27,6 +28,10 @@ export class VerProductosComponent {
     this.apiService.obtenerProductosxArtesano(this.idArtesano).subscribe((res) => {
       this.productos = res;
     });
+  }
+
+  editarProducto(producto : ProductosInterface){
+    this.router.navigateByUrl('/editProduct/'+producto.id_producto)
   }
 
 }

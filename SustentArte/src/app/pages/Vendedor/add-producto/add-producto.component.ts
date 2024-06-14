@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { AlertsService } from '../../../services/alerts.service';
 import { CategoriaInterface } from '../../../interfaces/categoria.interface';
@@ -24,18 +24,19 @@ export class AddProductoComponent {
   route = inject(Router);
   alertService = inject(AlertsService);
   apiService2 = inject(ApiService);
+  activeRoute = inject(ActivatedRoute);
   productoForm!: FormGroup;
-  idArtesano:number = Number(sessionStorage.getItem('id_artesano'));
-  Idcategoria ?: number;
-  Idmaterial ?: number;
+  idArtesano: number = Number(sessionStorage.getItem('id_artesano'));
+  Idcategoria?: number;
+  Idmaterial?: number;
   categorias = Array<CategoriaInterface>();
   materiales = Array<MaterialesInterface>();
 
-  selecCategoria(categoria ?: number) {
-    this.Idcategoria=categoria;
+  selecCategoria(categoria?: number) {
+    this.Idcategoria = categoria;
   }
-  selecMaterial(material ?: number) {
-    this.Idmaterial=material;
+  selecMaterial(material?: number) {
+    this.Idmaterial = material;
   }
 
 
@@ -57,6 +58,25 @@ export class AddProductoComponent {
       materialesId: ['', Validators.required],
       categoriaId: ['', Validators.required]
     });
+    this.activeRoute.params.subscribe((params: any) => {
+      console.log(params);
+      if (params.id) {
+        this.id = params.id;
+        this.isNew = false;
+        this.apiService.obtenerProducto(this.id).subscribe((producto) => {
+          console.log(producto);
+
+          this.productoForm.reset(producto);
+          console.log(producto.materiales); // Verificar si materiales está definido
+          console.log(producto.categoria); // Verificar si categoria está definido
+
+          if (producto.materiales && producto.categoria) {
+            this.productoForm.patchValue({ materialesId: producto.materiales.id_material });
+            this.productoForm.patchValue({ categoriaId: producto.categoria.id_categoria });
+          }
+        })
+      }
+    })
   }
 
   async showConfirmationAlert(title: string, text: string): Promise<boolean> {
@@ -72,21 +92,30 @@ export class AddProductoComponent {
     });
     return result.isConfirmed;
   }
-  
-  agregarProducto(){
+
+  agregarProducto() {
     this.productoForm.patchValue({ artesanoId: this.idArtesano });
-    this.productoForm.patchValue({ materialesId: this.Idmaterial });
-    this.productoForm.patchValue({ categoriaId: this.Idcategoria });
-    if (this.productoForm.valid) {
+
+    if (this.productoForm.invalid) {
+      return console.error(this.productoForm.value);
+    }
+    if (this.isNew) {
+      this.productoForm.patchValue({ materialesId: this.Idmaterial });
+      this.productoForm.patchValue({ categoriaId: this.Idcategoria });
       const formProduct = this.productoForm.value as ProductosInterface;
-      this.apiService.agregarProducto(formProduct).subscribe(data=>{
+      this.apiService.agregarProducto(formProduct).subscribe(data => {
         console.log(data)
         this.productoForm.reset();
         this.alertService.alert('Producto creado', 'success');
         this.route.navigateByUrl('panelVendedor');
       })
     } else {
-      console.error('Form is invalid');
+      this.apiService.editarProducto(this.productoForm.value, this.id).subscribe(data => {
+        console.log(data);
+        this.productoForm.reset();
+        this.alertService.alert('Producto editado', 'success');
+        this.route.navigateByUrl('misProductosVendedor')
+      })
     }
   }
 }

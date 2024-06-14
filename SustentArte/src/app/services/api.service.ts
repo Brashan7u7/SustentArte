@@ -120,7 +120,10 @@ export class ApiService {
   eliminarProducto(id: number) {
     return this._http.delete(`http://localhost:3000/productos/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
-
+  editarProducto(product: ProductosInterface, id: number) {
+    console.log(product)
+    return this._http.put<ProductosInterface>(`http://localhost:3000/productos/` + id, product, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
 
   quitarStockProducto(producto: ProductoStockInterface) {
     return this._http.post<ProductosInterface>(`http://localhost:3000/productos/stock`, producto, { headers: { 'Access-Control-Allow-Origin': '*' } });

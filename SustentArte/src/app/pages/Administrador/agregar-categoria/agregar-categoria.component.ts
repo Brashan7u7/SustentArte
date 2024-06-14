@@ -74,6 +74,7 @@ export class AgregarCategoriaComponent {
       this.apiService.editarCategoria(this.formCategoria.value, this.id).subscribe(data=>{
         console.log(data);
         this.formCategoria.reset();
+        this.alertService.alert('Categoria editada', 'success');
         this.route.navigateByUrl('verCategorias')
       })
     }
