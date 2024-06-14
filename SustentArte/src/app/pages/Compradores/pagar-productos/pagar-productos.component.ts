@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
-<<<<<<< Updated upstream
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,9 +10,7 @@ import { PagoInterface } from '../../../interfaces/pago.interface';
 import { ProductosArray } from '../../../interfaces/productosArray.interface';
 import { pedidoCreateInterface } from '../../../interfaces/pedidosCreate.interface';
 import { AlertsService } from '../../../services/alerts.service';
-=======
 import { CambioStock } from '../../../interfaces/cambio-stock';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-pagar-productos',
@@ -24,7 +21,7 @@ import { CambioStock } from '../../../interfaces/cambio-stock';
 })
 export class PagarProductosComponent {
 
-  formBuilder = inject (FormBuilder);
+  formBuilder = inject(FormBuilder);
 
   private router = inject(Router);
 
@@ -34,86 +31,84 @@ export class PagarProductosComponent {
   idDetallePedido = 0;
 
   apiService = inject(ApiService);
-  total : number=0;
-  productos:Array<any>[]=[];
-  idProducto:number=0;
-  cantidad:number=0;
-  datosStock?:CambioStock;
+  total: number = 0;
+  productos: Array<any>[] = [];
+  idProducto: number = 0;
+  cantidad: number = 0;
+  datosStock?: CambioStock;
 
-  constructor(){
+  constructor() {
     this.cart.forEach(producto => {
       this.total += producto.precio_Venta;
     });
 
     this.formPago = this.formBuilder.group({
-      nombreTitular :['', Validators.required],
-      numTarjeta :['', Validators.required],
-      fechaVencimiento :['', Validators.required],
-      anoVencimiento :['', Validators.required],
-      cvv :['', Validators.required],
-      tipoTarjeta :['', Validators.required],
+      nombreTitular: ['', Validators.required],
+      numTarjeta: ['', Validators.required],
+      fechaVencimiento: ['', Validators.required],
+      anoVencimiento: ['', Validators.required],
+      cvv: ['', Validators.required],
+      tipoTarjeta: ['', Validators.required],
     })
 
-    
+
   }
-  get cart(){
+  get cart() {
     console.log(this.apiService.carrito);
     return this.apiService.carrito;
   }
-
-<<<<<<< Updated upstream
-  pagar(){
+  pagar() {
     const detallePedido = this.formPago.value as PedidoDetalleInterface;
-    this.apiService.crearDetallePedido(detallePedido).subscribe((res:PedidoDetalleInterface) => {
+    this.apiService.crearDetallePedido(detallePedido).subscribe((res: PedidoDetalleInterface) => {
       this.idDetallePedido = res.id_detalle || 0;
       console.log(this.idDetallePedido);
-      
+
     });
     const date = new Date();
     const idComprador = Number(sessionStorage.getItem('id_comprador')) || 0;
     const aleatorio = Math.floor(Math.random() * 1000000);
-    const bodyPago:PagoInterface = {
+    const bodyPago: PagoInterface = {
       fecha_pago: date,
 
       monto_pago: this.total,
-  
+
       metodo_pago: "tarjeta",
-  
-      num_transaccion: "1234567"+aleatorio,
-  
+
+      num_transaccion: "1234567" + aleatorio,
+
       edo_pago: "pagado",
-  
+
       detalleId: this.idDetallePedido,
-  
+
       compradorId: idComprador,
     }
 
-    this.apiService.crearPago(bodyPago).subscribe((res:PagoInterface) => {
+    this.apiService.crearPago(bodyPago).subscribe((res: PagoInterface) => {
       console.log(res);
     });
 
     const carrito = this.apiService.obtenerCarrito()
 
-    const arrayProductos:Array<ProductosArray> = [];
+    const arrayProductos: Array<ProductosArray> = [];
 
     for (let i = 0; i < carrito.length; i++) {
       const producto = carrito[i];
       arrayProductos.push({
-        id_producto:producto.id_producto
+        id_producto: producto.id_producto
       });
     }
 
-    const bodyPedido:pedidoCreateInterface = {
+    const bodyPedido: pedidoCreateInterface = {
       fecha_pedido: date,
 
-      numero_Pedido: "2242"+aleatorio+"123"+aleatorio,
-  
+      numero_Pedido: "2242" + aleatorio + "123" + aleatorio,
+
       precio_Total_Pedido: this.total,
-  
+
       edo_Pedido: 0,
-  
+
       productosA: arrayProductos,
-      
+
       compradorId: idComprador,
     }
 
@@ -122,17 +117,16 @@ export class PagarProductosComponent {
     });
     this.alertService.alert('Compra realizada con exito', 'success');
     this.router.navigate(['/productos']);
-=======
-  quitarStock(){
-    this.cart.forEach(producto => {
-      const datosStock: CambioStock = {
-        id_producto: producto.id_producto,
-        cantidad: 1
-      };
-      this.apiService.quitarStock(datosStock).subscribe(data=>{
-        console.log('Stock Actualizado');
-      })
-    });
->>>>>>> Stashed changes
+    /*quitarStock(){
+      this.cart.forEach(producto => {
+        const datosStock: CambioStock = {
+          id_producto: producto.id_producto,
+          cantidad: 1
+        };
+        this.apiService.quitarStock(datosStock).subscribe(data => {
+          console.log('Stock Actualizado');
+        })
+      });
+    }*/
   }
 }
