@@ -89,6 +89,5 @@ export class CrearArtesanoComponent {
         this.route.navigateByUrl('vendedoresAdmin')
       })
     }
-
   }
 }

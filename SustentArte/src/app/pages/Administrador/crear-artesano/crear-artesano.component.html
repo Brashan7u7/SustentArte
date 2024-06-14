@@ -4,7 +4,7 @@
             <a class="btn btn-danger btn-sm" href="panelAdmin" role="button">Regresar</a>
         </div>
         <div class="col-11 text-center">
-            <h1>Crear Artesano <i class="fa-solid fa-folder-plus"></i></h1>
+            <h1>{{isNew ? 'Crear Artesano' : 'Editar Artesano' }} <i class="fa-solid fa-folder-plus"></i></h1>
         </div>
     </div>
     <form [formGroup]="formArtesano" (ngSubmit)="crearArtesano()">
@@ -52,6 +52,6 @@
             <label for="localidad">Localidad</label>
             <input id="localidad" formControlName="localidad" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Crear Artesano</button>
+        <button type="submit" class="btn btn-primary mt-3">{{isNew ? 'Agregar Artesano' : 'Guardar cambios' }}</button>
     </form>
 </div>
