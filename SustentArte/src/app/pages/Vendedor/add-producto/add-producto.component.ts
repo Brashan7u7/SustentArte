@@ -9,6 +9,7 @@ import { CategoriaInterface } from '../../../interfaces/categoria.interface';
 import { MaterialesInterface } from '../../../interfaces/materiales.interface';
 import { ProductosInterface } from '../../../interfaces/producto.interface';
 import Swal from 'sweetalert2';
+import { ProductosUpInterface } from '../../../interfaces/productosUpInterface';
 
 @Component({
   selector: 'app-add-producto',
@@ -54,9 +55,6 @@ export class AddProductoComponent {
       precio_Venta: ['', Validators.required],
       stock: [1, [Validators.required, Validators.min(1)]],
       historia: ['', Validators.required],
-      artesanoId: ['', Validators.required],
-      materialesId: ['', Validators.required],
-      categoriaId: ['', Validators.required]
     });
     this.activeRoute.params.subscribe((params: any) => {
       //console.log(params);
@@ -112,7 +110,7 @@ export class AddProductoComponent {
         this.route.navigateByUrl('panelVendedor');
       })
     } else {
-      this.apiService.editarProducto(this.productoForm.value, this.id).subscribe(data => {
+      this.apiService.editarProducto(this.productoForm.value as ProductosUpInterface, this.id).subscribe(data => {
         //console.log(data);
         this.productoForm.reset();
         this.alertService.alert('Producto editado', 'success');
