@@ -1,6 +1,10 @@
 <div class="container-fluid mt-2 mb-5">
   <div>
-    <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="../../panelVendedor/">Regresar</a>
+    @if (isNew) {
+      <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="../panelVendedor/">Regresar</a>
+    }@else {
+      <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="../../panelVendedor/">Regresar</a>
+    }
   </div>
   <div class="row titulo">
     <h5>{{isNew ? 'Agregar producto': 'Editar producto'}}</h5>

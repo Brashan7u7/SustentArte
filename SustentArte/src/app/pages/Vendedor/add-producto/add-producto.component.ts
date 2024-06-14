@@ -95,13 +95,15 @@ export class AddProductoComponent {
 
   agregarProducto() {
     this.productoForm.patchValue({ artesanoId: this.idArtesano });
-
+    if(this.isNew){
+      this.productoForm.patchValue({ materialesId: this.Idmaterial });
+      this.productoForm.patchValue({ categoriaId: this.Idcategoria });
+    }
     if (this.productoForm.invalid) {
       return console.error(this.productoForm.value);
     }
     if (this.isNew) {
-      this.productoForm.patchValue({ materialesId: this.Idmaterial });
-      this.productoForm.patchValue({ categoriaId: this.Idcategoria });
+      
       const formProduct = this.productoForm.value as ProductosInterface;
       this.apiService.agregarProducto(formProduct).subscribe(data => {
         console.log(data)
