@@ -29,7 +29,7 @@ export class AgregarMaterialComponent {
       descripcion_material: ['', Validators.required]
     });
     this.activeRoute.params.subscribe((params: any) => {
-      console.log(params);
+      //console.log(params);
       if (params.id) {
         this.id = params.id;
         this.isNew = false;
@@ -55,20 +55,20 @@ export class AgregarMaterialComponent {
   }
 
   agregarMaterial() {
-    console.log(this.formMaterial.value)
+    //console.log(this.formMaterial.value)
     if (this.formMaterial.invalid) {
-      return console.log('Datos invalidos en el formulario')
+      return //console.log('Datos invalidos en el formulario')
     }
     if(this.isNew){
       this.apiService.agregarMaterial(this.formMaterial.value).subscribe(data=>{
-        console.log(data)
+        //console.log(data)
         this.formMaterial.reset();
         this.alertService.alert('Artesano creado', 'success');
         this.route.navigateByUrl('verMateriales');
       });
     }else{
       this.apiService.editarMaterial(this.formMaterial.value,this.id).subscribe(data=>{
-        console.log(data);
+        //console.log(data);
         this.formMaterial.reset();
         this.route.navigateByUrl('verMateriales')
         

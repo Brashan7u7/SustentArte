@@ -28,7 +28,7 @@ export class VerCategoriasComponent {
   }
   eliminarCategoria(categoria : CategoriaInterface){
     this.apiService.eliminarCategoria(categoria).subscribe(categoria =>{
-      console.log(categoria);
+      //console.log(categoria);
       this.obtenerCategorias();
     });
   }

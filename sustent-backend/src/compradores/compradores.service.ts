@@ -60,7 +60,7 @@ export class CompradoresService {
             return savecomprador
 
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException("Error al crear el comprador",HttpStatus.INTERNAL_SERVER_ERROR)
 

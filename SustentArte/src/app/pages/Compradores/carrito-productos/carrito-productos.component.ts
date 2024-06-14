@@ -19,7 +19,7 @@ export class CarritoProductosComponent {
     });
   }
   get cart(){
-    console.log(this.apiService.carrito);
+    //console.log(this.apiService.carrito);
     return this.apiService.carrito;
   }
 

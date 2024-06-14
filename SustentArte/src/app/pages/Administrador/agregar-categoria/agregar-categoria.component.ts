@@ -28,7 +28,7 @@ export class AgregarCategoriaComponent {
       nombre_categoria: ['', Validators.required]
     });
     this.activeRoute.params.subscribe((params: any) => {
-      console.log(params);
+      //console.log(params);
       if (params.id) {
         this.id = params.id;
         this.isNew = false;
@@ -54,17 +54,17 @@ export class AgregarCategoriaComponent {
 
 
   agregarCategoria() {
-    console.log(this.formCategoria.value);
+    //console.log(this.formCategoria.value);
     
     
     if (this.formCategoria.invalid) {
-      return console.log("Form rellenado de manera incorrecta");
+      return //console.log("Form rellenado de manera incorrecta");
     }
 
     if(this.isNew){
       const formCategory = this.formCategoria.value as CategoriaInterface;
       this.apiService.agregarCategoria(formCategory).subscribe(data=>{
-        console.log(data)
+        //console.log(data)
         this.formCategoria.reset();
         this.alertService.alert('Categoria creada', 'success');
         this.route.navigateByUrl('verCategorias');
@@ -72,7 +72,7 @@ export class AgregarCategoriaComponent {
 
     }else{
       this.apiService.editarCategoria(this.formCategoria.value, this.id).subscribe(data=>{
-        console.log(data);
+        //console.log(data);
         this.formCategoria.reset();
         this.alertService.alert('Categoria editada', 'success');
         this.route.navigateByUrl('verCategorias')

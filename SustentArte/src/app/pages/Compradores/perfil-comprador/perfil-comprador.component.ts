@@ -17,11 +17,11 @@ export class PerfilCompradorComponent {
   idComprador = "";
   constructor() {
     this.idComprador = sessionStorage.getItem('id_comprador')||"";
-    console.log(this.idComprador);
+    //console.log(this.idComprador);
 
     this.apiService.obtenerComprador(this.idComprador).subscribe((res:CompradoresInterface) => {
       this.comprador = res;
-      console.log(this.comprador);
+      //console.log(this.comprador);
     });
   }
 }

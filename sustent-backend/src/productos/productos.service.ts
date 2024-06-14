@@ -22,7 +22,7 @@ export class ProductosService {
 
             return productos;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -35,9 +35,18 @@ export class ProductosService {
             if (!productoFind) {
                 return new HttpException('No se encontro el producto',HttpStatus.NOT_FOUND);
             }
-            productoFind.stock = productoFind.stock - cantidad;
+            console.log(productoFind);
+            console.log(cantidad);
+            console.log(productoFind.stock);
+            
+            
+            const cantidadProducto = productoFind.stock - cantidad;
+            productoFind.stock = cantidadProducto;
+            
             return await this.dataSource.getRepository(ProductoEntity).save(productoFind);
         } catch (error) {
+            console.log(error);
+            
             throw new HttpException('Error al modificar el stock del producto',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -90,7 +99,7 @@ export class ProductosService {
 
             return saveProducto;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al crear el producto',HttpStatus.INTERNAL_SERVER_ERROR);
 
@@ -139,7 +148,7 @@ export class ProductosService {
 
             return productos;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -156,7 +165,7 @@ export class ProductosService {
 
             return productos;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
         }

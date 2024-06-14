@@ -50,7 +50,7 @@ export class EditarCompradorComponent {
     const bodyComprador = this.formEditarComprador.value as CompradoresInterface;
     const idComprador = Number(sessionStorage.getItem('id_comprador')) || 0;
     this.apiService.editarComprador(bodyComprador,idComprador).subscribe((res) => {
-      console.log(res);
+      //console.log(res);
     });
     this.alertService.alert('Usuario Actualizado', 'info');
     this.router.navigate(['/perfilComprador'])

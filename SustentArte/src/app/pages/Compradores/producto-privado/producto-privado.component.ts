@@ -43,7 +43,7 @@ export class ProductoPrivadoComponent {
       this.carritoButom = false
     }, 2000);
     this.alertService.alert('Agregado a carrito', 'info');
-    console.log(this.apiService.obtenerCarrito());
+    //console.log(this.apiService.obtenerCarrito());
     this.routerR.navigate(['/carritoComprador'],{ queryParams: { prod: JSON.stringify(id) }});
   }
 

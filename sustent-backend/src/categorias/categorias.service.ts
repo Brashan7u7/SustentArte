@@ -87,7 +87,7 @@ export class CategoriasService {
             return await this.dataSource.getRepository(CategoriasEntity).remove(findCategoria);
 
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al eliminar la categoria', HttpStatus.INTERNAL_SERVER_ERROR);
         }

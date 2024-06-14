@@ -43,6 +43,11 @@ export class ApiService {
     return this.carrito;
   }
 
+  vaciarCarrito() {
+    this.carrito = [];
+    localStorage.setItem('cart', JSON.stringify(this.carrito));
+  }
+
   eliminarProductoCarrito(id: number) {
     const indice = this.carrito.findIndex((producto) => producto.id_producto === id);
     if (indice !== -1) {
@@ -75,11 +80,13 @@ export class ApiService {
     return this._http.put<CompradoresInterface>(`http://localhost:3000/compradores/${id}`, comprador, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   quitarStock(datosStock:CambioStock){
-    return this._http.post<any>('http://localhost:3000/stock', datosStock, { headers: { 'Access-Control-Allow-Origin': '*' } });
+    return this._http.post<any>('http://localhost:3000/productos/stock', datosStock, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
 
   crearDetallePedido(pedido: PedidoDetalleInterface) {
+    //console.log(pedido);
+    
     return this._http.post<PedidoDetalleInterface>('http://localhost:3000/detallepago', pedido, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
@@ -110,7 +117,7 @@ export class ApiService {
     return this._http.delete(`http://localhost:3000/materiales/${material.id_material}`);
   }
   editarMaterial(material: MaterialesInterface, id: number) {
-    console.log(material)
+    //console.log(material)
     return this._http.put<CategoriaInterface>(`http://localhost:3000/materiales/` + id, material, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
@@ -130,7 +137,7 @@ export class ApiService {
     return this._http.delete(`http://localhost:3000/productos/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   editarProducto(product: ProductosInterface, id: number) {
-    console.log(product)
+    //console.log(product)
     return this._http.put<ProductosInterface>(`http://localhost:3000/productos/${id}`, product, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
@@ -143,7 +150,7 @@ export class ApiService {
   ////////////////////////Categorias/////////////////////////
   //////////////////////////////////////////////////////////
   agregarCategoria(categoria: CategoriaInterface) {
-    console.log(categoria);
+    //console.log(categoria);
     return this._http.post<CategoriaInterface>('http://localhost:3000/categorias', categoria, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   obtenerCategorias() {
@@ -156,7 +163,7 @@ export class ApiService {
     return this._http.delete(`http://localhost:3000/categorias/${categoria.id_categoria}`);
   }
   editarCategoria(categoria: CategoriaInterface, id: number) {
-    console.log(categoria)
+    //console.log(categoria)
     return this._http.put<CategoriaInterface>(`http://localhost:3000/categorias/` + id, categoria, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
@@ -183,7 +190,7 @@ export class ApiService {
   ////////////////////////Adimnistrador/////////////////////
   //////////////////////////////////////////////////////////
   loginAdmin(admin: Admin) {
-    console.log(admin);
+    //console.log(admin);
     return this._http.post<CategoriaInterface>('http://localhost:3000/admin/login', admin, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   obtenerArtesanos() {
@@ -210,7 +217,7 @@ export class ApiService {
   ////////////////////////Artesanos/////////////////////////
   //////////////////////////////////////////////////////////
   loginArtesano(artesano: ArtesanoInterface) {
-    console.log(artesano);
+    //console.log(artesano);
     return this._http.post<CategoriaInterface>('http://localhost:3000/atesanos/login', artesano, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   agregarProducto(product: ProductosInterface) {

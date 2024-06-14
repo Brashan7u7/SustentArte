@@ -59,16 +59,16 @@ export class AddProductoComponent {
       categoriaId: ['', Validators.required]
     });
     this.activeRoute.params.subscribe((params: any) => {
-      console.log(params);
+      //console.log(params);
       if (params.id) {
         this.id = params.id;
         this.isNew = false;
         this.apiService.obtenerProducto(this.id).subscribe((producto) => {
-          console.log(producto);
+          //console.log(producto);
 
           this.productoForm.reset(producto);
-          console.log(producto.materiales); // Verificar si materiales está definido
-          console.log(producto.categoria); // Verificar si categoria está definido
+          //console.log(producto.materiales); // Verificar si materiales está definido
+          //console.log(producto.categoria); // Verificar si categoria está definido
 
           if (producto.materiales && producto.categoria) {
             this.productoForm.patchValue({ materialesId: producto.materiales.id_material });
@@ -106,14 +106,14 @@ export class AddProductoComponent {
       
       const formProduct = this.productoForm.value as ProductosInterface;
       this.apiService.agregarProducto(formProduct).subscribe(data => {
-        console.log(data)
+        //console.log(data)
         this.productoForm.reset();
         this.alertService.alert('Producto creado', 'success');
         this.route.navigateByUrl('panelVendedor');
       })
     } else {
       this.apiService.editarProducto(this.productoForm.value, this.id).subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.productoForm.reset();
         this.alertService.alert('Producto editado', 'success');
         this.route.navigateByUrl('misProductosVendedor')

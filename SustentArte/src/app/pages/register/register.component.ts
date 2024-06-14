@@ -54,17 +54,17 @@ export class RegisterComponent {
   }
 
   crearComprador() {
-    console.log(this.formComprador.value);
+    //console.log(this.formComprador.value);
     
     
     if (this.formComprador.invalid) {
-      return console.log("Form rellenado de manera incorrecta");
+      return //console.log("Form rellenado de manera incorrecta");
     }
 
     if(this.isNew){
       const formComprador = this.formComprador.value as CompradoresInterface;
       this.apiService.crearComprador(formComprador).subscribe(data=>{
-        console.log(data)
+        //console.log(data)
         this.formComprador.reset();
         this.alertService.alert('Tes has rergistrado', 'success');
         this.route.navigateByUrl('login');
@@ -72,7 +72,7 @@ export class RegisterComponent {
       
     }else{
       this.apiService.editarComprador(this.formComprador.value, this.id).subscribe(data=>{
-        console.log(data);
+        //console.log(data);
         this.formComprador.reset();
         this.route.navigateByUrl('login')
       })

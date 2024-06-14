@@ -44,7 +44,9 @@ export class ProductosController {
 
     @Post('stock')
     async updateStock(@Body() producto:ProductoStockDto) {
-        return this.serviceProductos.eliminarStock(producto.id_producto,producto.stock);
+        console.log(producto);
+        
+        return this.serviceProductos.eliminarStock(producto.id_producto,1);
     }
 
     @Delete(':id')

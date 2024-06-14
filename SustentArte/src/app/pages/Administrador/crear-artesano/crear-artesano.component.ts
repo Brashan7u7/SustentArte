@@ -38,7 +38,7 @@ export class CrearArtesanoComponent {
       localidad: ['', Validators.required]
     });
     this.activeRoute.params.subscribe((params: any) => {
-      console.log(params);
+      //console.log(params);
       if (params.id) {
         this.id = params.id;
         this.isNew = false;
@@ -66,17 +66,17 @@ export class CrearArtesanoComponent {
 
 
   crearArtesano() {
-    console.log(this.formArtesano.value);
+    //console.log(this.formArtesano.value);
     
     
     if (this.formArtesano.invalid) {
-      return console.log("Form rellenado de manera incorrecta");
+      return //console.log("Form rellenado de manera incorrecta");
     }
 
     if(this.isNew){
       const formArtesano = this.formArtesano.value as ArtesanoInterface;
       this.apiService.crearArtesano(formArtesano).subscribe(data=>{
-        console.log(data)
+        //console.log(data)
         this.formArtesano.reset();
         this.alertService.alert('Artesano creado', 'success');
         this.route.navigateByUrl('vendedoresAdmin');
@@ -84,7 +84,7 @@ export class CrearArtesanoComponent {
       
     }else{
       this.apiService.editarArtesano(this.formArtesano.value, this.id).subscribe(data=>{
-        console.log(data);
+        //console.log(data);
         this.formArtesano.reset();
         this.route.navigateByUrl('vendedoresAdmin')
       })

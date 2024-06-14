@@ -25,11 +25,11 @@ export class ProductosCompradosComponent {
   constructor() {
 
     this.idComprador = sessionStorage.getItem('id_comprador')||"";
-    console.log(this.idComprador);
+    //console.log(this.idComprador);
     
     this.apiService.pedidosComprador(this.idComprador).subscribe((res:PedidosInterface[]) => {
       this.pedidosComprador = res;
-      console.log(this.pedidosComprador);
+      //console.log(this.pedidosComprador);
 
 
       this.pedidosComprador.forEach((pedido:PedidosInterface) => {
@@ -53,7 +53,7 @@ export class ProductosCompradosComponent {
         });
       });
       
-      console.log(this.productosComprador);
+      //console.log(this.productosComprador);
       
   });
 }

@@ -54,19 +54,19 @@ export class PagarProductosComponent {
 
   }
   get cart() {
-    console.log(this.apiService.carrito);
+    //console.log(this.apiService.carrito);
     return this.apiService.carrito;
   }
   pagar() {
     const detallePedido = this.formPago.value as PedidoDetalleInterface;
-    this.apiService.crearDetallePedido(detallePedido).subscribe((res: PedidoDetalleInterface) => {
+     this.apiService.crearDetallePedido(detallePedido).subscribe((res: PedidoDetalleInterface) => {
       this.idDetallePedido = res.id_detalle || 0;
-      console.log(this.idDetallePedido);
 
-    });
-    const date = new Date();
+      const date = new Date();
     const idComprador = Number(sessionStorage.getItem('id_comprador')) || 0;
     const aleatorio = Math.floor(Math.random() * 1000000);
+    //console.log("id Detalle Pago",this.idDetallePedido);
+    
     const bodyPago: PagoInterface = {
       fecha_pago: date,
 
@@ -84,7 +84,8 @@ export class PagarProductosComponent {
     }
 
     this.apiService.crearPago(bodyPago).subscribe((res: PagoInterface) => {
-      console.log(res);
+      //console.log(res);
+      //console.log("Pago Creado");
     });
 
     const carrito = this.apiService.obtenerCarrito()
@@ -113,20 +114,26 @@ export class PagarProductosComponent {
     }
 
     this.apiService.crearPedido(bodyPedido).subscribe((res) => {
-      console.log(res);
+      //console.log(res);
+      //console.log("Pedido Creado");
+      
     });
-    this.alertService.alert('Compra realizada con exito', 'success');
-    this.router.navigate(['/productos']);
-    /*quitarStock(){
       this.cart.forEach(producto => {
         const datosStock: CambioStock = {
           id_producto: producto.id_producto,
           cantidad: 1
         };
         this.apiService.quitarStock(datosStock).subscribe(data => {
-          console.log('Stock Actualizado');
+          //console.log(data);
+          //console.log('Stock Actualizado');
         })
       });
-    }*/
+
+    this.apiService.vaciarCarrito();
+
+    this.alertService.alert('Compra realizada con exito', 'success');
+    this.router.navigate(['/productos']);
+    });
+    
   }
 }

@@ -22,7 +22,7 @@ export class AdminService {
             }
             return admins;
         }catch(error){
-            console.log(error);
+            //console.log(error);
             throw new HttpException('Error al obtener los admins',  HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -116,11 +116,11 @@ export class AdminService {
                 return {artesanoFind,rol:'artesano'};
             }
             const compradorFind = await this.dataSource.getRepository(compradorEntity).findOne({where:{correo:bodyLogin.email}});
-            console.log(compradorFind);
+            //console.log(compradorFind);
             
             if (compradorFind) {
                 const validatePassword:boolean = await bcrypt.compare(bodyLogin.password,compradorFind.password);
-                console.log(validatePassword);
+                //console.log(validatePassword);
                 
                 if (!validatePassword) {
                     return new HttpException('Contraseña incorrecta',HttpStatus.UNAUTHORIZED);

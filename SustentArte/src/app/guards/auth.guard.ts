@@ -6,10 +6,10 @@ export class AuthGuard implements CanActivate{
   constructor(private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Promise<boolean | UrlTree> {
     if(sessionStorage.getItem('rol')=='administador'){
-      console.log('Authoized');
+      //console.log('Authoized');
       return true;
     }else{
-      console.log('Unauthorized');
+      //console.log('Unauthorized');
       if(sessionStorage.getItem('rol')=='atesano'){
         this.router.navigate(['panelVendedor']); // Redirigir a la página de login
         return false;

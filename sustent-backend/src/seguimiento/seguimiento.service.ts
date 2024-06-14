@@ -18,7 +18,7 @@ export class SeguimientoService {
 
             return seguimientos;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al obtener los seguimientos',HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -52,11 +52,11 @@ export class LoginComponent {
       return;
     }
 
-    console.log(this.formLogin.value);
+    //console.log(this.formLogin.value);
     this.apiService.loginAdmin(this.formLogin.value).subscribe((data: any) => {
-        console.log(data);
+        //console.log(data);
         if (data.rol === 'admin') {
-          console.log();
+          //console.log();
           this.formLogin.reset();
           this.alertService.alert('Bienvenido Administrador', 'info');
           sessionStorage.setItem('id_artesano', data.adminFind.id_Admin);

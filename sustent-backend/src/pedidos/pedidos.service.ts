@@ -24,7 +24,7 @@ export class PedidosService {
 
             return pedidos;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al obtener los pedidos',HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -40,7 +40,7 @@ export class PedidosService {
 
             return pedidos;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al obtener los pedidos',HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -69,7 +69,7 @@ export class PedidosService {
             }
             return findPedido.productos;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -79,7 +79,7 @@ export class PedidosService {
     {
         try {
             
-            console.log(pedido);
+            //console.log(pedido);
             
             const pedidoBody = await this.dataSource.getRepository(PedidosEntity).create(pedido);
             
@@ -124,12 +124,12 @@ export class PedidosService {
                 }
 
                 const savePedProd = await this.dataSource.getRepository(PedidosProductoEntity).save(bodyPedProd);
-                console.log(savePedProd);
+                //console.log(savePedProd);
                 
             }
             return findPedido;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al crear el pedido',HttpStatus.INTERNAL_SERVER_ERROR);
         }

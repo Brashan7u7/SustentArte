@@ -27,7 +27,7 @@ export class VerVentasComponent {
           venta.comprador = comprador;
         });
     });
-    console.log(this.ventas);
+    //console.log(this.ventas);
     
   });
 } 

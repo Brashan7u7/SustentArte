@@ -19,7 +19,7 @@ export class ArtesanosService {
 
             return artesanos;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException('Error al obtener los artesanos',HttpStatus.INTERNAL_SERVER_ERROR);
         }

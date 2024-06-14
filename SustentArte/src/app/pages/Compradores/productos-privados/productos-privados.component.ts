@@ -43,7 +43,7 @@ export class ProductosPrivadosComponent {
       this.categorias = res;
     });
 
-    console.log(this.apiService.obtenerCarrito());
+    //console.log(this.apiService.obtenerCarrito());
     this.rol = sessionStorage.getItem('rol') || '';
     this.navbarService.navbarUpdate$.subscribe(() => {
       this.rol = sessionStorage.getItem('rol') || '';
@@ -59,7 +59,7 @@ export class ProductosPrivadosComponent {
       this.carritoButom = false
     }, 2000);
     this.alertService.alert('Agregado a carrito', 'info');
-    console.log(this.apiService.obtenerCarrito());
+    //console.log(this.apiService.obtenerCarrito());
   }
 
   filtrarCategoria(categoria: string) {

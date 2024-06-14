@@ -28,7 +28,7 @@ export class VerMaterialesComponent {
   }
   eliminarMaterial(material : MaterialesInterface){
     this.apiService.eliminarMaterial(material).subscribe(material =>{
-      console.log(material);
+      //console.log(material);
       this.obtenerMateriales();
     });
   }

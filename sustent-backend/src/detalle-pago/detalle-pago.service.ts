@@ -46,9 +46,11 @@ export class DetallePagoService {
         try {
             const bodyDetallePago = this.dataSources.getRepository(DetallePagoEntity).create(detallePago);
 
-            return await this.dataSources.getRepository(DetallePagoEntity).save(bodyDetallePago);
-
+            const saveDetallePago = await this.dataSources.getRepository(DetallePagoEntity).save(bodyDetallePago);
+            return saveDetallePago
         } catch (error) {
+            //console.log(error);
+            
             throw new HttpException('Error al crear el detallePago',HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }

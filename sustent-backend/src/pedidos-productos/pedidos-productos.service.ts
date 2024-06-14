@@ -35,7 +35,7 @@ export class PedidosProductosService {
         }
           return findPedido;
       } catch (error) {
-          console.log(error);
+          //console.log(error);
           
           throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
       }
@@ -51,7 +51,7 @@ export class PedidosProductosService {
 
           return pedidos;
       } catch (error) {
-          console.log(error);
+          //console.log(error);
           
           throw new HttpException('Error al obtener los pedidos',HttpStatus.INTERNAL_SERVER_ERROR);
       }

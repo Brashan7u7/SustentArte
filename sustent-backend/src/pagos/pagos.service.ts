@@ -49,7 +49,8 @@ export class PagosService {
     async createPago(pago: PagosDto) {
         try {
             const bodyPago = this.dataSources.getRepository(PagosEntity).create(pago);
-
+            //console.log(pago);
+            
             const findDetalle = await this.dataSources
                 .getRepository(DetallePagoEntity)
                 .findOne({
@@ -87,7 +88,7 @@ export class PagosService {
             
             return savePago
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             
             throw new HttpException(
                 'Error al crear el pago',
