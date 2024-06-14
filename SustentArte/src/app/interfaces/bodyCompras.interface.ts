@@ -4,6 +4,6 @@ export interface bodyCompras
     nombreProducto: string,
     descripcionProducto: string,
     fechaCompra: Date,
-    estado : number,
+    estado : string,
     total : number,
 }

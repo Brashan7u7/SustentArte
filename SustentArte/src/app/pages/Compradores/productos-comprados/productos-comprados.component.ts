@@ -42,7 +42,6 @@ export class ProductosCompradosComponent {
           this.pedidosComprador.forEach((value:PedidosArtesanosInterface) => {
             this.productosComprados.push(value.productos);
             this.pedidosComprados.push(value.pedidos);
-            const date = new Date();
             const comprasBody:bodyCompras =
             {
               imagen: this.productosComprados[index].imagen,
