@@ -10,19 +10,19 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './ver-productos.component.html',
-  styleUrl: './ver-productos.component.css'
+  styleUrls: ['./ver-productos.component.css']
 })
 export class VerProductosComponent {
   apiService = inject(ApiService);
   router = inject(Router);
-  idArtesano:number;
+  idArtesano: number;
   artesano = <ArtesanoInterface>{};
   productos = Array<ProductosInterface>();
 
-  constructor(){
+  constructor() {
     this.idArtesano = Number(sessionStorage.getItem('id_artesano'));
     console.log(this.idArtesano);
-    
+
     this.apiService.obtenerArtesano(this.idArtesano).subscribe((res) => {
       this.artesano = res;
     });
@@ -31,8 +31,20 @@ export class VerProductosComponent {
     });
   }
 
-  editarProducto(producto : ProductosInterface){
-    this.router.navigateByUrl('/editProduct/'+producto.id_producto)
+  obtenerProductos() {
+    this.apiService.obtenerProductosxArtesano(this.idArtesano).subscribe((res) => {
+      this.productos = res;
+    });
   }
 
+  editarProducto(producto: ProductosInterface) {
+    this.router.navigateByUrl('/editProduct/' + producto.id_producto);
+  }
+
+  eliminarProducto(product: ProductosInterface) {
+    this.apiService.eliminarProducto(product.id_producto).subscribe(() => {
+      console.log('Producto eliminado');
+      this.obtenerProductos();
+    });
+  }
 }

@@ -66,7 +66,7 @@ export class RegisterComponent {
       this.apiService.crearComprador(formComprador).subscribe(data=>{
         console.log(data)
         this.formComprador.reset();
-        this.alertService.alert('Comprador creado', 'success');
+        this.alertService.alert('Tes has rergistrado', 'success');
         this.route.navigateByUrl('login');
       });
       
