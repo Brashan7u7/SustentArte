@@ -44,7 +44,7 @@ export class PedidosProductosService {
   async pedidosArtesano(idArtesano:number)
   {
       try {
-          const pedidos = await this.dataSource.getRepository(PedidosProductoEntity).find({where:{idArtesano:idArtesano},relations:['pedidos']});
+          const pedidos = await this.dataSource.getRepository(PedidosProductoEntity).find({where:{idArtesano:idArtesano},relations:['pedidos','productos']});
           if (!pedidos) {
               return new HttpException('No se encontraron pedidos',HttpStatus.NOT_FOUND);
           }

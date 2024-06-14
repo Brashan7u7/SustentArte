@@ -22,13 +22,13 @@ export class VerVentasComponent {
 
     this.apiService.pedidoArtesano(idArtesano).subscribe((ventas:Array<PedidosArtesanosInterface>) => {
       this.ventas = ventas;
+      console.log(ventas);
+      
       ventas.forEach((venta:PedidosArtesanosInterface) => {
         this.apiService.obtenerComprador(venta.idComprador.toString()).subscribe((comprador:CompradoresInterface) => {
           venta.comprador = comprador;
         });
     });
-    //console.log(this.ventas);
-    
   });
 } 
 
