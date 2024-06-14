@@ -13,11 +13,20 @@
 .elementos{
   margin-top: 1vh;
 }
+
+
 @media (max-width: 580px) {
   .logo{
     width: 100px;
     height: 65px;
   }
+}
+@media (max-width: 995px) {
+  .closeSession{
+    font-size: 13px;
+    padding: 2px;
+  }
+  
 }
 @media (max-height: 1770px) {
   .bgColor{
