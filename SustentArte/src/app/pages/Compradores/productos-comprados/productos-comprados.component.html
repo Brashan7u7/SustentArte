@@ -6,35 +6,26 @@
         <h5 class="titulo">Productos comprados:</h5>
         <hr class="linea">
     </div>
-    @for (item of productosComprador; track $index) {
     <div class="card producto">
         <div class="row">
             <div class="col-4">
-                <img class="card-img-top productoimg" [src]="item.imagen" alt="Title" />
+                <img class="card-img-top productoimg" src="https://images.pexels.com/photos/5602996/pexels-photo-5602996.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Title" />
             </div>
             <div class="col-4">
                 <div class="card-body">
-                    <h4 class="card-title tituloProd">{{item.nombreP}}</h4>
-                    <p class="card-text descProd">{{item.descripcion}}</p>
+                    <h4 class="card-title tituloProd">camisa de tela</h4>
+                    <p class="card-text descProd">camisa de tela tallada</p>
                 </div>
             </div>
             <div class="col-2">
                 <div class="card-body">
-                    <a href="" class="accion"> <p class="card-title iconosVisibles">Comprado el: <span class="fechaCompra">{{item.fecha_entrega}}</span></p></a>
-                    <a href="" class="accion"> <p class="card-title iconosVisibles">Total: <span class="totalCompra">{{item.cantidad}}</span></p> </a>
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Comprado el: <span class="fechaCompra">13/06/24</span></p></a>
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Total: <span class="totalCompra">100</span></p> </a>
                 </div>
             </div>
             <div class="col-2">
                 <div class="card-body">
-                    @if (item.estado === 0) {
                     <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">En Proceso</span></p> </a>
-                    }
-                    @if (item.estado === 1) {
-                        <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">En camino</span></p> </a>
-                        }
-                        @if (item.estado === 2) {
-                            <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">Entregado</span></p> </a>
-                            }
                 </div>
             </div>
         </div>
@@ -43,7 +34,6 @@
         </div>
         
     </div>
-}
     
 
 </div>

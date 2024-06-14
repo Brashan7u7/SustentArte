@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { ProductosInterface } from '../../interfaces/producto.interface';
 import { CategoriaInterface } from '../../interfaces/categoria.interface';
+import { AlertsService } from '../../services/alerts.service';
 
 @Component({
   selector: 'app-products',
@@ -18,9 +19,12 @@ export class ProductsComponent {
 
   private apiService = inject(ApiService);
 
+  private alertService = inject(AlertsService)
+
   productos = Array<ProductosInterface>();
 
   categorias = Array<CategoriaInterface>();
+  carritoButom = false
 
 
   constructor() {
@@ -48,6 +52,17 @@ export class ProductsComponent {
         prod: JSON.stringify(id)
       }
     });
+  }
+
+  
+  agregarCarrito(id: number) {
+    this.apiService.agregarCarrito(id);
+    this.carritoButom = true
+    setTimeout(() => {
+      this.carritoButom = false
+    }, 2000);
+    this.alertService.alert('Agregado a carrito', 'info');
+    console.log(this.apiService.obtenerCarrito());
   }
 
 }

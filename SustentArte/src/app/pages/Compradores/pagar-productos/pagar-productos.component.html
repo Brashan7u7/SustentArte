@@ -44,6 +44,6 @@
             </div>
         </div>
         <h3>Total: {{total | currency : 'MXN'}}</h3>
-        <button type="submit" class="btn btn-pagar">Pagar</button>
+        <button type="submit" (click)="quitarStock()" class="btn btn-pagar">Pagar</button>
     </form>
 </div>

@@ -3,7 +3,7 @@
     <h4 class="titulo">Editar Perfil</h4>
     <hr class="linea" />
   </div>
-  <form class="formulario">
+  <form class="formulario" [formGroup]="formEditarComprador" (ngSubmit)="editarComprar()">
     <!-- Primera fila -->
     <div class="row">
       <div class="col-4">
@@ -15,6 +15,7 @@
             id="name"
             name="name"
             placeholder="Nombre"
+            formControlName="nombre"
           />
         </div>
       </div>
@@ -27,6 +28,7 @@
             id="firstname"
             name="firstname"
             placeholder="Primer Apellido"
+            formControlName="apellidoPaterno"
           />
         </div>
       </div>
@@ -39,6 +41,7 @@
             id="lastname"
             name="lastname"
             placeholder="Segundo Apellido"
+            formControlName="apellidoMaterno"
           />
         </div>
       </div>
@@ -54,6 +57,7 @@
             id="telefono"
             name="telefono"
             placeholder="Teléfono"
+            formControlName="telefono"
           />
         </div>
       </div>
@@ -66,6 +70,7 @@
             id="correo"
             name="correo"
             placeholder="Correo Electrónico"
+            formControlName="correo"
           />
         </div>
       </div>
@@ -81,6 +86,7 @@
             id="ciudad"
             name="ciudad"
             placeholder="Ciudad"
+            formControlName="ciudad"
           />
         </div>
       </div>
@@ -93,6 +99,7 @@
             id="estado"
             name="estado"
             placeholder="Estado"
+            formControlName="estado"
           />
         </div>
       </div>
@@ -105,6 +112,7 @@
             id="codigoPostal"
             name="codigoPostal"
             placeholder="Código Postal"
+            formControlName="cp"
           />
         </div>
       </div>
@@ -120,6 +128,7 @@
             id="calle"
             name="calle"
             placeholder="Calle"
+            formControlName="calle"
           />
         </div>
       </div>
@@ -132,6 +141,7 @@
             id="colonia"
             name="colonia"
             placeholder="Colonia"
+            formControlName="colonia"
           />
         </div>
       </div>
@@ -144,6 +154,7 @@
             id="numCasa"
             name="numCasa"
             placeholder="Número de Casa"
+            formControlName="numCasa"
           />
         </div>
       </div>
@@ -156,4 +167,6 @@
     </div>
 
   </form>
+
+  <button routerLink="/perfilComprador" class="btn btn-custom-guardar">Regresar</button>
 </div>

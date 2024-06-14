@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { CompradoresService } from './compradores.service';
 import { CompradorDto } from './dto/comprador.dto';
 import { CompradorLoginDto } from './dto/compradorLogin.dto';
@@ -25,6 +25,12 @@ export class CompradoresController {
     createComprador(@Body() comprador:CompradorDto)
     {
         return this.servicioCompradores.createComprador(comprador);
+    }
+
+    @Put(':id')
+    updateComprador(@Param('id') id:number,@Body() comprador:CompradorDto)
+    {
+        return this.servicioCompradores.updateComprador(comprador,id);
     }
 
     @Delete(':id')

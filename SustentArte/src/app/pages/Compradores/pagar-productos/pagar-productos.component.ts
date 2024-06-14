@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+<<<<<<< Updated upstream
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PedidoDetalleInterface } from '../../../interfaces/pedidoDetalle.interface';
@@ -9,6 +10,10 @@ import { pedidoProductoInterface } from '../../../interfaces/pedidoProductos.int
 import { PagoInterface } from '../../../interfaces/pago.interface';
 import { ProductosArray } from '../../../interfaces/productosArray.interface';
 import { pedidoCreateInterface } from '../../../interfaces/pedidosCreate.interface';
+import { AlertsService } from '../../../services/alerts.service';
+=======
+import { CambioStock } from '../../../interfaces/cambio-stock';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-pagar-productos',
@@ -21,11 +26,19 @@ export class PagarProductosComponent {
 
   formBuilder = inject (FormBuilder);
 
+  private router = inject(Router);
+
+  private alertService = inject(AlertsService);
+
   formPago !: FormGroup;
   idDetallePedido = 0;
 
   apiService = inject(ApiService);
   total : number=0;
+  productos:Array<any>[]=[];
+  idProducto:number=0;
+  cantidad:number=0;
+  datosStock?:CambioStock;
 
   constructor(){
     this.cart.forEach(producto => {
@@ -48,6 +61,7 @@ export class PagarProductosComponent {
     return this.apiService.carrito;
   }
 
+<<<<<<< Updated upstream
   pagar(){
     const detallePedido = this.formPago.value as PedidoDetalleInterface;
     this.apiService.crearDetallePedido(detallePedido).subscribe((res:PedidoDetalleInterface) => {
@@ -106,5 +120,19 @@ export class PagarProductosComponent {
     this.apiService.crearPedido(bodyPedido).subscribe((res) => {
       console.log(res);
     });
+    this.alertService.alert('Compra realizada con exito', 'success');
+    this.router.navigate(['/productos']);
+=======
+  quitarStock(){
+    this.cart.forEach(producto => {
+      const datosStock: CambioStock = {
+        id_producto: producto.id_producto,
+        cantidad: 1
+      };
+      this.apiService.quitarStock(datosStock).subscribe(data=>{
+        console.log('Stock Actualizado');
+      })
+    });
+>>>>>>> Stashed changes
   }
 }
