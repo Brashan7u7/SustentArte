@@ -14,6 +14,7 @@ import { AlertsService } from '../../services/alerts.service';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
+  activo:boolean=true;
 
   private router = inject(Router)
 
@@ -43,6 +44,7 @@ export class ProductsComponent {
     this.apiService.obtenerProductosxCategorias(categoria).subscribe((res) => {
       this.productos = res;
     });
+    this.activo=false;
   }
 
   mostrarProducto(id: number) 
@@ -54,15 +56,11 @@ export class ProductsComponent {
     });
   }
 
-  
-  agregarCarrito(id: number) {
-    this.apiService.agregarCarrito(id);
-    this.carritoButom = true
-    setTimeout(() => {
-      this.carritoButom = false
-    }, 2000);
-    this.alertService.alert('Agregado a carrito', 'info');
-    //console.log(this.apiService.obtenerCarrito());
+  verTodo(){
+    this.apiService.obtenerProductos().subscribe((res) => {
+      this.productos = res;
+    });
+    this.activo=true;
   }
 
 }

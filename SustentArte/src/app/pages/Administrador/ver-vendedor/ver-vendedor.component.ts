@@ -3,11 +3,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { ArtesanoInterface } from '../../../interfaces/artesano.interface';
 import { ProductosInterface } from '../../../interfaces/producto.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ver-vendedor',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './ver-vendedor.component.html',
   styleUrl: './ver-vendedor.component.css'
 })

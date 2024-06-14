@@ -60,8 +60,9 @@
                 <img class="card-img-top imagen" [src]="item.imagen" alt="ProductImage" />
                 <div class="card-body">
                     <h4 class="card-title">{{item.nombreP}}</h4>
-                    <span class="badge2 bg-dark mt-2">{{item.materiales.nombre_material}} / {{item.categoria.nombre_categoria}}</span>
+                    <span class="badge badge2 bg-dark mt-2">{{item.materiales.nombre_material}} / {{item.categoria.nombre_categoria}}</span>
                     <p class="card-text mt-3">{{item.descripcion}}</p>
+                    <h2 >{{ item.precio_Venta| currency: 'MXN' }}</h2>
                 </div>
                 <div class="d-grid gap-2">
                     <button type="button" (click)="eliminarProducto(artesanos.id_artesano)" name="" id="" class="btn btn-primary">

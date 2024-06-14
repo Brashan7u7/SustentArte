@@ -58,6 +58,7 @@ export class RegisterComponent {
     
     
     if (this.formComprador.invalid) {
+      this.alertService.alert('Rellena de manera correcta los campos', 'info');
       return //console.log("Form rellenado de manera incorrecta");
     }
 
@@ -66,7 +67,7 @@ export class RegisterComponent {
       this.apiService.crearComprador(formComprador).subscribe(data=>{
         //console.log(data)
         this.formComprador.reset();
-        this.alertService.alert('Tes has rergistrado', 'success');
+        this.alertService.alert('Registrado Exitosamente', 'success');
         this.route.navigateByUrl('login');
       });
       

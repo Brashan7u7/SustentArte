@@ -48,7 +48,7 @@ export class LoginComponent {
 
   onlogin() {
     if (this.formLogin.invalid) {
-      this.alertService.alert('Por favor complete todos los campos', 'error');
+      this.alertService.alert('Por favor complete todos los campos', 'info');
       return;
     }
 
