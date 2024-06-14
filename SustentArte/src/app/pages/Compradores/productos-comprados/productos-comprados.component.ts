@@ -31,8 +31,10 @@ export class ProductosCompradosComponent {
       this.pedidosComprador = res;
       console.log(this.pedidosComprador);
 
+
       this.pedidosComprador.forEach((pedido:PedidosInterface) => {
-        pedido.productos.forEach(productos => {
+        
+        pedido.productos.forEach((productos:ProductosInterface) => {
           this.productosComprador.push({
             id_producto: productos.id_producto,
             nombreP:productos.nombreP,

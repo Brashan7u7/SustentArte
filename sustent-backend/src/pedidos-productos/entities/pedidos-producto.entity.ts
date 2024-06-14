@@ -11,6 +11,9 @@ export class PedidosProductoEntity {
     @Column({type:'integer',nullable:true})
     idComprador: number;
 
+    @Column({type:'integer',nullable:true})
+    idArtesano: number;
+
     @ManyToOne(()=>ProductoEntity,(prod)=>prod.pedidosProd,{nullable:true})
     productos: ProductoEntity;
 

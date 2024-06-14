@@ -23,8 +23,13 @@ export class PedidosProductosController {
   }
 
   @Get('productosPedido/:idPedido')
-  productosPedido(@Param('idPedido') idPedido: string) {
-    return this.pedidosProductosService.productosPedido(+idPedido);
+  productosPedido(@Param('idPedido') idPedido: number) {
+    return this.pedidosProductosService.productosPedido(idPedido);
+  }
+
+  @Get('pedidosArtesano/:idArtesano')
+  pedidosArtesano(@Param('idArtesano') idArtesano: number) {
+    return this.pedidosProductosService.pedidosArtesano(idArtesano);
   }
 
   @Patch(':id')

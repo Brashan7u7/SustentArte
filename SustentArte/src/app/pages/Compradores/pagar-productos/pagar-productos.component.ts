@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PedidoDetalleInterface } from '../../../interfaces/pedidoDetalle.interface';
@@ -9,6 +9,7 @@ import { pedidoProductoInterface } from '../../../interfaces/pedidoProductos.int
 import { PagoInterface } from '../../../interfaces/pago.interface';
 import { ProductosArray } from '../../../interfaces/productosArray.interface';
 import { pedidoCreateInterface } from '../../../interfaces/pedidosCreate.interface';
+import { AlertsService } from '../../../services/alerts.service';
 
 @Component({
   selector: 'app-pagar-productos',
@@ -20,6 +21,10 @@ import { pedidoCreateInterface } from '../../../interfaces/pedidosCreate.interfa
 export class PagarProductosComponent {
 
   formBuilder = inject (FormBuilder);
+
+  private router = inject(Router);
+
+  private alertService = inject(AlertsService);
 
   formPago !: FormGroup;
   idDetallePedido = 0;
@@ -106,5 +111,7 @@ export class PagarProductosComponent {
     this.apiService.crearPedido(bodyPedido).subscribe((res) => {
       console.log(res);
     });
+    this.alertService.alert('Compra realizada con exito', 'success');
+    this.router.navigate(['/productos']);
   }
 }

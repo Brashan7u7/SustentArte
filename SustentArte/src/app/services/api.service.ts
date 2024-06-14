@@ -13,6 +13,7 @@ import { PedidoDetalleInterface } from '../interfaces/pedidoDetalle.interface';
 import { PagoInterface } from '../interfaces/pago.interface';
 import { pedidoCreateInterface } from '../interfaces/pedidosCreate.interface';
 import { ProductoStockInterface } from '../interfaces/stockProducto.interface';
+import { PedidosArtesanosInterface } from '../interfaces/pedidosArtesanos.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,10 @@ export class ApiService {
   }
   pedidosComprador(id: string) {
     return this._http.get<PedidosInterface[]>(`http://localhost:3000/pedidos/comprador/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
+  productosPedidos(id: number) {
+    return this._http.get<PedidosArtesanosInterface>(`http://localhost:3000/pedidos-productos/productosPedido/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
   crearComprador(comprador: CompradoresInterface) {
@@ -122,7 +127,7 @@ export class ApiService {
   }
   editarProducto(product: ProductosInterface, id: number) {
     console.log(product)
-    return this._http.put<ProductosInterface>(`http://localhost:3000/productos/` + id, product, { headers: { 'Access-Control-Allow-Origin': '*' } });
+    return this._http.put<ProductosInterface>(`http://localhost:3000/productos/${id}`, product, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
   quitarStockProducto(producto: ProductoStockInterface) {
@@ -206,5 +211,9 @@ export class ApiService {
   }
   agregarProducto(product: ProductosInterface) {
     return this._http.post<ProductosInterface>('http://localhost:3000/productos', product, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
+  pedidoArtesano(id: number) {
+    return this._http.get<PedidosArtesanosInterface[]>(`http://localhost:3000/pedidos-productos/pedidosArtesano/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 }

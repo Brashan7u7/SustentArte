@@ -60,6 +60,21 @@ export class PedidosService {
         }
     }
 
+    async getProductosPedido(id:number)
+    {
+        try {
+            const findPedido = await this.dataSource.getRepository(PedidosEntity).findOne({where:{id_pedido:id},relations:['productos']});
+            if (!findPedido) {
+                return new HttpException('No se encontro el pedido',HttpStatus.NOT_FOUND);
+            }
+            return findPedido.productos;
+        } catch (error) {
+            console.log(error);
+            
+            throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     async createPedido(pedido:PedidosDto)
     {
         try {
@@ -98,11 +113,12 @@ export class PedidosService {
             await this.dataSource.getRepository(compradorEntity).save(findComprador);
 
             for (let i = 0; i < pedido.productosA.length; i++) {
-                const findProducto = await this.dataSource.getRepository(ProductoEntity).findOne({where:{id_producto:pedido.productosA[i].id_producto}});
+                const findProducto = await this.dataSource.getRepository(ProductoEntity).findOne({where:{id_producto:pedido.productosA[i].id_producto},relations:['artesano']});
                 const findPedidooo = await this.dataSource.getRepository(PedidosEntity).findOne({where:{id_pedido:idPedido}});
                 const bodyPedProd =
                 {
                     idComprador:pedido.compradorId,
+                    idArtesano:findProducto.artesano.id_artesano,
                     productos:findProducto,
                     pedidos:findPedidooo,
                 }

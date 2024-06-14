@@ -25,19 +25,35 @@ export class PedidosProductosService {
     }
   }
 
-  async productosPedido(idComprador:number)
+  async productosPedido(idPedido:number)
   {
       try {
-          const productos = await this.dataSource.getRepository(PedidosProductoEntity).find({where:{idComprador:idComprador},relations:['productos']});
-          if (!productos) {
-              return new HttpException('No se encontraron productos',HttpStatus.NOT_FOUND);
-          }
+        const findPedido = await this.dataSource.getRepository(PedidosProductoEntity).find({where:{id_pedido_producto:idPedido},relations:['productos']});
 
-          return productos;
+        if (!findPedido) {
+          return new HttpException('No se encontraron productos',HttpStatus.NOT_FOUND);
+        }
+          return findPedido;
       } catch (error) {
           console.log(error);
           
           throw new HttpException('Error al obtener los productos',HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
+  async pedidosArtesano(idArtesano:number)
+  {
+      try {
+          const pedidos = await this.dataSource.getRepository(PedidosProductoEntity).find({where:{idArtesano:idArtesano},relations:['pedidos']});
+          if (!pedidos) {
+              return new HttpException('No se encontraron pedidos',HttpStatus.NOT_FOUND);
+          }
+
+          return pedidos;
+      } catch (error) {
+          console.log(error);
+          
+          throw new HttpException('Error al obtener los pedidos',HttpStatus.INTERNAL_SERVER_ERROR);
       }
   }
 

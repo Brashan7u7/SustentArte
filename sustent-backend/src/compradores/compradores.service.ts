@@ -83,6 +83,23 @@ export class CompradoresService {
         }
     }
 
+    async updateComprador(compradorb:CompradorDto,id:number)
+    {
+        try {
+
+            const compradorFind = await this.dataSorce.getRepository(compradorEntity).findOne({where:{id_comprador:id}});
+
+            if(!compradorFind)
+                {
+                    return new HttpException("No se encontro el comprador",HttpStatus.NOT_FOUND)
+                }
+            
+                return await this.dataSorce.getRepository(compradorEntity).update({id_comprador:compradorFind.id_comprador},compradorb);
+        } catch (error) {
+            throw new HttpException("Error al actualizar el comprador",HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+    }
+
     async encryptPassword(password: string): Promise<string> {
         const bcrypt = require('bcrypt');
         const hashedPassword = await bcrypt.hash(password, 10);
