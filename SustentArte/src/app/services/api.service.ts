@@ -207,7 +207,7 @@ export class ApiService {
 
   }
   editarArtesano(artesano: ArtesanoInterface, id: number) {
-    return this._http.put<any>(`http://localhost:8000/artesanos/${id}`, artesano, { headers: { 'Access-Control-Allow-Origin': '*' } });
+    return this._http.put<ArtesanoInterface>(`http://localhost:3000/artesanos/${id}`, artesano, { headers: { 'Access-Control-Allow-Origin': '*' } });
 
   }
   eliminarArtesano(id: number) {

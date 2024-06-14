@@ -66,6 +66,8 @@ export class ArtesanosService {
 
             return await this.dataSouce.getRepository(artesanosEntity).update({id_artesano:artesanoFind.id_artesano},artesano);
         } catch (error) {
+            console.log(error);
+            
             throw new HttpException('Error al actualizar el artesano',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
