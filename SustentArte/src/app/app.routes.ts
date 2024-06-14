@@ -29,6 +29,7 @@ import { EditarCompradorComponent } from './pages/Compradores/editar-comprador/e
 import { AuthGuard } from './guards/auth.guard';
 import { AuthGuardComprador } from './guards/auth-comprador.guard';
 import { AuthGuardArtesano } from './guards/auth-artesano.guard';
+import { AuthGuardNoLogged } from './guards/auth-no-logged.guard';
 
 
 
@@ -172,6 +173,7 @@ export const routes: Routes = [
     path:'productosComprados',
     component:ProductosCompradosComponent,
     canActivate:[AuthGuardComprador]
+    
   },
   
 
@@ -194,11 +196,13 @@ export const routes: Routes = [
   },
   {
     path :'login',
-    component : LoginComponent
+    component : LoginComponent,
+  canActivate:[AuthGuardNoLogged]
   },
   {
     path :'register',
-    component : RegisterComponent
+    component : RegisterComponent,
+    canActivate:[AuthGuardNoLogged]
   },
   {
     path :'productos',
