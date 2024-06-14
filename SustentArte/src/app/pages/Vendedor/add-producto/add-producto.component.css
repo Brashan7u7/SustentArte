@@ -82,4 +82,22 @@
   margin-right: 5px; /* Spacing between icon and text */
 }
 
+.image-upload-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.image-preview {
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  max-width: 300px; /* Máximo ancho para la imagen */
+  margin: auto;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 

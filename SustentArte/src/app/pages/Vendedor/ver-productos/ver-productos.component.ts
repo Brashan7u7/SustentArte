@@ -3,11 +3,12 @@ import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { ArtesanoInterface } from '../../../interfaces/artesano.interface';
 import { ProductosInterface } from '../../../interfaces/producto.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ver-productos',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './ver-productos.component.html',
   styleUrl: './ver-productos.component.css'
 })
