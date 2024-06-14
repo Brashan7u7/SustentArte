@@ -4,6 +4,10 @@ import { PedidosInterface } from '../../../interfaces/pedidos.interface';
 import { ApiService } from '../../../services/api.service';
 import { ProductosInterface } from '../../../interfaces/producto.interface';
 import { pedidoProductoInterface } from '../../../interfaces/pedidoProductos.interface';
+import { bodyCompras } from '../../../interfaces/bodyCompras.interface';
+import { ProductosArray } from '../../../interfaces/productosArray.interface';
+import { PedidoDetalleInterface } from '../../../interfaces/pedidoDetalle.interface';
+import { PedidosArtesanosInterface } from '../../../interfaces/pedidosArtesanos.interface';
 
 @Component({
   selector: 'app-productos-comprados',
@@ -18,43 +22,47 @@ export class ProductosCompradosComponent {
 
   idComprador = "";
 
-  pedidosComprador = Array<PedidosInterface>();
+  pedidosComprador = Array<PedidosArtesanosInterface>();
 
-  productosComprador = Array<pedidoProductoInterface>();
+  pedidosComprados = Array<any>();
+
+  productosComprados = Array<any>();
+
+  comprasComprador = Array<bodyCompras>();
 
   constructor() {
 
     this.idComprador = sessionStorage.getItem('id_comprador')||"";
-    //console.log(this.idComprador);
-    
-    this.apiService.pedidosComprador(this.idComprador).subscribe((res:PedidosInterface[]) => {
-      this.pedidosComprador = res;
-      //console.log(this.pedidosComprador);
-
-
-      this.pedidosComprador.forEach((pedido:PedidosInterface) => {
-        
-        pedido.productos.forEach((productos:ProductosInterface) => {
-          this.productosComprador.push({
-            id_producto: productos.id_producto,
-            nombreP:productos.nombreP,
-            descripcion:productos.descripcion,
-            imagen:productos.imagen,
-            precio_Venta:productos.precio_Venta,
-            stock:productos.stock,
-            historia:productos.historia,
-            artesano:productos.artesano,
-            materiales:productos.materiales,
-            categoria:productos.categoria,
-            cantidad:pedido.precio_Total_Pedido,
-            estado:pedido.edo_Pedido,
-            fecha_entrega:pedido.fecha_pedido,
+    this.apiService.pedidosComprador(this.idComprador).subscribe(
+      {
+        next: (data) => {
+          let index = 0;
+          this.pedidosComprador = data;
+          console.log(this.pedidosComprador);
+          this.pedidosComprador.forEach((value:PedidosArtesanosInterface) => {
+            this.productosComprados.push(value.productos);
+            this.pedidosComprados.push(value.pedidos);
+            const date = new Date();
+            const comprasBody:bodyCompras =
+            {
+              imagen: this.productosComprados[index].imagen,
+              nombreProducto: this.productosComprados[index].nombreP,
+              descripcionProducto: this.productosComprados[index].descripcion,
+              fechaCompra: this.pedidosComprados[index].fecha_pedido,
+              estado: this.pedidosComprados[index].edo_Pedido,
+              total: this.pedidosComprados[index].precio_Total_Pedido
+            }
+            console.log(comprasBody);
+            
+            this.comprasComprador.push(comprasBody);
+            index = index + 1;
+            console.log(index);
+            
           });
-        });
-      });
-      
-      //console.log(this.productosComprador);
-      
-  });
+          console.log(this.comprasComprador);
+          
+        }
+      }
+    )
 }
 }
