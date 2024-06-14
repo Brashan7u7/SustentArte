@@ -2,6 +2,8 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { SeguimientoEntity } from './entity/seguimiento.entity';
 import { SeguimientoDto } from './dto/seguimiento.dto';
+import { PedidosEntity } from 'src/pedidos/entity/pedidos.entity';
+import { updateSeguimientoDto } from './dto/updateSeguimiento.dto';
 
 @Injectable()
 export class SeguimientoService {
@@ -39,16 +41,26 @@ export class SeguimientoService {
     }
 
 
-    async updateSeguimiento(id:number,seguimiento:SeguimientoDto)
+    async updateSeguimiento(id:number,seguimiento:updateSeguimientoDto)
     {
-        try {
+        try {            
             const seguimientoBody = await this.dataSource.getRepository(SeguimientoEntity).findOne({where:{id_seguimiento:id}});
             if (!seguimientoBody) {
                 return new HttpException('No se encontro el seguimiento',HttpStatus.NOT_FOUND);
             }
 
-            return await this.dataSource.getRepository(SeguimientoEntity).update({id_seguimiento:seguimientoBody.id_seguimiento},seguimiento);
+            const findpedido = await this.dataSource.getRepository(PedidosEntity).findOne({where:{id_pedido:seguimiento.id_pedido}});
+            if (!findpedido) {
+                return new HttpException('No se encontro el pedido',HttpStatus.NOT_FOUND);
+            }
+
+            findpedido.edo_Pedido = 1;
+            seguimientoBody.num_Guia = seguimiento.num_Guia;
+            seguimientoBody.empresa_Transporte = seguimiento.empresa_Transporte;            
+            const savePedido = await this.dataSource.getRepository(PedidosEntity).save(findpedido);
+            return await this.dataSource.getRepository(SeguimientoEntity).save(seguimientoBody);
         } catch (error) {
+            
             throw new HttpException('Error al actualizar el seguimiento',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

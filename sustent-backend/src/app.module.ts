@@ -43,6 +43,7 @@ import { PedidosProductosModule } from './pedidos-productos/pedidos-productos.mo
 import { PedidosProductoEntity } from './pedidos-productos/entities/pedidos-producto.entity';
 import { PedidosProductosController } from './pedidos-productos/pedidos-productos.controller';
 import { PedidosProductosService } from './pedidos-productos/pedidos-productos.service';
+import { SeguimientoModule } from './seguimiento/seguimiento.module';
 
 
 
@@ -60,7 +61,7 @@ import { PedidosProductosService } from './pedidos-productos/pedidos-productos.s
       ],
       synchronize: true,
     }),
-    MaterialesModule, CategoriasModule, PagosModule, DetallePagoModule, CompradoresModule, ArtesanosModule,CompradoresModule,ArtesanosModule, PedidosModule, ProductosModule, AdminModule, PedidosProductosModule],
+    MaterialesModule, CategoriasModule, PagosModule, DetallePagoModule, CompradoresModule, ArtesanosModule,CompradoresModule,ArtesanosModule, PedidosModule, ProductosModule, AdminModule, PedidosProductosModule,SeguimientoModule],
   controllers: [AppController, MaterialesController, CategoriasController, PagosController, DetallePagoController,CompradoresController,ArtesanosController, AdminController,SeguimientoController,PedidosProductosController],
   providers: [AppService, MaterialesService, CategoriasService, PagosService, DetallePagoService,CompradoresService,ArtesanosService, AdminService,SeguimientoService,PedidosProductosService],
 })

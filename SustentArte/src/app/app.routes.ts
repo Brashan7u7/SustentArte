@@ -30,6 +30,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthGuardComprador } from './guards/auth-comprador.guard';
 import { AuthGuardArtesano } from './guards/auth-artesano.guard';
 import { AuthGuardNoLogged } from './guards/auth-no-logged.guard';
+import { ActualizarEnvioComponent } from './pages/Vendedor/actualizar-envio/actualizar-envio.component';
 
 
 
@@ -129,6 +130,11 @@ export const routes: Routes = [
   {
     path :'misProductosVendedor',
     component : VerProductosComponent,
+    canActivate:[AuthGuardArtesano]
+  },
+  {
+    path:'actualizarEnvio',
+    component:ActualizarEnvioComponent,
     canActivate:[AuthGuardArtesano]
   },
 

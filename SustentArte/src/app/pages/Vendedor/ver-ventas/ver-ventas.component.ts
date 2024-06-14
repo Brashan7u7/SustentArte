@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { PedidosArtesanosInterface } from '../../../interfaces/pedidosArtesanos.interface';
 import { ApiService } from '../../../services/api.service';
 import { CompradoresInterface } from '../../../interfaces/compradores.interface';
@@ -7,14 +7,16 @@ import { CompradoresInterface } from '../../../interfaces/compradores.interface'
 @Component({
   selector: 'app-ver-ventas',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule,RouterLink],
   templateUrl: './ver-ventas.component.html',
   styleUrl: './ver-ventas.component.css'
 })
 export class VerVentasComponent {
 
   private apiService = inject(ApiService);
+  router = inject(Router);
 
+  idSeguimiento:number = 0;
   ventas = Array<PedidosArtesanosInterface>();
 
   constructor() {
@@ -30,7 +32,17 @@ export class VerVentasComponent {
         });
     });
   });
+
+
+  
 } 
 
+  verSeguimiento(id:number) {
+    this.router.navigate(['/actualizarEnvio'],{
+      queryParams:{
+        ped: JSON.stringify(id)
+      }
+    });
+  }
 
 }

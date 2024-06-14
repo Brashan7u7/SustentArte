@@ -15,6 +15,7 @@ import { pedidoCreateInterface } from '../interfaces/pedidosCreate.interface';
 import { ProductoStockInterface } from '../interfaces/stockProducto.interface';
 import { PedidosArtesanosInterface } from '../interfaces/pedidosArtesanos.interface';
 import { CambioStock } from '../interfaces/cambio-stock';
+import { updateSeguimientoInterface } from '../interfaces/updateSeguimiento.interface';
 
 
 @Injectable({
@@ -137,7 +138,7 @@ export class ApiService {
     return this._http.delete(`http://localhost:3000/productos/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   editarProducto(product: ProductosInterface, id: number) {
-    //console.log(product)
+    console.log(product)
     return this._http.put<ProductosInterface>(`http://localhost:3000/productos/${id}`, product, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
@@ -226,5 +227,9 @@ export class ApiService {
 
   pedidoArtesano(id: number) {
     return this._http.get<PedidosArtesanosInterface[]>(`http://localhost:3000/pedidos-productos/pedidosArtesano/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
+  }
+
+  updateSeguimiento(id: number, seguimiento: updateSeguimientoInterface) {
+    return this._http.put<updateSeguimientoInterface>(`http://localhost:3000/seguimientos/${id}`, seguimiento, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 }

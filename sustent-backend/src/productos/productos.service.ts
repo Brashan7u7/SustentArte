@@ -118,6 +118,8 @@ export class ProductosService {
 
             return await this.dataSource.getRepository(ProductoEntity).update({id_producto:productoFind.id_producto},producto);
         } catch (error) {
+            console.log(error);
+            
             throw new HttpException('Error al actualizar el producto',HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

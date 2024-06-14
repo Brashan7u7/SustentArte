@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { SeguimientoService } from './seguimiento.service';
 import { SeguimientoDto } from './dto/seguimiento.dto';
+import { updateSeguimientoDto } from './dto/updateSeguimiento.dto';
 
 @Controller('seguimientos')
 export class SeguimientoController {
@@ -18,7 +19,7 @@ export class SeguimientoController {
     }
 
     @Put(':id')
-    async updateSeguimiento(@Param('id') id:number,@Body() seguimiento:SeguimientoDto) {
+    async updateSeguimiento(@Param('id') id:number,@Body() seguimiento:updateSeguimientoDto) {
         return this.seguimientoService.updateSeguimiento(id,seguimiento);
     }
 
