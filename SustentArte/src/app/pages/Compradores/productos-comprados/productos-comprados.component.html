@@ -20,7 +20,7 @@
             </div>
             <div class="col-2">
                 <div class="card-body">
-                    <a href="" class="accion"> <p class="card-title iconosVisibles">Comprado el: <span class="fechaCompra">{{item.fechaCompra}}</span></p></a>
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Comprado el: <span class="fechaCompra">{{item.fechaCompra| date: 'dd/MM/yy' }}</span></p></a>
                     <a href="" class="accion"> <p class="card-title iconosVisibles">Total: <span class="totalCompra">{{item.total}}</span></p> </a>
                 </div>
             </div>

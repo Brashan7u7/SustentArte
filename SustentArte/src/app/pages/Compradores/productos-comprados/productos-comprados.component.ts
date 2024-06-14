@@ -8,11 +8,12 @@ import { bodyCompras } from '../../../interfaces/bodyCompras.interface';
 import { ProductosArray } from '../../../interfaces/productosArray.interface';
 import { PedidoDetalleInterface } from '../../../interfaces/pedidoDetalle.interface';
 import { PedidosArtesanosInterface } from '../../../interfaces/pedidosArtesanos.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-productos-comprados',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule,CommonModule],
   templateUrl: './productos-comprados.component.html',
   styleUrl: './productos-comprados.component.css'
 })
