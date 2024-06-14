@@ -65,7 +65,7 @@ export class ApiService {
     return this._http.get<CompradoresInterface>(`http://localhost:3000/compradores/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
   pedidosComprador(id: string) {
-    return this._http.get<PedidosInterface[]>(`http://localhost:3000/pedidos/comprador/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
+    return this._http.get<PedidosArtesanosInterface[]>(`http://localhost:3000/pedidos-productos/pedidosComprador/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
   productosPedidos(id: number) {

@@ -32,6 +32,11 @@ export class PedidosProductosController {
     return this.pedidosProductosService.pedidosArtesano(idArtesano);
   }
 
+  @Get('pedidosComprador/:idComprador')
+  pedidosComprador(@Param('idComprador') idComprador: number) {
+    return this.pedidosProductosService.pedidosComprador(idComprador);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePedidosProductoDto: UpdatePedidosProductoDto) {
     return this.pedidosProductosService.update(+id, updatePedidosProductoDto);

@@ -41,6 +41,22 @@ export class PedidosProductosService {
       }
   }
 
+  async pedidosComprador(idComprador:number)
+  {
+      try {
+          const pedidos = await this.dataSource.getRepository(PedidosProductoEntity).find({where:{idComprador:idComprador},relations:['pedidos','productos']});
+          if (!pedidos) {
+              return new HttpException('No se encontraron pedidos',HttpStatus.NOT_FOUND);
+          }
+
+          return pedidos;
+      } catch (error) {
+          //console.log(error);
+          
+          throw new HttpException('Error al obtener los pedidos',HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
   async pedidosArtesano(idArtesano:number)
   {
       try {
