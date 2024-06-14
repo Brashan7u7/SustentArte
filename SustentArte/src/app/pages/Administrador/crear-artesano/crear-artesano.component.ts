@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertsService } from '../../../services/alerts.service';
 import { ApiService } from '../../../services/api.service';
 import Swal from 'sweetalert2';
@@ -14,9 +14,9 @@ import { ArtesanoInterface } from '../../../interfaces/artesano.interface';
   styleUrls: ['./crear-artesano.component.css']
 })
 export class CrearArtesanoComponent {
-
   isNew = true;
   id = 0;
+  activeRoute = inject(ActivatedRoute) 
   formBuilder = inject(FormBuilder);
   formArtesano !: FormGroup;
   route = inject(Router);
@@ -37,6 +37,17 @@ export class CrearArtesanoComponent {
       foto: ['', Validators.required],
       localidad: ['', Validators.required]
     });
+    this.activeRoute.params.subscribe((params: any) => {
+      console.log(params);
+      if (params.id) {
+        this.id = params.id;
+        this.isNew = false;
+        this.apiService.obtenerArtesano(this.id).subscribe((artesano) => {
+          this.formArtesano.reset(artesano)
+        })
+      }
+    })
+
   }
 
   async showConfirmationAlert(title: string, text: string): Promise<boolean> {

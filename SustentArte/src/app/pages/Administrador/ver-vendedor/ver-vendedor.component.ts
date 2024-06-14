@@ -12,6 +12,7 @@ import { ProductosInterface } from '../../../interfaces/producto.interface';
   styleUrl: './ver-vendedor.component.css'
 })
 export class VerVendedorComponent {
+  router = inject(Router);
 
   private route = inject(ActivatedRoute)
 
@@ -38,5 +39,8 @@ export class VerVendedorComponent {
     this.apiService.eliminarProducto(id).subscribe((res) => {
       this.productos = this.productos.filter((producto) => producto.id_producto !== id);
     });
+  }
+  editarArtesano(artesano: ArtesanoInterface) {
+    this.router.navigateByUrl('editarArtesano/'+artesano.id_artesano)
   }
 }

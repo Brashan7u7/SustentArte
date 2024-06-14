@@ -51,6 +51,11 @@ export const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
+    path :'editarArtesano/:id',
+    component : CrearArtesanoComponent,
+    canActivate:[AuthGuard]
+  },
+  {
     path:'vendedoresAdmin',
     component: VerVendedoresComponent,
     canActivate:[AuthGuard]

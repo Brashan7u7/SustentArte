@@ -40,6 +40,12 @@
                     </div>
                     
                 </div>
+                <div class="d-grid gap-2">
+                    <button type="button" (click)="editarArtesano(artesanos)" name="" id="" class="btn btn-primary">
+                        Edita Artesano
+                    </button>
+                </div>
+                
             </div>
         </div>
         <div class="row titulo">
@@ -58,7 +64,7 @@
                     <p class="card-text mt-3">{{item.descripcion}}</p>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="button" (click)="eliminarProducto" name="" id="" class="btn btn-primary">
+                    <button type="button" (click)="eliminarProducto(artesanos.id_artesano)" name="" id="" class="btn btn-primary">
                         Eliminar Producto
                     </button>
                 </div>
