@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet,RouterModule, Router } from '@angular/router';
+import { RouterOutlet,RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { ProductosInterface } from '../../interfaces/producto.interface';
@@ -14,9 +14,12 @@ import { AlertsService } from '../../services/alerts.service';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
+
   activo:boolean=true;
 
   private router = inject(Router)
+
+   private activatedRoute = inject(ActivatedRoute)
 
   private apiService = inject(ApiService);
 
@@ -29,6 +32,18 @@ export class ProductsComponent {
 
 
   constructor() {
+
+    this.categorias = this.activatedRoute.snapshot.data['categorias'];
+    this.productos = this.activatedRoute.snapshot.data['products'];
+    this.activatedRoute.data.subscribe((data) => {
+      console.log(data);
+      
+      if (data['products'] && data['categorias']) {
+        this.categorias = data['categorias'];
+        this.productos = data['products'];
+      }
+    });
+    /*
     this.apiService.obtenerProductos().subscribe((res) => {
       this.productos = res;
     });
@@ -36,15 +51,14 @@ export class ProductsComponent {
     this.apiService.obtenerCategorias().subscribe((res) => {
       this.categorias = res;
     });
+    */
   }
 
 
   filtrarCategoria(categoria: string) {
-    this.productos = [];
-    this.apiService.obtenerProductosxCategorias(categoria).subscribe((res) => {
-      this.productos = res;
+    this.router.navigate(['/productos'], {
+      queryParams: { filter: categoria },
     });
-    this.activo=false;
   }
 
   mostrarProducto(id: number) 

@@ -31,6 +31,8 @@ import { AuthGuardComprador } from './guards/auth-comprador.guard';
 import { AuthGuardArtesano } from './guards/auth-artesano.guard';
 import { AuthGuardNoLogged } from './guards/auth-no-logged.guard';
 import { ActualizarEnvioComponent } from './pages/Vendedor/actualizar-envio/actualizar-envio.component';
+import { productsResolver } from './pages/products/products.resolver';
+import { categoriasResolver } from './pages/products/categorias.resolver';
 
 
 
@@ -213,6 +215,8 @@ export const routes: Routes = [
   {
     path :'productos',
     component : ProductsComponent,
+    resolve:{ products:productsResolver, categorias:categoriasResolver},
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   },
   {
     path :'productoPublic',
