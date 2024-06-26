@@ -1,0 +1,37 @@
+<div class="container mt-2 mb-5">
+    <div class="row justify-content-center mb-3">
+        <div class="col-1 text-center">
+            <a class="btn btn-danger btn-sm" href="panelAdmin" role="button">Regresar</a>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Ver Materiales <i class="fa-solid fa-eye"></i></h1>
+        </div>
+    </div>
+    @for (material of misMateriales; track material.id_material) {
+        <a class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class=" col-6">
+                    <h5 class="mb-1">Nombre: {{ material.nombre_material }}</h5>
+                    <p>Descripcion: {{material.descripcion_material}}</p>
+                </div>
+                <div class=" col-2">
+                    <button
+                        type="button"
+                        class="btn btn-primary" (click)="editarMaterial(material)"
+                    >
+                        Editar  <i class="fa fa-eye" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class=" col-2">
+                    <button
+                        type="button"
+                        class="btn btn-primary" (click)="eliminarMaterial(material)"
+                    >
+                        Eliminar <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    
+                </div>
+            </div>
+        </a>
+        }
+</div>

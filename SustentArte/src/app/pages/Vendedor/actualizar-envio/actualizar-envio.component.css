@@ -1,0 +1,106 @@
+.btn-primary {
+    background-color: #DF7A25;
+    border-color: #DF7A25;
+    border-radius: 5px;
+    height: 30%;
+    font-size: 20px;
+    width: 20%;
+}
+
+.inputT {
+    border-radius: 5px;
+    border-color: #DF7A25;
+
+}
+.spacee {
+    margin-bottom: 20%;
+}
+.space {
+    margin-left: 10%;
+}
+.contain
+{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #DF7A25;
+    border-color: #DF7A25;
+    border-radius: 5px;
+}
+
+.btn-danger {
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #DF7A25;
+    border-color: #DF7A25;
+}
+.container {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-control {
+    border-radius: 3px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.spacel
+{
+    margin-bottom: 5%;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .form-control {
+        font-size: 12px;
+    }
+
+    .btn-primary,
+    .btn-danger {
+        font-size: 10px;
+    }
+    
+}

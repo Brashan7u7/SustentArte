@@ -1,0 +1,23 @@
+<div class="container mt-2 mb-5">
+    <div class="row justify-content-center mb-3">
+        <div class="col-1 text-center">
+            <a class="btn btn-danger btn-sm" href="panelAdmin" role="button">Regresar</a>
+        </div>
+        <div class="col-11 text-center">
+            <h1>{{isNew ? 'Agregar Material': 'Editar Material'}} <i class="fa-solid fa-folder-plus"></i></h1>
+        </div>
+    </div>
+    <form [formGroup]="formMaterial" (ngSubmit)="agregarMaterial()" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="nombre_Mat">Nombre del Material</label>
+            <input id="nombre_Mat" formControlName="nombre_material" class="form-control" required>
+            <div class="invalid-feedback">Por favor, ingrese el nombre del material.</div>
+        </div>
+        <div class="form-group">
+            <label for="desc_Mat">Descripción del Material</label>
+            <textarea id="desc_Mat" formControlName="descripcion_material" class="form-control" rows="3" required></textarea>
+            <div class="invalid-feedback">Por favor, ingrese la descripción del material.</div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">{{isNew ? 'Agregar' : 'Guardar cambios'}}</button>
+    </form>
+</div>

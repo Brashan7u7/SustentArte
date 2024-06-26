@@ -1,0 +1,43 @@
+.titulo {
+    text-align: center;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+    font-size: 3vh;
+    color: #DF7A25; /* Color anaranjado */
+}
+
+.producto {
+    margin: 10vh;
+    background-color: #FFE6D5; /* Fondo anaranjado claro */
+    border: 1px solid #DF7A25; /* Borde anaranjado */
+}
+
+.tituloProd {
+    font-size: 1.5rem; /* Tamaño del título del producto */
+    color: #DF7A25; /* Color anaranjado */
+}
+
+.descProd {
+    font-size: 1rem; /* Tamaño del texto */
+    color: #333; /* Color de texto principal */
+}
+
+.productoimg {
+    width: 10vw; /* Ancho de la imagen ajustado */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn{
+    background-color: #DF7A25; /* Color anaranjado */
+    border-color: #DF7A25;
+}
+
+.btnA{
+    background-color: #dfaa25; /* Color anaranjado */
+    border-color: #dfaa25;
+    height: 25%;
+    border-radius: 5px;
+    border: none;
+}

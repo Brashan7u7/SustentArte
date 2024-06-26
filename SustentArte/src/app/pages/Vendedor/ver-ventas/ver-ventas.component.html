@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div>
+        <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="../panelVendedor">Regresar</a>
+    </div>
+
+    <div class="row titulo">
+        <h5 class="titulo">Productos vendidos:</h5>
+        <hr class="linea">
+    </div>
+
+    @for (item of ventas; track item.id_pedido_producto) {
+        <div class="card producto">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="card-title tituloProd">Pedido {{item.id_pedido_producto}}</h4>
+                                <p class="card-text descProd">Comprador: {{item.comprador?.nombre +' '+ item.comprador?.apellidoPaterno +' ' + item.comprador?.apellidoMaterno}}</p>
+                                <p>Dirección: {{item.comprador?.calle +' #'+ item.comprador?.numCasa +' '+ item.comprador?.colonia +' '+ item.comprador?.cp +', '+ item.comprador?.ciudad +', '+ item.comprador?.estado}}</p>
+                            </div>
+                            <div class="col">
+                                @if (item.pedidos.edo_Pedido === 0) {
+                                    <h4 class="card-title tituloProd">Estado: En proceso</h4>
+                                }
+                                @if (item.pedidos.edo_Pedido === 1) {
+                                    <h4 class="card-title tituloProd">Estado: Enviado</h4>
+                                }
+                                @if (item.pedidos.edo_Pedido === 2) {
+                                    <h4 class="card-title tituloProd">Estado: Entregado</h4>
+                                }
+                                <p class="card-text descProd">Artículo: {{item.productos.nombreP}}</p>
+                                <p>Cantidad de artículo: 1</p>
+                                <button class="btnA" (click)="verSeguimiento(item.pedidos.id_pedido)">Actualizar Envio</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <img class="card-img-top productoimg"
+                        src="{{item.productos.imagen}}"
+                        alt="Imagen de Producto">
+                </div>
+            </div>
+        </div>
+    }
+</div>

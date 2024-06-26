@@ -1,0 +1,72 @@
+.navBarProd {
+    background-color: #F1D8B3;
+}
+
+.text {
+    margin-top: 1.3vw;
+    font-size: 3vh;
+    margin-right: 3vh;
+}
+
+.titulo {
+    color: #F38E17;
+    font-size: 3vw;
+}
+
+.elementos {
+    margin: 2vh;
+}
+
+.combo {
+    font-size: 3vw !important;
+    margin-right: 1vh !important;
+}
+
+.card {
+    margin-top: 2vh;
+    height: 100%;
+}
+
+.card-tam {
+    width: 18rem;
+    height: 26rem; /* Ajusta este valor según tus necesidades */
+}
+
+.imagenContenedor {
+    width: auto;
+    height: 50%; /* Ajusta este valor según tus necesidades */
+    display: inline-flex;
+}
+
+.boton {
+    background-color: #F38E17;
+    border-color: #F38E17;
+}
+
+.btn {
+    background-color: #F38E17;
+    border-color: #F38E17;
+}
+
+@media (max-width: 1020px) {
+    .text {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .titulo {
+        font-size: 4vw;
+    }
+}
+
+
+.carritoCompras
+{
+    height: 8%;
+    margin-left: 40%;
+    width: 15%;
+    border: none;
+    background-image: none;
+    background: none;
+}

@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div>
+        <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="../panelVendedor">Regresar</a>
+    </div>
+    <div class="row titulo">
+        <h5 class="titulo">Productos en venta:</h5>
+        <hr class="linea">
+    </div>
+    <div *ngIf="productos.length > 0; else noProductos">
+        @for (prod of productos; track prod.id_producto) {
+            <div class="card producto">
+                <div class="row">
+                    <div class="col-md-3 col-12 d-flex justify-content-center align-items-center">
+                        <img class="card-img-top productoimg" [src]="prod.imagen" alt="Title" />
+                    </div>
+                    <div class="col-md-7 col-12">
+                        <div class="card-body">
+                            <h4 class="card-title tituloProd">{{prod.nombreP}}</h4>
+                            <p class="card-text descProd">{{prod.descripcion}}</p>
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <img src="#" alt="" width="300" />
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5 class="mt-0">{{prod.precio_Venta | currency}}</h5>
+                                </div>
+                            </div>
+                            <div class="d-print-block">
+                                Cantidad: {{prod.stock}} unidades
+                            </div>
+                            <span class="badge rounded-pill text-bg-dark">Categoria: {{prod.categoria.nombre_categoria}}</span>
+                            <span class="badge rounded-pill text-bg-dark">Material: {{prod.materiales.nombre_material}}</span>
+                            <p class="historia">Historia:</p>
+                            <p>{{prod.historia}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-12 d-flex flex-column justify-content-center align-items-center">
+                        <a class="accion mb-2" (click)="editarProducto(prod)">
+                            <p class="card-title iconosVisibles">Editar <i class="fa fa-edit" aria-hidden="true"></i></p>
+                            <i class="fa fa-edit iconoOculto" aria-hidden="true"></i>
+                        </a>
+                        <a class="accion">
+                            <p class="card-title iconosVisibles" (click)="eliminarProducto(prod)">Eliminar <i class="fa fa-trash" aria-hidden="true"></i></p>
+                            <i class="fa fa-trash iconoOculto" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <ng-template #noProductos>
+        <div class="alert alert-danger text-center justify-content-center" role="alert">
+            <div class="row">
+                <strong class="text-center"><h3>Oh, no! Aun no has puesto a la venta ningun producto</h3></strong>
+            </div>
+            <div class="row">
+                <a href="addProducto" class="alert-link">Crea productos aquí <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </ng-template>
+</div>

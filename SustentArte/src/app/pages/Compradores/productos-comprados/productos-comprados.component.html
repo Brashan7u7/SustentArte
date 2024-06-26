@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div>
+        <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="../panelVendedor">Regresar</a>
+    </div>
+    <div class="row titulo">
+        <h5 class="titulo">Productos comprados:</h5>
+        <hr class="linea">
+    </div>
+    @for (item of comprasComprador; track $index) {
+    <div class="card producto">
+        <div class="row">
+            <div class="col-4">
+                <img class="card-img-top productoimg" [src]="item.imagen" alt="Title" />
+            </div>
+            <div class="col-4">
+                <div class="card-body">
+                    <h4 class="card-title tituloProd">{{item.nombreProducto}}</h4>
+                    <p class="card-text descProd">{{item.descripcionProducto}}</p>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="card-body">
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Comprado el: <span class="fechaCompra">{{item.fechaCompra| date: 'dd/MM/yy' }}</span></p></a>
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Total: <span class="totalCompra">{{item.total}}</span></p> </a>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="card-body">
+                    <a href="" class="accion"> <p class="card-title iconosVisibles">Estado: <span class="estadoPedido">{{item.estado}}</span></p> </a>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+        
+    </div>
+}
+
+</div>

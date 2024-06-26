@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <div class="row titulo">
+        <h4 class="titulo">Información del Perfil:</h4>
+        <hr class="linea">
+    </div>
+    <form class="formulario">
+        <!-- Primera fila -->
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <label class="form-control input" id="name" name="name" placeholder="Nombre" readonly>{{comprador.nombre}}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="firstname">Primer Apellido:</label>
+                    <label class="form-control input" id="firstname" name="firstname" placeholder="Primer Apellido" readonly>{{comprador.apellidoPaterno}}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="lastname">Segundo Apellido:</label>
+                    <label class="form-control input" id="lastname" name="lastname" placeholder="Segundo Apellido" readonly>{{comprador.apellidoMaterno}}</label>
+                </div>
+            </div>
+        </div>
+        <!-- Segunda fila -->
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <label class="form-control input" id="telefono" name="telefono" placeholder="Teléfono" readonly>{{comprador.telefono}}</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico:</label>
+                    <label class="form-control input" id="correo" name="correo" placeholder="Correo Electrónico" readonly>{{comprador.correo}}</label>
+                </div>
+            </div>
+        </div>
+        <!-- Tercera fila -->
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="ciudad">Ciudad:</label>
+                    <label class="form-control input" id="ciudad" name="ciudad" placeholder="Ciudad" readonly>{{comprador.ciudad}}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <label class="form-control input" id="estado" name="estado" placeholder="Estado" readonly>{{comprador.estado}}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="codigoPostal">Código Postal:</label>
+                    <label class="form-control input" id="codigoPostal" name="codigoPostal" placeholder="Código Postal" readonly>{{comprador.cp}}</label>
+                </div>
+            </div>
+        </div>
+        <!-- Cuarta fila -->
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="calle">Calle:</label>
+                    <label class="form-control input" id="calle" name="calle" placeholder="Calle" readonly>{{comprador.calle}}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="colonia">Colonia:</label>
+                    <label class="form-control input" id="colonia" name="colonia" placeholder="Colonia" readonly>{{comprador.colonia}}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="numCasa">Número de Casa:</label>
+                    <label class="form-control input" id="numCasa" name="numCasa" placeholder="Número de Casa" readonly>{{comprador.numCasa}}</label>
+                </div>
+            </div>
+        </div>
+       
+    </form>
+    <button class="boton" routerLink="/home">Regresar</button>
+    <button class="boton" routerLink="/editarComprador">Editar</button>
+
+</div>
