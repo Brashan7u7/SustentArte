@@ -1,0 +1,57 @@
+/* Estilos generales */
+.producto {
+    margin: 4vh;
+    padding: 2vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tituloProd {
+    font-size: 4vh;
+    color: #F38E17; /* Anaranjado */
+}
+
+.descProd {
+    font-size: 2.5vh;
+}
+
+.badge {
+    font-size: 3.5vh;
+}
+
+.productoimg {
+    max-width: 100%;
+    height: auto;
+}
+
+.btn-custom {
+    background-color: #DF7A25;
+    border-color: #DF7A25;
+}
+
+.btn-custom:hover {
+    background-color: #F38E17; /* Anaranjado más claro al hacer hover */
+    border-color: #F38E17;
+}
+
+.btn-orange {
+    background-color: #F38E17; /* Anaranjado */
+    border-color: #F38E17;
+    color: #ffffff;
+}
+
+.btn-orange:hover {
+    background-color: #FFA533; /* Anaranjado más claro al hacer hover */
+    border-color: #FFA533;
+    color: #ffffff;
+}
+
+@media (max-width: 855px) {
+    .iconoOculto {
+        display: flex;
+    }
+
+    .iconosVisibles {
+        display: none;
+    }
+}

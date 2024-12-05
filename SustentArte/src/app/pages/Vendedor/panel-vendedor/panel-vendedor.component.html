@@ -1,0 +1,40 @@
+<div class="container-fluid fondo  flex-column justify-content-center align-items-center">
+  <div class="row justify-content-center">
+    <div class="col-12 text-center mb-5">
+      <h1>Bienvenido {{artesano?.nombre+' '+artesano?.apellidoPaterno}}</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center g-2 cartas">
+    <div class="col-lg-4 col-md-6 col-sm-12 justify-content-center align-items-center g-2">
+      <a class="nav-link active" routerLinkActive="active" routerLink="../addProducto">
+        <div class="card  justify-content-center align-items-center cardright">
+          <img class="card-img-top" src="assets/img/CreateVendedor.png" style="width: 300px; height: 300px;" alt="CreateVendedor.png" />
+          <div class="card-body">
+            <h4 class="card-title">AGREGAR PRODUCTO</h4>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--misProductosVendedor-->
+    <div class="col-lg-4 col-md-6 col-sm-12 justify-content-center align-items-center g-2">
+      <a class="nav-link active" routerLinkActive="active" routerLink="../misProductosVendedor">
+        <div class="card justify-content-center align-items-center cardright">
+          <img class="card-img-top" src="assets/img/EditVendedor.png" style="width: 300px; height: 300px;" alt="CreateVendedor.png" />
+          <div class="card-body">
+            <h4 class="card-title">VER PRODUCTOS</h4>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 justify-content-center align-items-center g-2">
+      <a class="nav-link active" routerLinkActive="active" routerLink="../ventasVendedor">
+        <div class="card justify-content-center align-items-center cardleft">
+          <img class="card-img-top" src="assets/img/VerVendedor.png" style="width: 300px; height: 300px;" alt="CreateVendedor.png" />
+          <div class="card-body">
+            <h4 class="card-title">VER VENTAS</h4>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

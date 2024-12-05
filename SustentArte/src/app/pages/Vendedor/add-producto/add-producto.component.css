@@ -1,0 +1,103 @@
+.titulo{
+  align-items: center;
+  text-align: center;
+  margin: auto+5vh;
+}
+
+.btn-custom2 {
+  background-color: #DF7A25;
+  color: #ffffff;
+  border-color: #ffffff;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-top: 4vh;
+}
+.btn-custom{
+  background-color: #DF7A25;
+  color: #ffffff;
+  border-color: #DF7A25;
+
+}
+
+.btn-custom2:hover {
+  color: #DF7A25;
+  background-color: #fff;
+  border-color: #DF7A25
+}
+
+
+.archivos{
+  min-width: 10vh;
+
+}
+
+.image-preview {
+  width: 200px; /* Adjust width as needed */
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+}
+
+
+.custom-file-input {
+  width: 100%; /* Adjust width as needed */
+  margin-bottom: 10px; /* Adjust spacing as needed */
+}
+
+.custom-file-input input[type="file"] {
+  display: none; /* Hide the default file input element */
+}
+
+.custom-file-label {
+  display: inline-block;
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+  background-color: #e9ecef; /* Light background color */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 0.25rem; /* Rounded corners */
+  cursor: pointer; /* Make it look like a button */
+  transition: all 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.custom-file-label:hover {
+  background-color: #ddd; /* Slightly darker on hover */
+}
+
+.custom-file-label::after {
+  content: "Seleccionar archivo"; /* Change text as needed */
+  color: #333; /* Text color */
+  font-weight: bold; /* Make it stand out */
+  margin-left: 10px; /* Spacing between text and icon (optional) */
+}
+
+.custom-file-label svg {
+  /* Optional icon (replace with your preferred SVG) */
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  margin-right: 5px; /* Spacing between icon and text */
+}
+
+.image-upload-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.image-preview {
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  max-width: 300px; /* Máximo ancho para la imagen */
+  margin: auto;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+

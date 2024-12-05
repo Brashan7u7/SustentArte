@@ -1,0 +1,80 @@
+<div class="contenedorProcipal">
+  <div class="container-fluid navBarProd">
+    <div class="row align-items-center justify-content-center ">
+      <div class="col-5">
+        <h2 class=" elementos titulo">Productos</h2>
+      </div>
+      <div class="col-3 disp">
+      </div>
+      <div class="col-2">
+        <div class="row elementos">
+          <div class="align-items-left justify-content-left">
+            <div class="dropdown elemento combo">
+              <button class="btn btn-secondary dropdown-toggle botonTodos" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Filtrar
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                @for (item of categorias; track $index) {
+                <li><a class="dropdown-item"
+                    (click)="filtrarCategoria(item.nombre_categoria)">{{item.nombre_categoria}}</a></li>
+                }
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="row elementos">
+          <div class="align-items-left justify-content-left combo">
+            @if (activo) {
+              <button
+                  type="button"
+                  class="btn btn-secondary botonTodos"
+                  (click)="verTodo()"
+                  disabled
+                >
+                  Ver Todo
+                </button>
+            }@else {
+              <button
+                  type="button"
+                  class="btn btn-secondary botonTodos"
+                  (click)="verTodo()"
+                >
+                  Ver Todo
+                </button>
+            }
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center align-items-center mb-4">
+    @for (item of productos; track $index) {
+    <div class="col-lg- col-md-4 col-sm-6 card-tam">
+      <div class="card ">
+        <div class="imagenContenedor">
+          <img class="card-img-top imagen" [src]="item.imagen" alt="ProductImage" />
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">{{item.nombreP}}</h4>
+          <span class="badge bg-dark mt-2">{{item.categoria.nombre_categoria}}</span>
+          <p class="card-text mt-3">{{item.descripcion}}</p>
+          <h2 >{{ item.precio_Venta| currency: 'MXN' }}</h2>
+        </div>
+        <div class="d-grid gap-2">
+          <a name="" id="" class="btn btn-primary" (click)="mostrarProducto(item.id_producto)" role="button">Ver
+            Producto</a>
+        </div>
+      </div>
+
+    </div>
+    }
+  </div>
+</div>

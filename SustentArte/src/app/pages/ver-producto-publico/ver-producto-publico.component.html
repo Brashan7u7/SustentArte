@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div>
+        <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="/productos">Regresar</a>
+    </div>
+    <div class="card producto">
+        <div class="row">
+            <div class="col-lg-5">
+                <img class="card-img-top productoimg" [src]="producto.imagen" alt="Imagen del Producto" />
+            </div>
+            <div class="col-lg-7">
+                <div class="card-body">
+                    <h2 class="card-title tituloProd">{{producto.nombreP}}</h2>
+                    <p class="card-text descProd">Descripcion: <br> {{producto.descripcion}}</p>
+                    <p class="card-text descProd">Historia: <br> {{producto.historia}}</p>
+                    <p class="card-text descProd">Material: <br> {{producto.materiales.nombre_material}}</p>
+                    <h1><span class="badge bg-success">{{producto.precio_Venta | currency: 'MXN'}}</span></h1>
+                    @if (rol === ''){
+                    <div class="d-grid gap-2 mt-3">
+                        <button type="button" class="btn btn-orange" routerLink="/login">
+                            COMPRAR <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+.tabla {
+  margin: 0vh 15vw 0vh 15vw;
+  font-size: 2vw;
+}
+
+.img-adjust {
+  width: 15vw;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.table .btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+}
+
+.table .fa {
+  font-size: 16px;
+}
+
+.encabezado {
+  text-align: center;
+  
+}
+
+.textoTabla {
+  text-align: center;
+  background-color: aquamarine;
+}
+
+.boton{
+  margin-left: 8vh;
+}
+
+@media (max-width: 700px) {
+  .tabla {
+    margin: 0vh;
+    font-size: 3vw;
+  }
+}
+
+
+.btn{
+  background-color: #DF7A25;
+  border-color: #DF7A25;
+  text-decoration: none;
+}
+
+

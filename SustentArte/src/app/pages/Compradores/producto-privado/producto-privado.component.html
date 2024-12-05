@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div>
+        <a class="btn btn-primary btn-custom" routerLinkActive="active" routerLink="/productos">Regresar</a>
+    </div>
+    <div class="card producto">
+        <div class="row">
+            <div class="col-5">
+                <img class="card-img-top productoimg" [src]="producto.imagen" alt="Title" />
+            </div>
+            <div class="col-7">
+                <div class="card-body">
+                    <h2 class="card-title tituloProd">{{producto.nombreP}}</h2>
+                    <p class="card-text descProd">{{producto.descripcion}}</p>
+                    <p class="card-text descProd">Historia: {{producto.historia}}</p>
+                    <p class="card-text descProd">Material: {{producto.materiales.nombre_material}}</p>
+
+                    <span
+                        class="badge bg-success"
+                        >{{producto.precio_Venta}}</span
+                    >
+                </div>
+                <div class="d-grid gap-2">
+                    <button
+                        type="button"
+                        name=""
+                        id=""
+                        class="btn btn-primary"
+                        routerLink="/login"
+                        [disabled]="carritoButom"
+                        (click)="agregarCarrito(producto.id_producto)"
+                    >
+                        COMPRAR <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    
+    
+
+</div>

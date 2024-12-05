@@ -1,0 +1,172 @@
+<div class="container-fluid">
+  <div class="row titulo">
+    <h4 class="titulo">Editar Perfil</h4>
+    <hr class="linea" />
+  </div>
+  <form class="formulario" [formGroup]="formEditarComprador" (ngSubmit)="editarComprar()">
+    <!-- Primera fila -->
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <label for="name">Nombre:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="name"
+            name="name"
+            placeholder="Nombre"
+            formControlName="nombre"
+          />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="firstname">Primer Apellido:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="firstname"
+            name="firstname"
+            placeholder="Primer Apellido"
+            formControlName="apellidoPaterno"
+          />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="lastname">Segundo Apellido:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="lastname"
+            name="lastname"
+            placeholder="Segundo Apellido"
+            formControlName="apellidoMaterno"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Segunda fila -->
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="telefono"
+            name="telefono"
+            placeholder="Teléfono"
+            formControlName="telefono"
+          />
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="correo">Correo Electrónico:</label>
+          <input
+            type="email"
+            class="form-control input"
+            id="correo"
+            name="correo"
+            placeholder="Correo Electrónico"
+            formControlName="correo"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Tercera fila -->
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <label for="ciudad">Ciudad:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="ciudad"
+            name="ciudad"
+            placeholder="Ciudad"
+            formControlName="ciudad"
+          />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="estado">Estado:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="estado"
+            name="estado"
+            placeholder="Estado"
+            formControlName="estado"
+          />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="codigoPostal">Código Postal:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="codigoPostal"
+            name="codigoPostal"
+            placeholder="Código Postal"
+            formControlName="cp"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Cuarta fila -->
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <label for="calle">Calle:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="calle"
+            name="calle"
+            placeholder="Calle"
+            formControlName="calle"
+          />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="colonia">Colonia:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="colonia"
+            name="colonia"
+            placeholder="Colonia"
+            formControlName="colonia"
+          />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="numCasa">Número de Casa:</label>
+          <input
+            type="text"
+            class="form-control input"
+            id="numCasa"
+            name="numCasa"
+            placeholder="Número de Casa"
+            formControlName="numCasa"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Botón de guardar -->
+    <div class="row">
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-custom-guardar">Guardar</button>
+      </div>
+    </div>
+
+  </form>
+
+  <button routerLink="/perfilComprador" class="btn btn-custom-guardar">Regresar</button>
+</div>

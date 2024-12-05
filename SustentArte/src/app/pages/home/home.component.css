@@ -1,0 +1,77 @@
+/* Estilo general */
+.contenedor {
+  padding: 1rem; /* Ajusta el padding según tus necesidades */
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Estilo del carrusel */
+.carousel-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilo de las tarjetas */
+.card {
+  padding: 1rem;
+  border-radius: 10px; /* Ajusta el radio según tus necesidades */
+  background: rgba(var(--card-rgb), 0); /* Cambia el valor según sea necesario */
+  border: 1px solid rgba(var(--card-border-rgb), 0); /* Cambia el valor según sea necesario */
+  transition: background 200ms, border 200ms;
+}
+
+.card span {
+  display: inline-block;
+  transition: transform 200ms;
+}
+
+.card:hover {
+  background: rgba(var(--card-rgb), 0.1);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+}
+
+.card:hover span {
+  transform: translateX(4px);
+}
+
+.card-img-top {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilo de la fila */
+.linea {
+  margin-bottom: 25px;
+  height: 85px;
+  background-color: #F1D8B3;
+}
+
+/* Estilo de la información */
+.info {
+  max-width: 80%; /* Ajusta el ancho máximo según sea necesario */
+}
+
+/* Media queries */
+@media (max-width: 700px) {
+  .contenedor {
+    padding: 0.5rem; /* Reducir el padding en dispositivos móviles */
+  }
+
+  .card {
+    padding: 1rem; /* Ajusta el padding de las tarjetas en dispositivos móviles */
+  }
+
+  .info {
+    max-width: 100%; /* Ajusta el ancho máximo de la información en dispositivos móviles */
+  }
+
+  .grid {
+    grid-template-columns: 1fr; /* Cambia a una columna en dispositivos móviles */
+  }
+
+  .linea {
+    height: 60px; /* Reducir la altura de la fila en dispositivos móviles */
+  }
+}

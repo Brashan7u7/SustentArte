@@ -1,0 +1,77 @@
+<div class="contenedorProcipal container">
+    <div class="boton">
+        <a routerLinkActive="active" routerLink="/vendedoresAdmin" class="btn btn-primary">Volver</a>
+    </div>
+    <div class="row rowCard d-flex justify-content-center align-items-center mb-4">
+        <div class="col-lg-10 col-md-10 col-sm-10">
+            <div class="card card-tam">
+                <img class="card-img-top imagen" [src]="artesanos.foto" alt="ProductImage" />
+                <div class="card-body">
+                    <div class="divProperty">
+                        <h4 class="card-title nombreVendedor">{{artesanos.nombre +" "+ artesanos.apellidoPaterno+" "+ artesanos.apellidoMaterno}}</h4>
+                        <div class=" badge2">
+                            <span
+                                class="badge property"
+                                >{{artesanos.localidad}}</span
+                            >
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="divProperty">
+                        <p class="propertyTitle">Correo: </p>
+                        <p class="property">{{artesanos.correo}}</p>
+                    </div>
+                    <div class="divProperty">
+                        <p class="propertyTitle">Descripcion de trabajo: </p>
+                        <p class="property">{{artesanos.descripcionTrabajo}}</p>
+                    </div>
+                    <div class="divProperty">
+                        <p class="propertyTitle">Experiencia textil: </p>
+                        <p class="property">{{artesanos.xp_textil}}</p>
+                    </div>
+                    <div class="divProperty">
+                        <p class="propertyTitle">Tecnicas Artesanales: </p>
+                        <p class="property">{{artesanos.tec_artesanales}}</p>
+                    </div>
+                    <div class="divProperty">
+                        <p class="propertyTitle">Reconocimientos: </p>
+                        <p class="property">{{artesanos.reconocimientos}}</p>
+                    </div>
+                    
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="button" (click)="editarArtesano(artesanos)" name="" id="" class="btn btn-primary">
+                        Edita Artesano
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row titulo">
+            <h5 class="titulo">Productos del vendedor:</h5>
+            <hr class="linea">
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center mb-4">
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            @for (item of productos; track $index) {
+            <div class="card carta">
+                <img class="card-img-top imagen" [src]="item.imagen" alt="ProductImage" />
+                <div class="card-body">
+                    <h4 class="card-title">{{item.nombreP}}</h4>
+                    <span class="badge badge2 bg-dark mt-2">{{item.materiales.nombre_material}} / {{item.categoria.nombre_categoria}}</span>
+                    <p class="card-text mt-3">{{item.descripcion}}</p>
+                    <h2 >{{ item.precio_Venta| currency: 'MXN' }}</h2>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="button" (click)="eliminarProducto(artesanos.id_artesano)" name="" id="" class="btn btn-primary">
+                        Eliminar Producto
+                    </button>
+                </div>
+            </div>
+        }
+        </div>
+
+    </div>
+</div>
